@@ -1,5 +1,6 @@
 """Decorators that handle input errors are collected here."""
 
+
 def input_error(func):
     """Handles a missing arguments error
 
@@ -46,7 +47,10 @@ where username is contact's name."
             if func.__name__ == "show_birthday":
                 return show_birthday_message
             return common_message
+        except KeyError as e:
+            return f"KeyError: {str(e)}"
     return inner
+
 
 def empty_contact_list(func):
     """handles an empty contact list error

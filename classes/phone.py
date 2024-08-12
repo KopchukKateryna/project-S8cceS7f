@@ -6,6 +6,7 @@ class Phone(Field):
     """Phone class"""
 
     def __init__(self, number):
+        super().__init__(number)
         self.value = self.validate_number(number)
 
     def validate_number(self, number):

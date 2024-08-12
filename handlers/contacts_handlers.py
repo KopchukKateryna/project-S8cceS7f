@@ -1,8 +1,11 @@
-"""A module for working with a list of contacts: adding, editing, outputting, deleting."""
-# pylint: disable=line-too-long
+"""A module for working with a list of contacts:
+adding, editing, outputting, deleting."""
+
+from tabulate import tabulate
 from classes import AddressBook
 from classes import Record
 from .decorators import input_error, empty_contact_list
+
 
 @input_error
 def add_contact(args, book: AddressBook):
@@ -26,23 +29,26 @@ def add_contact(args, book: AddressBook):
         record.add_phone(phone)
     return message
 
+
 @empty_contact_list
 @input_error
 def change_contact(args, book: AddressBook):
     """Changes a contact's phone number by the name
 
-#     Args:
-#         args (list): contains name, old phone number and new phone number
-#         book (class): contact list
+    #     Args:
+    #         args (list): contains name, old phone number and new phone number
+    #         book (class): contact list
 
-#     Returns:
-#         str: notification that the contact has been changed, or contact not found
-#     """
+    #     Returns:
+    #         str: notification that the contact has been changed, or contact not found
+    #"""
     name, old_number, new_number, *_ = args
     record = book.find(name)
-
+    if record is None:
+        raise KeyError(f"No such name '{name}' was found")
     record.edit_phone(old_number, new_number)
     return "Phone changed"
+
 
 @empty_contact_list
 @input_error
@@ -54,14 +60,15 @@ def show_phone(args, book: AddressBook):
         book (class): contact list
 
     Returns:
-        str: a message with information about the contact, or that the contact was not found
+        str: a message with information about the contact,
+        or that the contact was not found
     """
     name, *_ = args
-
     record = book.find(name)
     if record is None:
-        return f"The {name} is not found"
+        raise KeyError(f"Contact {name} not found.")
     return record
+
 
 @empty_contact_list
 def show_all(book: AddressBook):
@@ -73,7 +80,9 @@ def show_all(book: AddressBook):
     Returns:
         str: message with a list of contacts
     """
-    return f"{book}"
+    headers = ["Address Book"]
+    return tabulate(book.data.items(), headers, tablefmt="mixed_grid", stralign="left")
+
 
 @empty_contact_list
 @input_error
@@ -94,7 +103,7 @@ def delete_contact(args, book: AddressBook):
         book.delete(name)
         return f"The {name} has been deleted"
 
-    if name == "all": # видалити всі контакти
+    if name == "all":  # видалити всі контакти
         book.data.clear()
         return "All contacts have been deleted"
 

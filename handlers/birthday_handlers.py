@@ -1,8 +1,9 @@
-"""A module for working with a contacts birthdays."""
-# pylint: disable=line-too-long
+"""birthday handlers"""
 
+from tabulate import tabulate
 from classes import AddressBook
 from .decorators import input_error
+
 
 @input_error
 def add_birthday(args, book: AddressBook):
@@ -22,7 +23,8 @@ def add_birthday(args, book: AddressBook):
         return "Birthday added"
     else:
         return f"There is no contact {name}"
-    
+
+
 @input_error
 def show_birthday(args, book: AddressBook):
     """Shows a birthday of the contact.
@@ -43,7 +45,8 @@ def show_birthday(args, book: AddressBook):
         
     else:
         return f"There is no contact {name}"
-    
+
+
 def show_upcoming_birthdays(book: AddressBook):
     """Shows all contacts with congratulations dates to the next 7 days
 
@@ -55,7 +58,9 @@ def show_upcoming_birthdays(book: AddressBook):
     """
     upcoming_birthdays = book.get_upcoming_birthdays()
     if len(upcoming_birthdays) == 0:
-        return "The birthday list is empty."
-
-    lines = [f"Contact name: {birthday["name"]}, congratulation_date: {birthday["congratulation_date"]}" for birthday in upcoming_birthdays]
-    return "\n".join(lines)
+        raise IndexError("No contacts that need to be congratulated by day next week.")
+    headers = ["Name", "Congratulation date"]
+    table_data = [
+        [key["name"], key["congratulation_date"]] for key in upcoming_birthdays
+    ]
+    return tabulate(table_data, headers, tablefmt="mixed_grid", stralign="left")

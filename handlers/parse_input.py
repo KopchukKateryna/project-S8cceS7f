@@ -1,5 +1,7 @@
 """The function parses the string entered by the user into a command and its arguments.
     """
+
+
 def parse_input(user_input: str):
     """The function parses the string entered by the user into a command and its arguments.
 
