@@ -6,7 +6,13 @@ from classes.birthday import Birthday
 
 
 class Record:
-    """Record class"""
+    """
+    A class for storing contact information, including name and phone numbers.
+
+    Attributes:
+        * name (Name) - The contact's name.
+        * phones (list of Phone) - A list of the contact's phone numbers.
+    """
     def __init__(self, name):
         self.name = Name(name)
         self.phones = []
@@ -21,16 +27,32 @@ class Record:
         return contact_string
 
     def add_phone(self, number: str):
-        """Add a phone number to the record."""
+        """
+        Add a phone number to the record.
+
+        Args:
+            * phone (str) - The phone number to be added.
+        """
         self.phones.append(Phone(number))
 
     def remove_phone(self, number: str):
-        """Remove a phone number from the record."""
+        """
+        Remove a phone number from the record.
+
+        Args:
+            * phone (str) - The phone number to be removed.
+        """
 
         self.phones = list(filter(lambda phone: phone == number, self.phones))
 
     def edit_phone(self, old_number: str, new_number: str):
-        """Edit a phone number in the record."""
+        """
+        Edit a phone number in the record.
+
+        Args:
+            * old_phone (str) - The phone number to be replaced.
+            * new_phone (str) - The new phone number to replace the old one.
+        """
 
         self.phones = list(
             map(
@@ -40,7 +62,15 @@ class Record:
         )
 
     def find_phone(self, number):
-        """Find a phone number in the record."""
+        """
+        Find a phone number in the record.
+
+        Args:
+            * phone (str) - The phone number to find.
+
+        Returns:
+            * Phone - The phone object if found, None otherwise.
+        """
 
         for phone in self.phones:
             if phone.value == number:

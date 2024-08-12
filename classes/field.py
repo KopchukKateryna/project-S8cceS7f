@@ -1,8 +1,13 @@
-"""base class for fields"""
+"""A base class for fields in a record."""
 
 
 class Field:
-    """base class for fields"""
+    """
+    A base class for fields in a record.
+
+    Attributes:
+        * value (str): The value of the field.
+    """
     def __init__(self, value):
         self.value = value
 
