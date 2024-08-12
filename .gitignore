@@ -1,0 +1,11 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# custom files
+addressbook.pkl
+
+# Virtual environments
+venv/
+.env/
