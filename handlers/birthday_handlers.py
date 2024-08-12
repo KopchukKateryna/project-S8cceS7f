@@ -1,7 +1,9 @@
 """birthday handlers"""
 
 from tabulate import tabulate
+
 from classes import AddressBook
+
 from .decorators import input_error
 
 
@@ -42,7 +44,7 @@ def show_birthday(args, book: AddressBook):
         if not record.birthday:
             return f"There is no birthday for contact {name}"
         return f"{name} birthday: {record.birthday}"
-        
+
     else:
         return f"There is no contact {name}"
 

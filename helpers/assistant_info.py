@@ -1,6 +1,7 @@
 """A common function that shows possible bot commands in table view."""
 
 from tabulate import tabulate
+
 from constants import ASSISTANT_INFO_TABLE_DATA, ASSISTANT_INFO_TABLE_HEADERS
 
 

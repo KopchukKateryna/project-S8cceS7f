@@ -1,6 +1,5 @@
 """!!!NEEDS CHANGES!!!!"""
 
-
 BOT_COMMANDS = [
     {"command": "hello", "usage": "hello", "exmp": "hello"},
     {"command": "info", "usage": "info", "exmp": "info"},

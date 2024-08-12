@@ -2,9 +2,10 @@
 adding, editing, outputting, deleting."""
 
 from tabulate import tabulate
-from classes import AddressBook
-from classes import Record
-from .decorators import input_error, empty_contact_list
+
+from classes import AddressBook, Record
+
+from .decorators import empty_contact_list, input_error
 
 
 @input_error

@@ -1,8 +1,8 @@
 """Record class"""
 
+from classes.birthday import Birthday
 from classes.name import Name
 from classes.phone import Phone
-from classes.birthday import Birthday
 
 
 class Record:
@@ -13,13 +13,17 @@ class Record:
         * name (Name) - The contact's name.
         * phones (list of Phone) - A list of the contact's phone numbers.
     """
+
     def __init__(self, name):
         self.name = Name(name)
         self.phones = []
         self.birthday = None
 
     def __str__(self):
-        contact_string = f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
+        contact_string = (
+            f"Contact name: {self.name.value}, phones: "
+            f"{'; '.join(p.value for p in self.phones)}"
+        )
 
         if self.birthday:
             contact_string += f", birthday: {self.birthday}"

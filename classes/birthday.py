@@ -1,6 +1,7 @@
 """A class for storing a contact's birthday."""
 
 from datetime import datetime
+
 from classes.field import Field
 
 
@@ -8,12 +9,13 @@ class Birthday(Field):
     """
     A class for storing a contact's birthday.
 
-    Inherits from Field. Validates that the birthday is in the format YYYY.MM.DD and converts
-    the string representation to a datetime object.
+    Inherits from Field. Validates that the birthday is in the format YYYY.MM.DD and
+    converts the string representation to a datetime object.
 
     Method:
         __init__(self, value: str) - Initializes the birthday with a validated date.
     """
+
     def __init__(self, value: str):
         try:
             birthday = datetime.strptime(value, "%Y.%m.%d")
