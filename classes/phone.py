@@ -1,4 +1,5 @@
 """Phone class"""
+
 from classes.field import Field
 
 

@@ -9,6 +9,7 @@ class AddressBook(UserDict):
     Stores the contact book and methods for working with it.
     Inherits from UserDict.
     """
+
     def __str__(self):
         lines = [str(record) for record in self.data.values()]
         return "\n".join(lines)
@@ -60,10 +61,14 @@ class AddressBook(UserDict):
 
         for name, record in self.data.items():
             if record.birthday:
-                user_birthday = datetime.strptime(str(record.birthday), "%Y.%m.%d").date()
+                user_birthday = datetime.strptime(
+                    str(record.birthday), "%Y.%m.%d"
+                ).date()
                 birthday_prepared = user_birthday.replace(year=today_datetime.year)
                 if birthday_prepared < today_datetime:
-                    birthday_prepared = birthday_prepared.replace(year=today_datetime.year + 1)
+                    birthday_prepared = birthday_prepared.replace(
+                        year=today_datetime.year + 1
+                    )
 
                 if (birthday_prepared - today_datetime).days > 7:
                     continue
@@ -73,6 +78,7 @@ class AddressBook(UserDict):
 
                 congratulation_date_str = birthday_prepared.strftime("%Y.%m.%d")
                 upcoming_birthdays.append(
-                    {"name": name, "congratulation_date": congratulation_date_str})
+                    {"name": name, "congratulation_date": congratulation_date_str}
+                )
 
         return upcoming_birthdays

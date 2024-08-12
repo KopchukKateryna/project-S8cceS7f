@@ -1,7 +1,8 @@
 """functions for work with pickle"""
+
+import logging
 import pickle
 from pathlib import Path
-import logging
 
 from classes import AddressBook
 
@@ -12,7 +13,8 @@ def save_data(book: AddressBook, filename: str = "addressbook.pkl") -> None:
 
     Args:
         book (AddressBook): The object to be saved (e.g., an instance of AddressBook).
-        filename (str): The name of the file to save the data to. Default is "addressbook.pkl".
+        filename (str): The name of the file to save the data to.
+        Default is "addressbook.pkl".
 
     Raises:
         Exception: If an error occurs during the saving process, it will be logged.
@@ -30,10 +32,12 @@ def load_data(filename: str = "addressbook.pkl") -> AddressBook:
     Load data from a pickle file.
 
     Args:
-        filename (str): The name of the file to load the data from. Default is "addressbook.pkl".
+        filename (str): The name of the file to load the data from.
+        Default is "addressbook.pkl".
 
     Returns:
-        Any: The loaded data, or a new instance of AddressBook if the file is not found or an error occurs.
+        Any: The loaded data, or a new instance of AddressBook
+        if the file is not found or an error occurs.
     """
     file_path = Path(filename)
     if not file_path.exists():

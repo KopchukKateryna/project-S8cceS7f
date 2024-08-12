@@ -8,6 +8,7 @@ class Field:
     Attributes:
         * value (str): The value of the field.
     """
+
     def __init__(self, value):
         self.value = value
 
