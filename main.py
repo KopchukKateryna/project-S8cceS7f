@@ -1,16 +1,19 @@
-from helpers.pickle_utils import save_data, load_data
-from helpers.assistant_info import assistant_info
 from handlers import (
-    parse_input,
+    add_birthday,
     add_contact,
     change_contact,
-    show_all,
-    show_phone,
     delete_contact,
-    add_birthday,
+    parse_input,
+    show_all,
     show_birthday,
-    show_upcoming_birthdays
-    )
+    show_phone,
+    show_upcoming_birthdays,
+)
+from helpers import setup_logging
+from helpers.assistant_info import assistant_info
+from helpers.pickle_utils import load_data, save_data
+
+logger = setup_logging()
 
 
 def main():
@@ -70,5 +73,5 @@ def main():
             print("Invalid command.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

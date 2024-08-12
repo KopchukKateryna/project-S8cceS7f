@@ -5,3 +5,7 @@ __pycache__/
 
 # custom files
 addressbook.pkl
+
+# Virtual environments
+venv/
+.env/
