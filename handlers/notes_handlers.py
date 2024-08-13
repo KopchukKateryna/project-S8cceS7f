@@ -12,6 +12,7 @@ def handle_errors(func):
     Returns:
         function: The wrapped function with error handling.
     """
+
     def wrapper(*args, **kwargs):
         try:
             return func(*args, **kwargs)
@@ -21,6 +22,7 @@ def handle_errors(func):
             return f"Invalid input: {str(e)}"
         except Exception as e:
             return f"An unexpected error occurred: {str(e)}"
+
     return wrapper
 
 

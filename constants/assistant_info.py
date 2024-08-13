@@ -33,7 +33,11 @@ BOT_COMMANDS = [
     {"command": "birthdays", "usage": "birthdays", "exmp": "birthdays"},
     {"command": "close", "usage": "close", "exmp": "close"},
     {"command": "exit", "usage": "exit", "exmp": "exit"},
-    {"command": "add-note", "usage": "add note <name> <text>", "exmp": "add-note todo test"},
+    {
+        "command": "add-note",
+        "usage": "add note <name> <text>",
+        "exmp": "add-note todo test",
+    },
     {"command": "all-notes", "usage": "all notes", "exmp": "all-notes"},
 ]
 

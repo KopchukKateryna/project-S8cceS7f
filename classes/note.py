@@ -18,7 +18,7 @@ class Note:
 
         Args:
             name (str): The name of the note.
-            text (str, optional): The text content of the note. Defaults to an empty string.
+            text (str, optional): The text content of the note. Defaults to empty string.
         """
         self.text = Field(text)
         self.name = Field(name)
