@@ -8,6 +8,7 @@ from handlers import (
     show_birthday,
     show_phone,
     show_upcoming_birthdays,
+    search_contact,
 )
 from helpers import setup_logging
 from helpers.assistant_info import assistant_info
@@ -68,6 +69,9 @@ def main():
 
         elif command == "birthdays":
             print(show_upcoming_birthdays(book))
+
+        elif command == "search":
+            print(search_contact(args, book))
 
         else:
             print("Invalid command.")
