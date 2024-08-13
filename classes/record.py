@@ -18,7 +18,6 @@ class Record:
         self.name = Name(name)
         self.phones = []
         self.birthday = None
-        self.note = ""
 
     def __str__(self):
         contact_string = (

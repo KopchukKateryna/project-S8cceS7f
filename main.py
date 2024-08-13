@@ -54,9 +54,9 @@ def main():
             print(add_contact(args, book))
 
         elif command == "add-note":
-            name = input("Enter note name: ")
-            text = input("Enter note text: ")
-            print(add_note([name, text], notes_book))
+            # name = input("Enter note name: ")
+            # text = input("Enter note text: ")
+            print(add_note(notes_book))
 
         elif command == "change":
             print(change_contact(args, book))

@@ -23,13 +23,13 @@ from handlers.parse_input import parse_input
 __all__ = [
     "parse_input",
     "add_contact",
-    "add_note",
     "change_contact",
     "show_all",
-    "show_all_notes",
     "show_phone",
     "delete_contact",
     "add_birthday",
     "show_birthday",
     "show_upcoming_birthdays",
+    "add_note",
+    "show_all_notes",
 ]

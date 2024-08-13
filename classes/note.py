@@ -1,14 +1,33 @@
-from classes.name import Name
-from classes import Record
+"""class Note"""
+
+from classes.field import Field
 
 
-class Note(Record):
+class Note:
+    """
+    A class representing a note with a name and text.
+
+    Attributes:
+        name (Field): The name of the note.
+        text (Field): The text content of the note.
+    """
+
     def __init__(self, name, text=""):
-        self.name = Name(name)
-        self.text = text
+        """
+        Initializes a Note instance with a name and optional text.
 
-    def add_note_text(self, text: str):
-        self.text = text
+        Args:
+            name (str): The name of the note.
+            text (str, optional): The text content of the note. Defaults to an empty string.
+        """
+        self.text = Field(text)
+        self.name = Field(name)
 
     def __str__(self):
-        return f"Note: {self.name.value}, Text: {self.text}"
+        """
+        Returns a string representation of the note.
+
+        Returns:
+            str: A formatted string with the note's name and text.
+        """
+        return f"Note: {self.name.value}, Text: {self.text.value}"
