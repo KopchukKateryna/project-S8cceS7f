@@ -38,6 +38,19 @@ class AddressBook(UserDict):
         record = self.data.get(name, None)
         return record
 
+    def find_email(self, email):
+        """
+        Finds a record by email.
+
+        Args:
+            * email(str) - The email of the contact to find.
+
+        Returns:
+            * Record - The contact record if found
+        """
+        record = self.data.get(email, None)
+        return record
+
     def delete(self, name):
         """
         Deletes a record by name.
