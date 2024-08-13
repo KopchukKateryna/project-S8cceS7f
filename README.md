@@ -22,6 +22,7 @@ python3 -m venv venv
 ```
 
 !!! If you cannot get the virtual environment to start, try creating it with the command 
+
 ```bash
 /usr/bin/python3 -m venv .venv
 ```
