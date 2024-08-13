@@ -10,6 +10,7 @@ from handlers import (
     show_phone,
     show_upcoming_birthdays,
     show_all_notes,
+    search_contact,
 )
 from helpers import setup_logging
 from helpers.assistant_info import assistant_info
