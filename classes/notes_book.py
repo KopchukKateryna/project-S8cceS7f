@@ -1,3 +1,5 @@
+"""class NotesBook"""
+
 from collections import UserDict
 
 
