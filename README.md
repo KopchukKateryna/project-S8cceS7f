@@ -17,6 +17,10 @@ cd <repository-directory>
 ### 2. Setting Up the Virtual Environment:
 A virtual environment has been set up to manage dependencies. Activate the virtual environment before running the project:
 
+```bash
+python -m venv venv
+```
+
 # On Windows:
 
 ```bash
