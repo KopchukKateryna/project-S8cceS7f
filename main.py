@@ -1,6 +1,6 @@
 from handlers import (
     add_birthday,
-    add_contact,
+    # add_contact,
     add_note,
     change_contact,
     delete_contact,
