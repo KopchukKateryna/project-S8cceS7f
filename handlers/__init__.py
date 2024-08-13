@@ -13,13 +13,20 @@ from handlers.contacts_handlers import (
     show_all,
     show_phone,
 )
+
+from handlers.notes_handlers import (
+    add_note,
+    show_all_notes,
+)
 from handlers.parse_input import parse_input
 
 __all__ = [
     "parse_input",
     "add_contact",
+    "add_note",
     "change_contact",
     "show_all",
+    "show_all_notes",
     "show_phone",
     "delete_contact",
     "add_birthday",
