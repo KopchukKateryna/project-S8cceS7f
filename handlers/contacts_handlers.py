@@ -150,8 +150,8 @@ def add_email_to_contact(args, book: AddressBook):
 @empty_contact_list
 @input_error
 # def add_phone_to_contact(args, book: AddressBook):
-def add_phone_to_contact(name, number, book: AddressBook):
-    # name, email, *_ = args
+def add_phone_to_contact(args, book: AddressBook):
+    name, number, *_ = args
     record = book.find(name)
     if record:
         record.add_phone(number)
@@ -163,7 +163,7 @@ def add_phone_to_contact(name, number, book: AddressBook):
 @empty_contact_list
 @input_error
 def add_address_to_contact(args, book: AddressBook):
-    name, address, *_ = args
+    name, address = args
     record = book.find(name)
     if record:
         record.add_address(address)

@@ -14,6 +14,7 @@ from handlers import (
     add_email_to_contact,
     add_phone_to_contact,
     add_address_to_contact,
+    add_contact_input
 )
 from helpers import setup_logging
 from helpers.assistant_info import assistant_info
@@ -54,6 +55,9 @@ def main():
         elif command == "info":
             print(assistant_info())
 
+        # elif command == "add":
+        #     print(add_contact(args, book))
+
         elif command == "add":
             print(add_contact(args, book))
 
@@ -88,6 +92,7 @@ def main():
                 print(add_address_to_contact(args, book))
             if email_input == "n":
                 pass
+            add_contact_input(book)
 
         elif command == "change":
             print(change_contact(args, book))
@@ -115,8 +120,14 @@ def main():
 
         elif command == "search":
             print(search_contact(args, book))
+        elif command == "add-phone":
+            print(add_phone_to_contact(args, book))
+
         elif command == "add-email":
             print(add_email_to_contact(args, book))
+
+        elif command == "add-address":
+            print(add_address_to_contact(args, book))
 
         else:
             print("Invalid command.")
