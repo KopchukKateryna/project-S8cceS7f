@@ -80,6 +80,9 @@ def main():
         elif command == "birthdays":
             print(show_upcoming_birthdays(book))
 
+        elif command == "search":
+            print(search_contact(args, book))
+
         else:
             print("Invalid command.")
 

@@ -82,3 +82,21 @@ class AddressBook(UserDict):
                 )
 
         return upcoming_birthdays
+
+    def find_by_phone(self, phone):
+        """
+        Finds a record by phone number.
+        Args:
+        * phone(str) - The phone number to search for.
+        Returns:
+        * dict - The record with the matching phone number.
+        """
+        return next(
+            (
+                record
+                for record in self.data.values()
+                for p in record.phones
+                if p.value == phone
+            ),
+            None,
+        )
