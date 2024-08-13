@@ -9,7 +9,8 @@ from .decorators import empty_contact_list, input_error
 
 
 @input_error
-def add_contact(args, book: AddressBook):
+# def add_contact(args, book: AddressBook):
+def add_contact(name, book: AddressBook):
     """Adds a new contact to the contact list.
 
     Args:
@@ -19,15 +20,15 @@ def add_contact(args, book: AddressBook):
     Returns:
         str: message that the contact has been added or updated
     """
-    name, phone, *_ = args
+    # name, phone, *_ = args
     record = book.find(name)
     message = "Contact updated."
     if record is None:
         record = Record(name)
         book.add_record(record)
         message = "Contact added."
-    if phone:
-        record.add_phone(phone)
+    # if phone:
+    #     record.add_phone(phone)
     return message
 
 
@@ -134,3 +135,38 @@ def search_contact(args, book: AddressBook):
     # record_by_email = book.find_by_email(search_string)
     # if record_by_email:
     #     return record_by_email
+@input_error
+# def add_email_to_contact(args, book: AddressBook):
+def add_email_to_contact(args, book: AddressBook):
+    name, email, *_ = args
+    record = book.find(name)
+    if record:
+        record.add_email(email)
+        return "Email added"
+    else:
+        return f"There is no contact {name}"
+
+
+@empty_contact_list
+@input_error
+# def add_phone_to_contact(args, book: AddressBook):
+def add_phone_to_contact(name, number, book: AddressBook):
+    # name, email, *_ = args
+    record = book.find(name)
+    if record:
+        record.add_phone(number)
+        return "Phone added"
+    else:
+        return f"There is no contact {name}"
+
+
+@empty_contact_list
+@input_error
+def add_address_to_contact(args, book: AddressBook):
+    name, address, *_ = args
+    record = book.find(name)
+    if record:
+        record.add_address(address)
+        return "Address added"
+    else:
+        return f"There is no contact {name}"
