@@ -14,6 +14,11 @@ from handlers.contacts_handlers import (
     show_phone,
     search_contact,
 )
+
+from handlers.notes_handlers import (
+    add_note,
+    show_all_notes,
+)
 from handlers.parse_input import parse_input
 
 __all__ = [
@@ -26,5 +31,6 @@ __all__ = [
     "add_birthday",
     "show_birthday",
     "show_upcoming_birthdays",
-    "search_contact",
+    "add_note",
+    "show_all_notes",
 ]

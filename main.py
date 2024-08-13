@@ -1,6 +1,7 @@
 from handlers import (
     add_birthday,
     add_contact,
+    add_note,
     change_contact,
     delete_contact,
     parse_input,
@@ -8,11 +9,12 @@ from handlers import (
     show_birthday,
     show_phone,
     show_upcoming_birthdays,
-    search_contact,
+    show_all_notes,
 )
 from helpers import setup_logging
 from helpers.assistant_info import assistant_info
 from helpers.pickle_utils import load_data, save_data
+from classes import NotesBook
 
 logger = setup_logging()
 
@@ -30,6 +32,8 @@ def main():
     )
     print(assistant_info())
     print()
+
+    notes_book = NotesBook()
 
     while True:
         user_input = input("Enter a command: ")
@@ -49,6 +53,9 @@ def main():
         elif command == "add":
             print(add_contact(args, book))
 
+        elif command == "add-note":
+            print(add_note(notes_book))
+
         elif command == "change":
             print(change_contact(args, book))
 
@@ -57,6 +64,9 @@ def main():
 
         elif command == "all":
             print(show_all(book))
+
+        elif command == "all-notes":
+            print(show_all_notes(notes_book))
 
         elif command == "delete":
             print(delete_contact(args, book))
