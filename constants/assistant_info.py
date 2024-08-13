@@ -33,6 +33,11 @@ BOT_COMMANDS = [
     {"command": "birthdays", "usage": "birthdays", "exmp": "birthdays"},
     {"command": "close", "usage": "close", "exmp": "close"},
     {"command": "exit", "usage": "exit", "exmp": "exit"},
+    {
+        "command": "search",
+        "usage": "search <name/phone/email>",
+        "exmp": "search bob",
+    },
 ]
 
 ASSISTANT_INFO_TABLE_HEADERS = ["COMMAND", "USAGE", "EXAMPLE"]

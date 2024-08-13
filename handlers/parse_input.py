@@ -1,7 +1,10 @@
 """The function parses the string entered by the user into a command and its arguments.
     """
 
+from .decorators import input_error
 
+
+@input_error
 def parse_input(user_input: str):
     """The function parses the string entered by the user
     into a command and its arguments.
