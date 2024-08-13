@@ -8,6 +8,9 @@ from handlers import (
     show_birthday,
     show_phone,
     show_upcoming_birthdays,
+    add_email_to_contact,
+    add_phone_to_contact,
+    add_address_to_contact,
 )
 from helpers import setup_logging
 from helpers.assistant_info import assistant_info
@@ -48,6 +51,36 @@ def main():
         elif command == "add":
             print(add_contact(args, book))
 
+        elif command == "add-contact":
+            contact_name = input("Enter contact's name: ").lower()
+            print(add_contact(contact_name, book))
+            contact_phone = input("Enter contact's phone number: ").lower()
+            print(add_phone_to_contact(contact_name, contact_phone, book))
+
+            email_input = input("Do you want to add email y/n: ").lower()
+            if email_input == "y":
+                contact_email = input("Enter contact's email: ").lower()
+                args = [contact_name, contact_email]
+                print(add_email_to_contact(args, book))
+            if email_input == "n":
+                pass
+
+            birthday_input = input("Do you want to add birthday y/n: ").lower()
+            if birthday_input == "y":
+                contact_birthday = input("Enter contact's birthday: ").lower()
+                args = [contact_name, contact_birthday]
+                print(add_birthday(args, book))
+            if email_input == "n":
+                pass
+
+            address_input = input("Do you want to add address y/n: ").lower()
+            if address_input == "y":
+                contact_address = input("Enter contact's address: ").lower()
+                args = [contact_name, contact_address]
+                print(add_address_to_contact(args, book))
+            if email_input == "n":
+                pass
+
         elif command == "change":
             print(change_contact(args, book))
 
@@ -68,6 +101,9 @@ def main():
 
         elif command == "birthdays":
             print(show_upcoming_birthdays(book))
+
+        elif command == "add-email":
+            print(add_email_to_contact(args, book))
 
         else:
             print("Invalid command.")
