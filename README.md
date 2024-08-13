@@ -18,8 +18,14 @@ cd <repository-directory>
 A virtual environment has been set up to manage dependencies. Activate the virtual environment before running the project:
 
 ```bash
-python -m venv venv
+python3 -m venv venv
 ```
+
+!!! If you cannot get the virtual environment to start, try creating it with the command 
+```bash
+/usr/bin/python3 -m venv .venv
+```
+and repeat the following steps. 
 
 # On Windows:
 
