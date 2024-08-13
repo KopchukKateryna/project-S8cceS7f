@@ -122,13 +122,14 @@ def search_contact(args, book: AddressBook):
         * record: founded contact or warning message
     """
     search_string, *_ = args
+    message = f"No contact with data '{search_string}' was found"
     record_by_name = book.find(search_string)
     if record_by_name:
         return record_by_name
     record_by_phone = book.find_by_phone(search_string)
     if record_by_phone:
         return record_by_phone
-    return None
+    return message
     # ! waiting for find_by_email method from Natalya
     # record_by_email = book.find_by_email(search_string)
     # if record_by_email:
