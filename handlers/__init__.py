@@ -12,6 +12,9 @@ from handlers.contacts_handlers import (
     delete_contact,
     show_all,
     show_phone,
+    add_email_to_contact,
+    add_phone_to_contact,
+    add_address_to_contact,
 )
 from handlers.parse_input import parse_input
 
@@ -25,4 +28,7 @@ __all__ = [
     "add_birthday",
     "show_birthday",
     "show_upcoming_birthdays",
+    "add_email_to_contact",
+    "add_phone_to_contact",
+    "add_address_to_contact",
 ]
