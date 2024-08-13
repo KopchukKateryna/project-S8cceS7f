@@ -71,3 +71,12 @@ def show_all_notes(notebook: NotesBook):
     headers = ["Note Name", "Text"]
     rows = [(note.name.value, note.text.value) for note in notebook.data.values()]
     return tabulate(rows, headers, tablefmt="grid", stralign="left")
+
+
+def find_note(args, notebook: NotesBook):
+    name, *_ = args
+    note = notebook.find(name)
+    if note:
+        return note
+    else:
+        return "mistake"

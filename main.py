@@ -1,7 +1,6 @@
 from handlers import (
     add_birthday,
     add_contact,
-    add_note,
     change_contact,
     delete_contact,
     parse_input,
@@ -9,7 +8,9 @@ from handlers import (
     show_birthday,
     show_phone,
     show_upcoming_birthdays,
+    add_note,
     show_all_notes,
+    find_note,
 )
 from helpers import setup_logging
 from helpers.assistant_info import assistant_info
@@ -64,6 +65,9 @@ def main():
 
         elif command == "all":
             print(show_all(book))
+
+        elif command == "note":
+            print(find_note(args, notes_book))
 
         elif command == "all-notes":
             print(show_all_notes(notes_book))
