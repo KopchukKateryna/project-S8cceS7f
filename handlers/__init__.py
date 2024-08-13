@@ -33,4 +33,5 @@ __all__ = [
     "show_upcoming_birthdays",
     "add_note",
     "show_all_notes",
+    "search_contact",
 ]

@@ -39,6 +39,11 @@ BOT_COMMANDS = [
         "exmp": "add-note todo test",
     },
     {"command": "all-notes", "usage": "all notes", "exmp": "all-notes"},
+    {
+        "command": "search",
+        "usage": "search <name/phone/email>",
+        "exmp": "search bob",
+    },
 ]
 
 ASSISTANT_INFO_TABLE_HEADERS = ["COMMAND", "USAGE", "EXAMPLE"]
