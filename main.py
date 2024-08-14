@@ -1,6 +1,5 @@
 from handlers import (
     add_birthday,
-    # add_contact,
     add_note,
     change_contact,
     delete_contact,
@@ -54,9 +53,6 @@ def main():
 
         elif command == "info":
             print(assistant_info())
-
-        # elif command == "add":
-        #     print(add_contact(args, book))
 
         elif command == "add-note":
             print(add_note(notes_book))
