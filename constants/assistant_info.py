@@ -3,7 +3,7 @@
 BOT_COMMANDS = [
     {"command": "hello", "usage": "hello", "exmp": "hello"},
     {"command": "info", "usage": "info", "exmp": "info"},
-    {"command": "add", "usage": "add <name> <number>", "exmp": "add bob 1234567890"},
+    {"command": "add-contact", "usage": "add-contact", "exmp": "add-contact"},
     {
         "command": "change",
         "usage": "change <name> <old_number> <new_number>",
@@ -35,7 +35,7 @@ BOT_COMMANDS = [
     {"command": "exit", "usage": "exit", "exmp": "exit"},
     {
         "command": "add-note",
-        "usage": "add note <name> <text>",
+        "usage": "add-note <name> <text>",
         "exmp": "add-note todo test",
     },
     {"command": "all-notes", "usage": "all notes", "exmp": "all-notes"},
@@ -43,6 +43,21 @@ BOT_COMMANDS = [
         "command": "search",
         "usage": "search <name/phone/email>",
         "exmp": "search bob",
+    },
+    {
+        "command": "add-phone",
+        "usage": "add-phone <name> <phone>",
+        "exmp": "add-phone bob 1111111111",
+    },
+    {
+        "command": "add-email",
+        "usage": "add-email <name> <email>",
+        "exmp": "add-email bob email@gmail.com",
+    },
+    {
+        "command": "add-address",
+        "usage": "add-address <name> <address>",
+        "exmp": "add-address bob some address",
     },
 ]
 
