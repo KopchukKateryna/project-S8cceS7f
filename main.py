@@ -11,6 +11,8 @@ from handlers import (
     show_upcoming_birthdays,
     show_all_notes,
     search_contact,
+    find_note,
+    edit_note,
 )
 from helpers import setup_logging
 from helpers.assistant_info import assistant_info
@@ -68,6 +70,12 @@ def main():
 
         elif command == "all-notes":
             print(show_all_notes(notes_book))
+
+        elif command == "note":
+            print(find_note(notes_book))
+
+        elif command == "edit-note":
+            print(edit_note(notes_book))
 
         elif command == "delete":
             print(delete_contact(args, book))

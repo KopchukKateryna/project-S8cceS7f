@@ -18,6 +18,8 @@ from handlers.contacts_handlers import (
 from handlers.notes_handlers import (
     add_note,
     show_all_notes,
+    find_note,
+    edit_note,
 )
 from handlers.parse_input import parse_input
 
@@ -34,4 +36,6 @@ __all__ = [
     "add_note",
     "show_all_notes",
     "search_contact",
+    "find_note",
+    "edit_note",
 ]

@@ -31,3 +31,7 @@ class Note:
             str: A formatted string with the note's name and text.
         """
         return f"Note: {self.name.value}, Text: {self.text.value}"
+
+    def edit_note(self, new_text):
+        if new_text:
+            self.text.value = new_text
