@@ -98,5 +98,53 @@ def find_note(notebook: NotesBook):
         if note_name == "no":
             break
 
-    # else:
-    #     return "Please enter the name."
+
+@handle_errors
+def edit_note(notebook: NotesBook):
+    """
+    Edits the text of an existing note in the notebook.
+
+    Prompts the user to enter the name of the note they wish to edit.
+    If the note is found, it asks for the new text and updates the note.
+    If the note is not found, or if the new text is empty, an appropriate
+    message is returned.
+
+    Args:
+        notebook (NotesBook): The notebook instance containing notes.
+
+    Returns:
+        str: The updated note if the operation is successful, or an error message
+            if the note is not found or if the new text is empty.
+    """
+
+    note_name = input("Enter the note name: ").strip()
+    if note_name:
+        note = notebook.find(note_name)
+        if note:
+            new_text = input("Enter the new text: ").strip()
+            if new_text:  # Ensure the new text is not empty
+                note.edit_note(new_text)
+                return note
+            else:
+                return "Text could not be empty. Please enter the new text."
+        else:
+            return "Note not found."
+    else:
+        return "Please enter the name."
+
+
+def remove_note(notebook: NotesBook):
+    note_name = input("Enter the note name: ").strip()
+    if note_name:
+        note = notebook.find(note_name)
+        if note:
+            notebook.delete(note_name)
+            return f"Note {note_name} has been deleted"
+
+        if note_name == "all":
+            notebook.data.clear()
+            return "All notes have been deleted"
+        else:
+            return "Note not found."
+    else:
+        return "Please enter the name."

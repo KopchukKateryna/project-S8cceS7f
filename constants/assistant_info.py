@@ -39,6 +39,13 @@ BOT_COMMANDS = [
         "exmp": "add-note todo test",
     },
     {"command": "all-notes", "usage": "all notes", "exmp": "all-notes"},
+    {"command": "edit-note", "usage": "edit-note <name>", "exmp": "edit-note test"},
+    {
+        "command": "remove-note",
+        "usage": "remove-note <name>",
+        "exmp": "remove-note test",
+    },
+    {"command": "edit-note", "usage": "edit-note <name>", "exmp": "edit-note <name>"},
     {
         "command": "search",
         "usage": "search <name/phone/email>",
