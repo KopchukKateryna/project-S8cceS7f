@@ -25,6 +25,13 @@ from handlers.notes_handlers import (
     edit_note,
     remove_note,
     find_note,
+    add_tag,
+    add_tags,
+    remove_tag,
+    remove_tags,
+    edit_tag,
+    all_tags,
+    all_tags_by_note_name
 )
 
 from handlers.parse_input import parse_input
@@ -63,4 +70,11 @@ __all__ = [
     "edit_note",
     "remove_note",
     "find_note",
+    "add_tag",
+    "add_tags",
+    "remove_tag",
+    "remove_tags",
+    "edit_tag",
+    "all_tags",
+    "all_tags_by_note_name"
 ]
