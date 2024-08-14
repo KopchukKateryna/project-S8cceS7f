@@ -9,3 +9,4 @@ addressbook.pkl
 # Virtual environments
 venv/
 .env/
+.venv/
