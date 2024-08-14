@@ -44,6 +44,7 @@ BOT_COMMANDS = [
         "usage": "search <name/phone/email>",
         "exmp": "search bob",
     },
+    {"command": "note", "usage": "note <name>", "exmp": "note todo"},
 ]
 
 ASSISTANT_INFO_TABLE_HEADERS = ["COMMAND", "USAGE", "EXAMPLE"]

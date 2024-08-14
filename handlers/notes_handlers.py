@@ -71,3 +71,23 @@ def show_all_notes(notebook: NotesBook):
     headers = ["Note Name", "Text"]
     rows = [(note.name.value, note.text.value) for note in notebook.data.values()]
     return tabulate(rows, headers, tablefmt="grid", stralign="left")
+
+
+@handle_errors
+def find_note(notebook: NotesBook):
+    """Finds and returns a note by its name from the notebook.
+    Handles user input directly.
+    Args:
+        notebook (NotesBook): The notebook to search in.
+    Returns:
+        str: The note if found, or a message if not found."""
+
+    note_name = input("Enter the note name: ").strip()
+    if note_name:
+        note = notebook.find(note_name)
+        if note:
+            return note
+        else:
+            return "Note not found."
+    else:
+        return "Please enter the name."
