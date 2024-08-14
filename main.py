@@ -11,6 +11,13 @@ from handlers import (
     show_upcoming_birthdays,
     show_all_notes,
     search_contact,
+    add_tag,
+    add_tags,
+    edit_tag,
+    remove_tag,
+    remove_tags,
+    all_tags,
+    all_tags_by_note_name
 )
 from helpers import setup_logging
 from helpers.assistant_info import assistant_info
@@ -59,6 +66,9 @@ def main():
 
         elif command == "change":
             print(change_contact(args, book))
+        
+        elif command == "edit-tag":
+            print(edit_tag(args, notes_book))
 
         elif command == "phone":
             print(show_phone(args, book))
@@ -69,11 +79,29 @@ def main():
         elif command == "all-notes":
             print(show_all_notes(notes_book))
 
+        elif command == "all-tags":
+            print(all_tags(notes_book))
+        
+        elif command == "all-tags-by-note-name":
+            print(all_tags_by_note_name(args, notes_book))
+
         elif command == "delete":
             print(delete_contact(args, book))
+        
+        elif command == "remove-tag":
+            print(remove_tag(args, notes_book))
+
+        elif command == "remove-tags":
+            print(remove_tags(args, notes_book))
 
         elif command == "add-birthday":
             print(add_birthday(args, book))
+        
+        elif command == "add-tag":
+            print(add_tag(args, notes_book))
+        
+        elif command == "add-tags":
+            print(add_tags(args, notes_book))
 
         elif command == "show-birthday":
             print(show_birthday(args, book))

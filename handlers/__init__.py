@@ -18,6 +18,13 @@ from handlers.contacts_handlers import (
 from handlers.notes_handlers import (
     add_note,
     show_all_notes,
+    add_tag,
+    add_tags,
+    remove_tag,
+    remove_tags,
+    edit_tag,
+    all_tags,
+    all_tags_by_note_name
 )
 from handlers.parse_input import parse_input
 
@@ -34,4 +41,11 @@ __all__ = [
     "add_note",
     "show_all_notes",
     "search_contact",
+    "add_tag",
+    "add_tags",
+    "remove_tag",
+    "remove_tags",
+    "edit_tag",
+    "all_tags",
+    "all_tags_by_note_name"
 ]

@@ -71,3 +71,38 @@ def show_all_notes(notebook: NotesBook):
     headers = ["Note Name", "Text"]
     rows = [(note.name.value, note.text.value) for note in notebook.data.values()]
     return tabulate(rows, headers, tablefmt="grid", stralign="left")
+
+
+@handle_errors
+def add_tag(args, notebook: NotesBook):
+    note_name, tag, *_ = args 
+    return notebook.add_tag(note_name, tag)
+
+@handle_errors
+def add_tags(args, notebook: NotesBook):
+    note_name, *tags = args 
+    return notebook.add_tag(note_name, tags)
+
+@handle_errors
+def edit_tag(args, notebook: NotesBook):
+    note_name, old_tag, new_tag, *_ = args 
+    return notebook.edit_tag(note_name, old_tag, new_tag)
+
+@handle_errors
+def remove_tag(args, notebook: NotesBook):
+    note_name, tag, *_ = args 
+    return notebook.add_tags(note_name, tag)
+
+@handle_errors
+def remove_tags(args, notebook: NotesBook):
+    note_name, *tag = args 
+    return notebook.add_tags(note_name, *tag)
+
+@handle_errors
+def all_tags_by_note_name(args, notebook: NotesBook):
+    note_name, *_ = args 
+    return notebook.all_tags_by_note_name(note_name)
+
+@handle_errors
+def all_tags(notebook: NotesBook):
+    return notebook.all_tags()
