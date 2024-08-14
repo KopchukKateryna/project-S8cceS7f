@@ -57,7 +57,7 @@ def main():
         elif command == "add-note":
             print(add_note(notes_book))
 
-        elif command == "add":
+        elif command == "add-contact":
             add_contact_input(book)
 
         elif command == "change":

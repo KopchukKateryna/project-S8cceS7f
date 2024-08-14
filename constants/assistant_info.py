@@ -3,7 +3,7 @@
 BOT_COMMANDS = [
     {"command": "hello", "usage": "hello", "exmp": "hello"},
     {"command": "info", "usage": "info", "exmp": "info"},
-    {"command": "add", "usage": "add <name> <number>", "exmp": "add bob 1234567890"},
+    {"command": "add-contact", "usage": "add-contact", "exmp": "add-contact"},
     {
         "command": "change",
         "usage": "change <name> <old_number> <new_number>",
