@@ -23,11 +23,11 @@ where username is contact's name."
             "Argument is required. Print 'delete all', or 'delete username'."
         )
         add_birthday_message = (
-            "Arguments are required. Print 'add-birthday username YYYY.MM.DD', "
-            "where username is contact's name and YYYY.MM.DD is format for birthday date."
+            "YYYY.MM.DD is format for birthday date."
         )
         show_birthday_message = "Arguments are required. Print 'show-birthday username, \
 where username is contact's name."
+        show_add_phone_message = "The phone number must contain 10 digits, only numbers are required"
         common_message = "Arguments are required."
 
         try:
@@ -54,6 +54,8 @@ where username is contact's name."
                 return add_birthday_message
             if func.__name__ == "show_birthday":
                 return show_birthday_message
+            if func.__name__ == "add_phone_to_contact":
+                return show_add_phone_message
             return common_message
         except KeyError as e:
             return f"KeyError: {str(e)}"
