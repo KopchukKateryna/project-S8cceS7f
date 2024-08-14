@@ -18,7 +18,7 @@ from handlers import (
 from helpers import setup_logging
 from helpers.assistant_info import assistant_info
 from helpers.pickle_utils import load_data, save_data
-from classes import NotesBook
+from helpers.notes_pickle_utils import load_notes, save_notes
 
 logger = setup_logging()
 
@@ -26,6 +26,8 @@ logger = setup_logging()
 def main():
     """The main function of the bot, manages the main cycle of command processing"""
     book = load_data()
+
+    notes_book = load_notes()
     print("Welcome to the assistant bot!")
     print(
         (
@@ -37,8 +39,6 @@ def main():
     print(assistant_info())
     print()
 
-    notes_book = NotesBook()
-
     while True:
         user_input = input("Enter a command: ")
         command, *args = parse_input(user_input)
@@ -46,6 +46,7 @@ def main():
         if command in ["close", "exit"]:
             print("Good bye!")
             save_data(book)
+            save_notes(notes_book)
             break
 
         if command == "hello":
