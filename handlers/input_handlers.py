@@ -9,49 +9,13 @@ from handlers import (
     add_address_to_contact,
     add_birthday,
 )
-
-
-def input_contact_name():
-    contact_name = input("Enter contact's name: ").lower()
-    if len(contact_name) == 0:
-        print("The name must contain at least one symbol")
-        input_contact_name()
-    return contact_name
-
-
-def input_contact_phone():
-    contact_phone = input("Enter contact's phone number: ").lower()
-    # валідація номеру
-    if len(contact_phone) == 10 and contact_phone.isdigit():
-        return contact_phone
-    else:
-        print("The phone number must contain 10 only numbers")
-        input_contact_phone()
-
-
-def input_contact_email():
-    contact_email = input("Enter contact's email: ").lower()
-    if len(contact_email) == 0:
-        print("The email must contain at least 5 symbols")
-        input_contact_email()
-    # тут має бути валідація имейл
-    return contact_email
-
-
-def input_contact_birthday():
-    contact_birthday = input("Enter contact's birthday: ").lower()
-    if len(contact_birthday) == 0:
-        input_contact_birthday()
-    # тут потрібна валідація дня народження
-    # без адекватної валідації буде невірно працювати при невалідному форматі дати
-    return contact_birthday
-
-
-def input_contact_address():
-    contact_address = input("Enter contact's address: ").lower()
-    if len(contact_address) == 0:
-        input_contact_address()
-    return contact_address
+from .validations import (
+    input_name_validation,
+    input_number_validation,
+    input_email_validation,
+    input_address_validation,
+    input_birthday_validation,
+)
 
 
 def add_contact_input(book):
@@ -61,50 +25,64 @@ def add_contact_input(book):
         Args:
             book (class): contact list
     """
+    while True:
+        user_input = input("Enter contact's name: ").lower()
+        if input_name_validation(user_input):
+            contact_name = user_input
+            print(add_contact(contact_name, book))
+            break
+        print("The name must contain at least one symbol")
 
-    contact_name = input_contact_name()
-    print(add_contact(contact_name, book))
+    while True:
+        user_input = input("Enter contact's phone number: ").lower()
+        if input_number_validation(user_input):
+            contact_phone = user_input
+            args = [contact_name, contact_phone]
+            print(add_phone_to_contact(args, book))
+            break
+        print("The phone number must contain 10 only numbers")
 
-    contact_phone = input_contact_phone()
-    args = [contact_name, contact_phone]
-    print(add_phone_to_contact(args, book))
+    while True:
+        y_n_input = input("Do you want to add email y/n: ").lower()
+        if y_n_input == "y" or y_n_input == "n":
+            if y_n_input == "y":
+                while True:
+                    user_input = input("Enter contact's email: ").lower()
+                    if input_email_validation(user_input):
+                        contact_email = user_input
+                        args = [contact_name, contact_email]
+                        print(add_email_to_contact(args, book))
+                        break
+                    print("Email format: email@email.com")
+                break
+            break
 
-    def email_input_y_or_n():
-        email_input = input("Do you want to add email y/n: ").lower()
-        if email_input != "y" and email_input != "n":
-            email_input_y_or_n()
-        if email_input == "y":
-            contact_email = input_contact_email()
-            args = [contact_name, contact_email]
-            print(add_email_to_contact(args, book))
-        if email_input == "n":
-            pass
+    while True:
+        y_n_input = input("Do you want to add address y/n: ").lower()
+        if y_n_input == "y" or y_n_input == "n":
+            if y_n_input == "y":
+                while True:
+                    user_input = input("Enter contact's address: ").lower()
+                    if input_address_validation(user_input):
+                        contact_address = user_input
+                        args = [contact_name, contact_address]
+                        print(add_address_to_contact(args, book))
+                        break
+                    print("Address must contain at least one symbol")
+                break
+            break
 
-    email_input_y_or_n()
-
-    def birthday_input_y_or_n():
-        birthday_input = input("Do you want to add birthday y/n: ").lower()
-        if birthday_input != "y" and birthday_input != "n":
-            birthday_input_y_or_n()
-        if birthday_input == "y":
-            contact_birthday = input_contact_birthday()
-            args = [contact_name, contact_birthday]
-            print(add_birthday(args, book))
-
-        if birthday_input == "n":
-            pass
-
-    birthday_input_y_or_n()
-
-    def address_input_y_or_n():
-        address_input = input("Do you want to add address y/n: ").lower()
-        if address_input != "y" and address_input != "n":
-            address_input_y_or_n()
-        if address_input == "y":
-            contact_address = input_contact_address()
-            args = [contact_name, contact_address]
-            print(add_address_to_contact(args, book))
-        if address_input == "n":
-            pass
-
-    address_input_y_or_n()
+    while True:
+        y_n_input = input("Do you want to add birthday y/n: ").lower()
+        if y_n_input == "y" or y_n_input == "n":
+            if y_n_input == "y":
+                while True:
+                    user_input = input("Enter contact's birthday: ").lower()
+                    if input_birthday_validation(user_input):
+                        contact_birthday = user_input
+                        args = [contact_name, contact_birthday]
+                        print(add_birthday(args, book))
+                        break
+                    print("Invalid date format. Use YYYY.MM.DD")
+                break
+            break

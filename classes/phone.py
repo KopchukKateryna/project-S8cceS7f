@@ -24,10 +24,10 @@ class Phone(Field):
             int: validated number
         """
 
-        # if len(number) != 10:
-        #     raise ValueError("The phone number must contain 10 digits")
+        if len(number) != 10:
+            raise ValueError("The phone number must contain 10 digits")
 
-        # if not number.isdigit():
-        #     raise ValueError("The phone number must contain only numbers")
+        if not number.isdigit():
+            raise ValueError("The phone number must contain only numbers")
 
         return number

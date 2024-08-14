@@ -25,6 +25,14 @@ from handlers.notes_handlers import (
 from handlers.parse_input import parse_input
 from handlers.input_handlers import add_contact_input
 
+from handlers.validations import (
+    input_name_validation,
+    input_number_validation,
+    input_email_validation,
+    input_address_validation,
+    input_birthday_validation,
+)
+
 __all__ = [
     "parse_input",
     "add_contact",
@@ -42,4 +50,9 @@ __all__ = [
     "add_phone_to_contact",
     "add_address_to_contact",
     "add_contact_input",
+    "input_name_validation",
+    "input_number_validation",
+    "input_email_validation",
+    "input_address_validation",
+    "input_birthday_validation",
 ]
