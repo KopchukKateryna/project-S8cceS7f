@@ -2,9 +2,6 @@
 his phone number, email, address, birthday
     """
 
-import copy
-from datetime import datetime
-import re
 from handlers import (
     add_contact, 
     add_phone_to_contact, 
