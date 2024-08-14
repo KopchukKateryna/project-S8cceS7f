@@ -26,7 +26,7 @@ class Record:
     def __str__(self):
         contact_string = (
             f"Contact name: {self.name.value}, phones: "
-            f"{'; '.join(p.value for p in self.phones)}"
+            f"{', '.join(p.value for p in self.phones)}"
         )
 
         if self.birthday:

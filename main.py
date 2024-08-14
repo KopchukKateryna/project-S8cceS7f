@@ -14,7 +14,7 @@ from handlers import (
     add_email_to_contact,
     add_phone_to_contact,
     add_address_to_contact,
-    add_contact_input
+    add_contact_input,
 )
 from helpers import setup_logging
 from helpers.assistant_info import assistant_info

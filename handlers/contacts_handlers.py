@@ -187,10 +187,16 @@ def add_address_to_contact(args, book: AddressBook):
     Returns:
         str: message address added
     """
-    name, address = args
+    name, *address = args
+    if len(address) == 1:
+        address_for_record = address[0]
+    else:
+        address_for_record = ""
+        for world in address:
+            address_for_record += f"{world} "
     record = book.find(name)
     if record:
-        record.add_address(address)
+        record.add_address(address_for_record)
         return "Address added"
     else:
         return f"There is no contact {name}"
