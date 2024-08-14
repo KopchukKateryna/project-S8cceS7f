@@ -3,7 +3,7 @@
 BOT_COMMANDS = [
     {"command": "hello", "usage": "hello", "exmp": "hello"},
     {"command": "info", "usage": "info", "exmp": "info"},
-    {"command": "add", "usage": "add <name> <number>", "exmp": "add bob 1234567890"},
+    {"command": "add-contact", "usage": "add-contact", "exmp": "add-contact"},
     {
         "command": "change",
         "usage": "change <name> <old_number> <new_number>",
@@ -63,6 +63,21 @@ BOT_COMMANDS = [
         "command": "all-tags",
         "usage": "all-tags",
         "exmp": "all-tags",
+    },
+    {
+        "command": "add-phone",
+        "usage": "add-phone <name> <phone>",
+        "exmp": "add-phone bob 1111111111",
+    },
+    {
+        "command": "add-email",
+        "usage": "add-email <name> <email>",
+        "exmp": "add-email bob email@gmail.com",
+    },
+    {
+        "command": "add-address",
+        "usage": "add-address <name> <address>",
+        "exmp": "add-address bob some address",
     },
 ]
 
