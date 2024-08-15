@@ -1,5 +1,5 @@
-"""An addition input module to add, change, delete contact and
-his name, phone number, email, address, birthday
+"""An addition input module for adding the first contact,
+    his phone number, email, address, birthday
     """
 
 from handlers import (
@@ -24,7 +24,7 @@ def add_contact_input(book):
     his phone number, email, address, birthday
 
         Args:
-            book (class): contact list
+            book (class): class AddressBook that contains all contacts
     """
 
     while True:

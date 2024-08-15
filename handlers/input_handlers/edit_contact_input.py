@@ -1,6 +1,10 @@
+"""An addition input module to add, change, delete fields
+such as name, phone number, email, address, birthday
+    """
+
 from ..decorators import input_error
 from .inputs_helpers import (
-    edit_name_action,
+    edit_name_in_contacts,
     add_phone_action,
     edit_phone_action,
     delete_phone_action,
@@ -15,6 +19,16 @@ from .inputs_helpers import (
 
 @input_error
 def edit_contact_input(args, book):
+    """An addition input module to add, change, delete fields
+    such as name, phone number, email, address, birthday
+
+        Args:
+            args (list): list of input arguments from main()
+            book (class): class AddressBook that contains all contacts
+
+        Raises:
+            KeyError: No record in address book
+    """
     record = None
     name, *_ = args
     record = book.find(name)
@@ -26,7 +40,7 @@ def edit_contact_input(args, book):
         if field_to_edit in ["name", "phones", "email", "address", "birthday"]:
 
             if field_to_edit == "name":
-                edit_name_action(name, record, book)
+                edit_name_in_contacts(name, record, book)
 
             if field_to_edit == "phones":
                 while True:
