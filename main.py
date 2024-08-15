@@ -14,6 +14,7 @@ from handlers import (
     add_phone_to_contact,
     add_address_to_contact,
     add_contact_input,
+    find_note,
 )
 from helpers import setup_logging
 from helpers.assistant_info import assistant_info
@@ -71,6 +72,9 @@ def main():
 
         elif command == "all-notes":
             print(show_all_notes(notes_book))
+
+        elif command == "note":
+            print(find_note(notes_book))
 
         elif command == "delete":
             print(delete_contact(args, book))

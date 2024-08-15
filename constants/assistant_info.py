@@ -59,6 +59,7 @@ BOT_COMMANDS = [
         "usage": "add-address <name> <address>",
         "exmp": "add-address bob some address",
     },
+    {"command": "note", "usage": "note <name>", "exmp": "note todo"},
 ]
 
 ASSISTANT_INFO_TABLE_HEADERS = ["COMMAND", "USAGE", "EXAMPLE"]
