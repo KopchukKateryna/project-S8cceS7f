@@ -20,7 +20,16 @@ from handlers import (
     find_note,
 )
 from helpers import setup_logging
-from helpers import load_data, save_data, load_notes, save_notes, bindings, table_show
+from helpers import (
+    load_data,
+    save_data,
+    load_notes,
+    save_notes,
+    bindings,
+    table_show,
+    welcome,
+    good_bye,
+)
 from constants import (
     ADDRESSBOOK_INFO_TABLE_DATA,
     ADDRESSBOOK_INFO_TABLE_HEADERS,
@@ -35,19 +44,8 @@ logger = setup_logging()
 def main():
     """The main function of the bot, manages the main cycle of command processing"""
     book = load_data()
-
     notes_book = load_notes()
-    print("Welcome to the assistant bot!")
-    print(
-        (
-            "The table below summarizes information about the commands. "
-            "But if you forget something in the process, just call the 'info' command "
-            "and you will see this table again."
-        )
-    )
-    print(table_show(ADDRESSBOOK_INFO_TABLE_HEADERS, ADDRESSBOOK_INFO_TABLE_DATA, True))
-    print(table_show(NOTEBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA, True))
-
+    welcome()
     while True:
         user_input = prompt(
             "Enter a command: > ",
@@ -59,9 +57,9 @@ def main():
         command, *args = parse_input(user_input)
 
         if command in ["close", "exit"]:
-            print("Good bye!")
             save_data(book)
             save_notes(notes_book)
+            good_bye()
             break
 
         if command == "hello":
