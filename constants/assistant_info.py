@@ -99,6 +99,11 @@ ADDRESSBOOK_COMMANDS = [
         "exmp": "exit",
         "desc": "Exits the address book application.",
     },
+    {
+        "command": "notes-by-tag",
+        "usage": "notes-by-tag <tags-name>",
+        "exmp": "notes-by-tag #task",
+    }
 ]
 
 ADDRESSBOOK_INFO_TABLE_HEADERS = ["COMMAND", "USAGE", "EXAMPLE", "DESCRIPTION"]
