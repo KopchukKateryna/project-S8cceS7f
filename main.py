@@ -121,7 +121,7 @@ def main():
         elif command == "birthdays":
             print(show_upcoming_birthdays(book))
 
-        elif command == "search":
+        elif command == "search-contact":
             print(search_contact(args, book))
 
         elif command == "add-phone":
