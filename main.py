@@ -14,11 +14,13 @@ from handlers import (
     add_phone_to_contact,
     add_address_to_contact,
     add_contact_input,
+    edit_note,
+    remove_note,
+    find_note,
 )
 from helpers import setup_logging
-from helpers.assistant_info import assistant_info, table_show
-from helpers.pickle_utils import load_data, save_data
-from classes import NotesBook
+from helpers.assistant_info import table_show
+from helpers import load_data, save_data, load_notes, save_notes
 from constants import ADDRESSBOOK_INFO_TABLE_DATA, ADDRESSBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA, NOTEBOOK_INFO_TABLE_HEADERS
 
 logger = setup_logging()
@@ -27,6 +29,8 @@ logger = setup_logging()
 def main():
     """The main function of the bot, manages the main cycle of command processing"""
     book = load_data()
+
+    notes_book = load_notes()
     print("Welcome to the assistant bot!")
     print(
         (
@@ -39,8 +43,6 @@ def main():
     print(table_show(ADDRESSBOOK_INFO_TABLE_HEADERS, ADDRESSBOOK_INFO_TABLE_DATA))
     print(table_show(NOTEBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA))
 
-    notes_book = NotesBook()
-
     while True:
         user_input = input("Enter a command: ")
         command, *args = parse_input(user_input)
@@ -48,6 +50,7 @@ def main():
         if command in ["close", "exit"]:
             print("Good bye!")
             save_data(book)
+            save_notes(notes_book)
             break
 
         if command == "hello":
@@ -80,6 +83,16 @@ def main():
 
         elif command == "all-notes":
             print(show_all_notes(notes_book))
+
+        elif command == "find-note":
+            print(find_note(notes_book))
+
+        elif command == "edit-note":
+            print(edit_note(notes_book))
+
+        elif command == "remove-note":
+            note_name = " ".join(args).strip()
+            print(remove_note(note_name, notes_book))
 
         elif command == "delete":
             print(delete_contact(args, book))

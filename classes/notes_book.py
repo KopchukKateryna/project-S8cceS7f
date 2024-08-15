@@ -54,3 +54,14 @@ class NotesBook(UserDict):
             Note or None: The note if found, or None if not found.
         """
         return self.data.get(name, None)
+
+    def delete(self, note_name):
+        """
+        Deletes a note by name.
+
+        Args:
+            * name(str) - The name of the note to be deleted.
+        """
+        if note_name not in self.data:
+            raise KeyError(f"Note with name '{note_name}' not found.")
+        del self.data[note_name]
