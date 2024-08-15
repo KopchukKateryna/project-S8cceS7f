@@ -18,6 +18,7 @@ from ..validations import (
     input_birthday_validation,
 )
 
+
 def add_contact_input(book):
     """An addition input module for adding the first contact,
     his phone number, email, address, birthday
@@ -87,11 +88,3 @@ def add_contact_input(book):
                     print("Invalid date format. Use YYYY.MM.DD")
                 break
             break
-
-
-
-
-
-
-
-

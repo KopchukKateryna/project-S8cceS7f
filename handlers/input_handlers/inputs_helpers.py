@@ -1,10 +1,9 @@
-
 from ..validations import (
     input_name_validation,
     input_number_validation,
     input_email_validation,
     input_address_validation,
-    input_birthday_validation
+    input_birthday_validation,
 )
 
 from .fields_handlers import (
@@ -23,6 +22,7 @@ from .fields_handlers import (
     delete_birthday,
 )
 
+
 def edit_phone_in_contacts(old_phone, record):
     while True:
         new_phone = input("Enter new phone: ").lower().strip()
@@ -30,6 +30,7 @@ def edit_phone_in_contacts(old_phone, record):
             print(edit_phone(old_phone, new_phone, record))
             break
         print("The phone number must contain 10 only numbers")
+
 
 def edit_email_in_contacts(record):
     while True:
@@ -39,6 +40,7 @@ def edit_email_in_contacts(record):
             break
         print("The phone number must contain 10 only numbers")
 
+
 def edit_address_in_contacts(record):
     while True:
         new_address = input("Enter new address: ").lower()
@@ -46,6 +48,7 @@ def edit_address_in_contacts(record):
             print(edit_address(new_address, record))
             break
         print("Address must contain at least one symbol")
+
 
 def edit_birthday_in_contacts(record):
     while True:
@@ -55,6 +58,7 @@ def edit_birthday_in_contacts(record):
             break
         print("Invalid date format. Use YYYY.MM.DD")
 
+
 def edit_name_action(old_name, record, book):
     while True:
         new_name = input("Enter new name: ").lower()
@@ -62,6 +66,7 @@ def edit_name_action(old_name, record, book):
             print(edit_name(old_name, new_name, record, book))
             break
         print("The name must contain at least one symbol")
+
 
 def add_phone_action(record):
     while True:
@@ -76,6 +81,7 @@ def add_phone_action(record):
             break
         print("The phone number must contain 10 only numbers")
 
+
 def edit_phone_action(record):
     while True:
         old_phone = input("Enter phone number to edit: ").lower().strip()
@@ -89,6 +95,7 @@ def edit_phone_action(record):
             break
         print("The phone number must contain 10 only numbers")
 
+
 def delete_phone_action(record):
     while True:
         number = input("Enter phone number to delete: ").lower().strip()
@@ -100,7 +107,8 @@ def delete_phone_action(record):
             print(delete_phone(number, record))
             break
         print("The phone number must contain 10 only numbers")
-        
+
+
 def add_email_action(record):
     while True:
         email = input("Enter email to add: ").lower().strip()
@@ -108,6 +116,7 @@ def add_email_action(record):
             print(add_email(email, record))
             break
         print("Email format: email@email.com")
+
 
 def add_address_action(record):
     while True:
@@ -117,6 +126,7 @@ def add_address_action(record):
             break
         print("Address must contain at least one symbol")
 
+
 def add_birthday_action(record):
     while True:
         birthday = input("Enter birthday to add: ").lower().strip()
@@ -124,6 +134,7 @@ def add_birthday_action(record):
             print(add_birthday(birthday, record))
             break
         print("Invalid date format. Use YYYY.MM.DD")
+
 
 def edit_or_delete_phone_choise(number, record):
     while True:
@@ -136,6 +147,7 @@ def edit_or_delete_phone_choise(number, record):
                 print(delete_phone(number, record))
                 break
 
+
 def add_or_not_phone_choise(old_phone, record):
     while True:
         y_or_n = input("Do you want to add it? y/n ").lower().strip()
@@ -144,6 +156,7 @@ def add_or_not_phone_choise(old_phone, record):
                 print(add_phone(old_phone, record))
                 break
             break
+
 
 def edit_or_delete_email_choise(record):
     while True:
@@ -154,6 +167,7 @@ def edit_or_delete_email_choise(record):
                 break
             print(delete_email(record))
             break
+
 
 def add_or_not_email_choise(record):
     while True:
@@ -175,6 +189,7 @@ def edit_or_delete_address_choise(record):
             print(delete_address(record))
             break
 
+
 def add_or_not_address_choise(record):
     while True:
         y_or_n = input("Do you want to add it? y/n ").lower().strip()
@@ -183,6 +198,7 @@ def add_or_not_address_choise(record):
                 add_address_action(record)
                 break
             break
+
 
 def edit_or_delete_birthday_choise(record):
     while True:
@@ -193,6 +209,7 @@ def edit_or_delete_birthday_choise(record):
                 break
             print(delete_birthday(record))
             break
+
 
 def add_or_not_birthday_choise(record):
     while True:

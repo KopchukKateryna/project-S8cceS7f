@@ -28,7 +28,9 @@ where username is contact's name."
         show_add_phone_message = (
             "The phone number must contain 10 digits, only numbers are required"
         )
-        show_edit_contact_input_message = "Arguments are required. Enter edit-contact <name>"
+        show_edit_contact_input_message = (
+            "Arguments are required. Enter edit-contact <name>"
+        )
         common_message = "Arguments are required."
 
         try:

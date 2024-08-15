@@ -1,4 +1,3 @@
-
 from ..decorators import input_error
 from .inputs_helpers import (
     edit_name_action,
@@ -13,6 +12,7 @@ from .inputs_helpers import (
     add_or_not_birthday_choise,
 )
 
+
 @input_error
 def edit_contact_input(args, book):
     record = None
@@ -20,14 +20,13 @@ def edit_contact_input(args, book):
     record = book.find(name)
     if record is None:
         raise KeyError(f"No such name '{name}' was found")
-    
+
     while True:
         field_to_edit = input("What field do you want to edit? ").lower()
         if field_to_edit in ["name", "phones", "email", "address", "birthday"]:
 
             if field_to_edit == "name":
                 edit_name_action(name, record, book)
-
 
             if field_to_edit == "phones":
                 while True:

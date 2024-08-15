@@ -25,9 +25,7 @@ class Record:
         self.address = None
 
     def __str__(self):
-        contact_string = (
-            f"Contact name: {self.name.value}"
-        )
+        contact_string = f"Contact name: {self.name.value}"
         if len(self.phones) > 0:
             contact_string += f", phones: {', '.join(p.value for p in self.phones)}"
 
@@ -112,19 +110,19 @@ class Record:
 
     def edit_email(self, new_email):
         """Edit email in the record."""
-        if self.email == None:
+        if self.email is None:
             self.email = Email(new_email)
         self.email.value = new_email
 
     def edit_address(self, new_address):
         """Edit address in the record."""
-        if self.address == None:
+        if self.address is None:
             self.address = Address(new_address)
         self.address.value = new_address
 
     def edit_birthday(self, new_birthday):
         """Edit birthday in the record."""
-        if self.birthday == None:
+        if self.birthday is None:
             self.add_birthday(new_birthday)
         self.birthday.value = datetime.strptime(new_birthday, "%Y.%m.%d")
 
