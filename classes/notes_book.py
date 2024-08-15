@@ -61,20 +61,20 @@ class NotesBook(UserDict):
         note = self.find(note_name)
      
         if note:
-               if not self.__validate_tag(tag):
+               if self.__validate_tag(tag):
                     return note.add_tag(tag)
                else: 
                     return "Not valid tag name"
         else:
             return f"Note with this name: {note_name} not found"
         
-    def add_tags(self, note_name, tags: str) -> str:
+    def add_tags(self, note_name, tags: list) -> str:
         note = self.find(note_name)
         if note:
-             tags = self.__split_tags(tags)
              if len(tags) > 0:
                  for tag in tags:
-                    note.add_tag(tag)
+                    if self.__validate_tag(tag):
+                        note.add_tag(tag)
                  return "Tags added succesfully"
              else:
                  return "Input tags please"
@@ -85,7 +85,7 @@ class NotesBook(UserDict):
         note = self.find(note_name)
      
         if note:
-               if not self.__validate_tag(old_tag):
+               if self.__validate_tag(old_tag):
                     return note.edit_tag(old_tag, new_tag)
                else: 
                     return "Not valid tag name"
@@ -96,17 +96,13 @@ class NotesBook(UserDict):
     def remove_tag(self, note_name, tag) -> str:
         note = self.find(note_name)
         if note:
-            if not self.__validate_tag(tag):
                 return note.remove_tag(tag)
-            else: 
-                return "Not valid tag name"
         else:
             return f"Note with this name: {note_name} not found"
         
-    def remove_tags(self, note_name, tags: str) -> str:
+    def remove_tags(self, note_name, tags: list) -> str:
         note = self.find(note_name)
         if note:
-             tags = self.__split_tags(tags)
              if len(tags) > 0:
                  for tag in tags:
                     note.remove_tag(tag)
@@ -133,13 +129,19 @@ class NotesBook(UserDict):
     def all_tags(self) -> set:
         tags = set()
         if len(self.data) > 0:
-            for note in self.data.values:
+            for note in self.data.values():
                 tags.update(note.tags)
         return tags
 
+    def get_notes_by_tag(self, tag: str) -> list:
+        notes = []
+        for note in self.data.values():
+            if tag in note.tags:
+                notes.append(str(note))
+        return notes
+
     
-    def __split_tags(self, tags: str) -> list:
-        return re.split(r"\B#\w+", tags)
     
     def __validate_tag(self, tag: str) -> bool:
         return re.match(r"\B#\w+", tag)
+

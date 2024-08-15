@@ -28,7 +28,8 @@ from handlers.notes_handlers import (
     remove_tags,
     edit_tag,
     all_tags,
-    all_tags_by_note_name
+    all_tags_by_note_name,
+    notes_by_tag
 )
 from handlers.parse_input import parse_input
 from handlers.input_handlers import add_contact_input
@@ -69,5 +70,6 @@ __all__ = [
     "remove_tags",
     "edit_tag",
     "all_tags",
-    "all_tags_by_note_name"
+    "all_tags_by_note_name",
+    "notes_by_tag"
 ]

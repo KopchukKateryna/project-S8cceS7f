@@ -81,7 +81,7 @@ def add_tag(args, notebook: NotesBook):
 @handle_errors
 def add_tags(args, notebook: NotesBook):
     note_name, *tags = args 
-    return notebook.add_tag(note_name, tags)
+    return notebook.add_tags(note_name, tags)
 
 @handle_errors
 def edit_tag(args, notebook: NotesBook):
@@ -91,12 +91,17 @@ def edit_tag(args, notebook: NotesBook):
 @handle_errors
 def remove_tag(args, notebook: NotesBook):
     note_name, tag, *_ = args 
-    return notebook.add_tags(note_name, tag)
+    return notebook.remove_tag(note_name, tag)
 
 @handle_errors
 def remove_tags(args, notebook: NotesBook):
-    note_name, *tag = args 
-    return notebook.add_tags(note_name, *tag)
+    note_name, *tags = args 
+    return notebook.remove_tags(note_name, tags)
+
+@handle_errors
+def notes_by_tag(args, notebook: NotesBook):
+    tag, *_ = args
+    return notebook.get_notes_by_tag(tag)
 
 @handle_errors
 def all_tags_by_note_name(args, notebook: NotesBook):

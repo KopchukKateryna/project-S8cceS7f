@@ -42,22 +42,27 @@ BOT_COMMANDS = [
     {
         "command": "add-tag",
         "usage": "add-tag <note-name> <tag>",
-        "exmp": "add-tag todo @task",
+        "exmp": "add-tag todo #task",
+    },
+    {
+        "command": "add-tags",
+        "usage": "add-tags <note-name> <#tag> ... <#tag>",
+        "exmp": "add-tags todo #task #important",
     },
     {
         "command": "remove-tag",
         "usage": "remove-tag <note_name> <tag>",
-        "exmp": "remove-tag todo @task",
+        "exmp": "remove-tag todo #task",
     },
     {
         "command": "edit-tag",
         "usage": "edit-tag <note-name> <old_tag> <new_tag>",
-        "exmp": "edit-tag todo @task @list",
+        "exmp": "edit-tag todo #task #list",
     },
     {
-        "command": "all-tags-by-note-name",
-        "usage": "all-tags-by-note-name <note-name> ",
-        "exmp": "all-tags-by-note-name todo",
+        "command": "note-tags",
+        "usage": "note-tags <note-name> ",
+        "exmp": "note-tags todo",
     },
     {
         "command": "all-tags",
@@ -79,6 +84,11 @@ BOT_COMMANDS = [
         "usage": "add-address <name> <address>",
         "exmp": "add-address bob some address",
     },
+    {
+        "command": "notes-by-tag",
+        "usage": "notes-by-tag <tags-name>",
+        "exmp": "notes-by-tag #task",
+    }
 ]
 
 ASSISTANT_INFO_TABLE_HEADERS = ["COMMAND", "USAGE", "EXAMPLE"]
