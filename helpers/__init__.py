@@ -18,10 +18,13 @@ These functions are available for import through the `__all__` declaration.
 from helpers.assistant_info import assistant_info
 from helpers.logging_config import setup_logging
 from helpers.pickle_utils import load_data, save_data
+from helpers.notes_pickle_utils import load_notes, save_notes
 
 __all__ = [
     "assistant_info",
     "setup_logging",
     "save_data",
     "load_data",
+    "save_note",
+    "load_notes",
 ]
