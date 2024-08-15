@@ -14,6 +14,8 @@ from handlers import (
     add_phone_to_contact,
     add_address_to_contact,
     add_contact_input,
+    edit_note,
+    remove_note,
     find_note,
 )
 from helpers import setup_logging
@@ -75,6 +77,13 @@ def main():
 
         elif command == "note":
             print(find_note(notes_book))
+
+        elif command == "edit-note":
+            print(edit_note(notes_book))
+
+        elif command == "remove-note":
+            note_name = " ".join(args).strip()
+            print(remove_note(note_name, notes_book))
 
         elif command == "delete":
             print(delete_contact(args, book))
