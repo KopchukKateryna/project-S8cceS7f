@@ -14,7 +14,6 @@ from handlers import (
     edit_note,
     remove_note,
     find_note,
-
 )
 from helpers import setup_logging
 from helpers import (
