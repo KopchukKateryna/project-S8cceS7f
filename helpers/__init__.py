@@ -19,6 +19,7 @@ from helpers.assistant_info import table_show
 from helpers.logging_config import setup_logging
 from helpers.pickle_utils import load_data, save_data
 from helpers.notes_pickle_utils import load_notes, save_notes
+from helpers.autocomplete_config import bindings
 
 __all__ = [
     "setup_logging",
@@ -27,4 +28,5 @@ __all__ = [
     "table_show",
     "save_notes",
     "load_notes",
+    "bindings",
 ]

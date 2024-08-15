@@ -82,9 +82,9 @@ ADDRESSBOOK_COMMANDS = [
         "desc": "Lists all upcoming birthdays.",
     },
     {
-        "command": "all",
-        "usage": "all",
-        "exmp": "all",
+        "command": "all-contacts",
+        "usage": "all-contacts",
+        "exmp": "all-contacts",
         "desc": "Displays all contacts in the address book.",
     },
     {
