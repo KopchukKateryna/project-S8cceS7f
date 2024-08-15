@@ -82,7 +82,8 @@ def main():
             print(edit_note(notes_book))
 
         elif command == "remove-note":
-            print(remove_note(notes_book))
+            note_name = " ".join(args).strip()
+            print(remove_note(note_name, notes_book))
 
         elif command == "delete":
             print(delete_contact(args, book))

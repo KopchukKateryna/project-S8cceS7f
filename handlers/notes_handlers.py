@@ -37,7 +37,7 @@ def add_note(notebook: NotesBook):
     Returns:
         str: Message indicating that the note has been added or an error occurred.
     """
-    name = input("Enter note name: ")
+    name = input("Enter note name: ").strip()
     if name:
         text = input("Enter note text: ")
         if text:
@@ -116,25 +116,38 @@ def edit_note(notebook: NotesBook):
         str: The updated note if the operation is successful, or an error message
             if the note is not found or if the new text is empty.
     """
-
-    note_name = input("Enter the note name: ").strip()
-    if note_name:
-        note = notebook.find(note_name)
-        if note:
-            new_text = input("Enter the new text: ").strip()
-            if new_text:  # Ensure the new text is not empty
-                note.edit_note(new_text)
-                return note
+    name = input("Enter note name: ").strip()
+    note = notebook.find(name)
+    if note:
+        while True:
+            usr_chose = input("What do you want to change: (name/text):").strip()
+            if usr_chose == "name":
+                new_name = input("Type new name: ").strip()
+                note.edit_name(new_name)
+                return "Name changed."
+            elif usr_chose == "text":
+                text = input("Enter note text: ").strip()
+                note.edit_note(text)
+                return "Text changed."
             else:
-                return "Text could not be empty. Please enter the new text."
-        else:
-            return "Note not found."
+                print("Command not found")
     else:
-        return "Please enter the name."
+        return f"Note {name} haven't found!"
 
 
-def remove_note(notebook: NotesBook):
-    note_name = input("Enter the note name: ").strip()
+def remove_note(note_name: str, notebook: NotesBook):
+    """
+    Removes a note from the notebook.
+    Prompts the user to enter the name of the note they wish to remove.
+    If the note is found, it is removed from the notebook.
+    If the note is not found, an appropriate message is returned.
+
+    Args:
+        notebook (NotesBook): The notebook instance containing notes.
+
+    Returns:
+        str: message
+    """
     if note_name:
         note = notebook.find(note_name)
         if note:
