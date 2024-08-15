@@ -15,7 +15,6 @@ from handlers import (
     add_address_to_contact,
     add_contact_input,
     find_note,
-    find_note,
 )
 from helpers import setup_logging
 from helpers.assistant_info import assistant_info
