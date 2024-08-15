@@ -20,6 +20,7 @@ from ..validations import (
 from .decorators import input_error, empty_contact_list
 
 
+
 def add_contact_input(book):
     """An addition input module for adding the first contact,
     his phone number, email, address, birthday

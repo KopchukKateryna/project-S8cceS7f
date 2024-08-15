@@ -25,9 +25,7 @@ class Record:
         self.address = None
 
     def __str__(self):
-        contact_string = (
-            f"Contact name: {self.name.value}"
-        )
+        contact_string = f"Contact name: {self.name.value}"
         if len(self.phones) > 0:
             contact_string += f", phones: {', '.join(p.value for p in self.phones)}"
 
