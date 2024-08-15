@@ -1,6 +1,6 @@
 """birthday handlers"""
 
-from tabulate import tabulate
+from helpers.assistant_info import table_show
 
 from classes import AddressBook
 
@@ -65,4 +65,4 @@ def show_upcoming_birthdays(book: AddressBook):
     table_data = [
         [key["name"], key["congratulation_date"]] for key in upcoming_birthdays
     ]
-    return tabulate(table_data, headers, tablefmt="mixed_grid", stralign="left")
+    return table_show(headers, table_data)

@@ -1,5 +1,5 @@
-from tabulate import tabulate
 from classes import NotesBook, Note
+from helpers.assistant_info import table_show
 
 
 def handle_errors(func):
@@ -70,7 +70,7 @@ def show_all_notes(notebook: NotesBook):
 
     headers = ["Note Name", "Text"]
     rows = [(note.name.value, note.text.value) for note in notebook.data.values()]
-    return tabulate(rows, headers, tablefmt="mixed_grid", stralign="left")
+    return table_show(headers, rows)
 
 
 @handle_errors
@@ -92,7 +92,7 @@ def find_note(notebook: NotesBook):
             if matching_notes:
                 headers = ["Note Name", "Text"]
                 rows = [(str(note.name), str(note.text)) for note in matching_notes]
-                return tabulate(rows, headers, tablefmt="mixed_grid", stralign="left")
+                return table_show(headers, rows)
             else:
                 return "No notes found matching that keyword."
         if note_name == "no":

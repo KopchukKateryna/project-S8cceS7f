@@ -19,8 +19,9 @@ from handlers import (
     find_note,
 )
 from helpers import setup_logging
-from helpers.assistant_info import assistant_info
+from helpers.assistant_info import table_show
 from helpers import load_data, save_data, load_notes, save_notes
+from constants import ADDRESSBOOK_INFO_TABLE_DATA, ADDRESSBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA, NOTEBOOK_INFO_TABLE_HEADERS
 
 logger = setup_logging()
 
@@ -38,8 +39,9 @@ def main():
             "and you will see this table again."
         )
     )
-    print(assistant_info())
-    print()
+    # print(assistant_info())
+    print(table_show(ADDRESSBOOK_INFO_TABLE_HEADERS, ADDRESSBOOK_INFO_TABLE_DATA))
+    print(table_show(NOTEBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA))
 
     while True:
         user_input = input("Enter a command: ")
@@ -55,7 +57,14 @@ def main():
             print("How can I help you?")
 
         elif command == "info":
-            print(assistant_info())
+            print(table_show(ADDRESSBOOK_INFO_TABLE_HEADERS, ADDRESSBOOK_INFO_TABLE_DATA))
+            print(table_show(NOTEBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA))
+
+        elif command == "info-addressbook":
+            print(table_show(ADDRESSBOOK_INFO_TABLE_HEADERS, ADDRESSBOOK_INFO_TABLE_DATA))
+
+        elif command == "info-notebook":
+            print(table_show(NOTEBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA))
 
         elif command == "add-note":
             print(add_note(notes_book))
@@ -75,7 +84,7 @@ def main():
         elif command == "all-notes":
             print(show_all_notes(notes_book))
 
-        elif command == "note":
+        elif command == "find-note":
             print(find_note(notes_book))
 
         elif command == "edit-note":
