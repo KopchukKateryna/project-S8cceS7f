@@ -24,7 +24,8 @@ from handlers import (
     remove_tag,
     remove_tags,
     all_tags,
-    all_tags_by_note_name
+    all_tags_by_note_name,
+    notes_by_tag
 )
 from helpers import setup_logging
 from helpers import (
@@ -127,8 +128,11 @@ def main():
         elif command == "all-tags":
             print(all_tags(notes_book))
         
-        elif command == "all-tags-by-note-name":
+        elif command == "note-tags":
             print(all_tags_by_note_name(args, notes_book))
+
+        elif command == "notes-by-tag":
+            print(notes_by_tag(args, notes_book))
 
         elif command == "delete":
             print(delete_contact(args, book))
