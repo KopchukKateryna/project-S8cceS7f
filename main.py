@@ -131,9 +131,6 @@ def main():
         elif command == "note-tags":
             search_note_tags(notes_book)
 
-        # elif command == "notes-by-tag":
-            # print(notes_by_tag(args, notes_book))
-
         elif command == "delete":
             print(delete_contact(args, book))
         

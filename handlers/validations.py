@@ -80,4 +80,13 @@ def input_birthday_validation(user_input):
         return res
 
 def input_tag_validation(tag: str):
+    """
+    Validates a tag input by checking if it matches the expected format.
+
+    Args:
+        tag (str): The tag to validate.
+
+    Returns:
+        bool: True if the tag is valid, False otherwise.
+    """
     return re.match(r"#\w+", tag)

@@ -45,9 +45,11 @@ class Note:
     
     @property
     def tags(self) -> set:
+        """A function for getting note tags"""
         return self.__tags
     
     def add_tag(self, tag: str) -> str:
+        """A function for adding a tag to the note"""
         if not self.has_tag(tag):
             self.__tags.add(tag)
             return f"{tag} added successfully"
@@ -56,6 +58,7 @@ class Note:
 
         
     def remove_tag(self, tag: str):
+        """A function for removing a tag from the note"""
         if self.has_tag(tag):
             self.__tags.remove(tag)
             return f"{tag} removed successfully"
@@ -63,6 +66,7 @@ class Note:
             return f"{tag} not use for this note"
         
     def edit_tag(self, old_tag: str, new_tag: str):
+        """A function for editing a tag in the note"""
         if self.has_tag(old_tag):
             self.__tags.remove(old_tag)
             self.__tags.add(new_tag)
@@ -71,8 +75,10 @@ class Note:
             return f"{old_tag} not use for this note"
         
     def find_tag(self, tag: str) -> str:
+        """A function for finding a tag in the note"""
         if self.has_tag(tag):
             return self.__str__()
         
     def has_tag(self, tag: str) -> bool:
+        """A function for checking if a tag is in the note"""
         return tag in self.__tags      

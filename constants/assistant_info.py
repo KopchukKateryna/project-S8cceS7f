@@ -174,37 +174,37 @@ NOTEBOOK_COMMANDS = [
         "command": "add-tag",
         "usage": "add-tag <note-name> <tag>",
         "exmp": "add-tag todo @task",
-        "desc": "",
+        "desc": "Adds a single tag to a note. Use this command to associate a new tag with a note.",
     },
     {
         "command": "add-tags",
         "usage": "add-tags <note-name> <tag>",
         "exmp": "add-tags todo @task @task @task ",
-        "desc": "",
+        "desc": "Adds multiple tags to a note. Use this command to associate multiple new tags with a note.",
     },
     {
         "command": "remove-tag",
         "usage": "remove-tag <note_name> <tag>",
         "exmp": "remove-tag todo @task",
-        "desc": "",
+        "desc": "Removes a single tag from a note. Use this command to disassociate a tag from a note.",
     },
     {
         "command": "edit-tag",
         "usage": "edit-tag <note-name> <old_tag> <new_tag>",
         "exmp": "edit-tag todo @task @list",
-        "desc": "",
+        "desc": "Edits a tag on a note. Use this command to rename a tag associated with a note.",
     },
     {
         "command": "note-tags",
         "usage": "note-tags <note-name> ",
         "exmp": "note-tags todo",
-        "desc": "",
+        "desc": "Displays all tags associated with a note. Use this command to view the tags associated with a note.",
     },
     {
         "command": "all-tags",
         "usage": "all-tags",
         "exmp": "all-tags",
-        "desc": "",
+        "desc": "Displays all tags in the notebook. Use this command to view all available tags.",
     },
 ]
 
