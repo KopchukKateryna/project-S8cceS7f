@@ -1,6 +1,5 @@
 from handlers import (
     add_birthday,
-    add_contact,
     add_note,
     change_contact,
     delete_contact,
@@ -11,6 +10,11 @@ from handlers import (
     show_upcoming_birthdays,
     show_all_notes,
     search_contact,
+    add_email_to_contact,
+    add_phone_to_contact,
+    add_address_to_contact,
+    add_contact_input,
+    find_note,
     find_note,
 )
 from helpers import setup_logging
@@ -52,11 +56,11 @@ def main():
         elif command == "info":
             print(assistant_info())
 
-        elif command == "add":
-            print(add_contact(args, book))
-
         elif command == "add-note":
             print(add_note(notes_book))
+
+        elif command == "add-contact":
+            add_contact_input(book)
 
         elif command == "change":
             print(change_contact(args, book))
@@ -87,6 +91,15 @@ def main():
 
         elif command == "search":
             print(search_contact(args, book))
+
+        elif command == "add-phone":
+            print(add_phone_to_contact(args, book))
+
+        elif command == "add-email":
+            print(add_email_to_contact(args, book))
+
+        elif command == "add-address":
+            print(add_address_to_contact(args, book))
 
         else:
             print("Invalid command.")

@@ -3,6 +3,8 @@
 from classes.birthday import Birthday
 from classes.name import Name
 from classes.phone import Phone
+from classes.email import Email
+from classes.address import Address
 
 
 class Record:
@@ -18,15 +20,23 @@ class Record:
         self.name = Name(name)
         self.phones = []
         self.birthday = None
+        self.email = None
+        self.address = None
 
     def __str__(self):
         contact_string = (
             f"Contact name: {self.name.value}, phones: "
-            f"{'; '.join(p.value for p in self.phones)}"
+            f"{', '.join(p.value for p in self.phones)}"
         )
 
         if self.birthday:
             contact_string += f", birthday: {self.birthday}"
+
+        if self.email:
+            contact_string += f", email: {self.email}"
+
+        if self.address:
+            contact_string += f", address: {self.address}"
 
         return contact_string
 
@@ -83,3 +93,11 @@ class Record:
     def add_birthday(self, date_of_birthday):
         """Add a birthday to the record."""
         self.birthday = Birthday(date_of_birthday)
+
+    def add_email(self, email):
+        """Add an email to the record."""
+        self.email = Email(email)
+
+    def add_address(self, address_string):
+        """Add an address to the record."""
+        self.address = Address(address_string)
