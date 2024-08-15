@@ -17,8 +17,7 @@ from handlers import (
 )
 from helpers import setup_logging
 from helpers.assistant_info import assistant_info
-from helpers.pickle_utils import load_data, save_data
-from helpers.notes_pickle_utils import load_notes, save_notes
+from helpers import load_data, save_data, load_notes, save_notes
 
 logger = setup_logging()
 
