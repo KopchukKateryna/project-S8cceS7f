@@ -48,8 +48,14 @@ class AddressBook(UserDict):
         Returns:
             * Record - The contact record if found
         """
-        record = self.data.get(email, None)
-        return record
+        return next(
+            (
+                record
+                for record in self.data.values()
+                if record.email and record.email.value == email
+            ),
+            None,
+        )
 
     def delete(self, name):
         """

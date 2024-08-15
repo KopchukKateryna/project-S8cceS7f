@@ -1,3 +1,4 @@
+from prompt_toolkit import prompt
 from handlers import (
     add_birthday,
     add_note,
@@ -19,13 +20,22 @@ from handlers import (
     find_note,
 )
 from helpers import setup_logging
-from helpers.assistant_info import table_show
-from helpers import load_data, save_data, load_notes, save_notes
+from helpers import (
+    load_data,
+    save_data,
+    load_notes,
+    save_notes,
+    bindings,
+    table_show,
+    welcome,
+    good_bye,
+)
 from constants import (
     ADDRESSBOOK_INFO_TABLE_DATA,
     ADDRESSBOOK_INFO_TABLE_HEADERS,
     NOTEBOOK_INFO_TABLE_DATA,
     NOTEBOOK_INFO_TABLE_HEADERS,
+    COMPLETER,
 )
 
 logger = setup_logging()
@@ -34,28 +44,22 @@ logger = setup_logging()
 def main():
     """The main function of the bot, manages the main cycle of command processing"""
     book = load_data()
-
     notes_book = load_notes()
-    print("Welcome to the assistant bot!")
-    print(
-        (
-            "The table below summarizes information about the commands. "
-            "But if you forget something in the process, just call the 'info' command "
-            "and you will see this table again."
-        )
-    )
-    # print(assistant_info())
-    print(table_show(ADDRESSBOOK_INFO_TABLE_HEADERS, ADDRESSBOOK_INFO_TABLE_DATA))
-    print(table_show(NOTEBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA))
-
+    welcome()
     while True:
-        user_input = input("Enter a command: ")
+        user_input = prompt(
+            "Enter a command: > ",
+            completer=COMPLETER,
+            complete_while_typing=True,
+            key_bindings=bindings,
+            multiline=True,
+        )
         command, *args = parse_input(user_input)
 
         if command in ["close", "exit"]:
-            print("Good bye!")
             save_data(book)
             save_notes(notes_book)
+            good_bye()
             break
 
         if command == "hello":
@@ -63,17 +67,25 @@ def main():
 
         elif command == "info":
             print(
-                table_show(ADDRESSBOOK_INFO_TABLE_HEADERS, ADDRESSBOOK_INFO_TABLE_DATA)
+                table_show(
+                    ADDRESSBOOK_INFO_TABLE_HEADERS, ADDRESSBOOK_INFO_TABLE_DATA, True
+                )
             )
-            print(table_show(NOTEBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA))
+            print(
+                table_show(NOTEBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA, True)
+            )
 
         elif command == "info-addressbook":
             print(
-                table_show(ADDRESSBOOK_INFO_TABLE_HEADERS, ADDRESSBOOK_INFO_TABLE_DATA)
+                table_show(
+                    ADDRESSBOOK_INFO_TABLE_HEADERS, ADDRESSBOOK_INFO_TABLE_DATA, True
+                )
             )
 
         elif command == "info-notebook":
-            print(table_show(NOTEBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA))
+            print(
+                table_show(NOTEBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA, True)
+            )
 
         elif command == "add-note":
             print(add_note(notes_book))
@@ -87,7 +99,7 @@ def main():
         elif command == "phone":
             print(show_phone(args, book))
 
-        elif command == "all":
+        elif command == "all-contacts":
             print(show_all(book))
 
         elif command == "all-notes":
@@ -115,7 +127,7 @@ def main():
         elif command == "birthdays":
             print(show_upcoming_birthdays(book))
 
-        elif command == "search":
+        elif command == "search-contact":
             print(search_contact(args, book))
 
         elif command == "add-phone":

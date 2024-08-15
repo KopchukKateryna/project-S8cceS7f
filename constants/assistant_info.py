@@ -58,8 +58,8 @@ ADDRESSBOOK_COMMANDS = [
         "desc": "Adds a physical address to an existing contact.",
     },
     {
-        "command": "search",
-        "usage": "search <name/phone/email>",
+        "command": "search-contact",
+        "usage": "search-contact <name/phone/email>",
         "exmp": "search bob",
         "desc": "Searches for a contact by name, phone number, or email address.",
     },
@@ -82,9 +82,9 @@ ADDRESSBOOK_COMMANDS = [
         "desc": "Lists all upcoming birthdays.",
     },
     {
-        "command": "all",
-        "usage": "all",
-        "exmp": "all",
+        "command": "all-contacts",
+        "usage": "all-contacts",
+        "exmp": "all-contacts",
         "desc": "Displays all contacts in the address book.",
     },
     {
