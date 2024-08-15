@@ -75,7 +75,8 @@ def show_all_notes(notebook: NotesBook):
 
 @handle_errors
 def find_note(notebook: NotesBook):
-    """Finds and returns notes by searching for a keyword in their names from the notebook.
+    """Finds and returns notes by searching for a keyword in their
+    names from the notebook.
     Handles user input directly.
     Args:
         notebook (NotesBook): The notebook to search in.
@@ -86,7 +87,8 @@ def find_note(notebook: NotesBook):
         note_name = input("Enter the note name or keyword: ").strip().lower()
         if note_name:
             matching_notes = [
-                note for note in notebook.data.values()
+                note
+                for note in notebook.data.values()
                 if note_name in str(note.name).lower()
             ]
             if matching_notes:

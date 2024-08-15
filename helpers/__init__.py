@@ -24,7 +24,7 @@ __all__ = [
     "setup_logging",
     "save_data",
     "load_data",
-    "table_show"
+    "table_show",
     "save_notes",
     "load_notes",
 ]
