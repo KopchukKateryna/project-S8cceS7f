@@ -34,7 +34,6 @@ def edit_contact_input(args, book):
     record = book.find(name)
     if record is None:
         raise KeyError(f"No such name '{name}' was found")
-
     while True:
         field_to_edit = input("What field do you want to edit? ").lower()
         if field_to_edit in ["name", "phones", "email", "address", "birthday"]:
