@@ -1,0 +1,74 @@
+
+from ..decorators import input_error
+from .inputs_helpers import (
+    edit_name_action,
+    add_phone_action,
+    edit_phone_action,
+    delete_phone_action,
+    edit_or_delete_email_choise,
+    add_or_not_email_choise,
+    edit_or_delete_address_choise,
+    add_or_not_address_choise,
+    edit_or_delete_birthday_choise,
+    add_or_not_birthday_choise,
+)
+
+@input_error
+def edit_contact_input(args, book):
+    record = None
+    name, *_ = args
+    record = book.find(name)
+    if record is None:
+        raise KeyError(f"No such name '{name}' was found")
+    
+    while True:
+        field_to_edit = input("What field do you want to edit? ").lower()
+        if field_to_edit in ["name", "phones", "email", "address", "birthday"]:
+
+            if field_to_edit == "name":
+                edit_name_action(name, record, book)
+
+
+            if field_to_edit == "phones":
+                while True:
+                    print("You can add, edit, delete phone, or exit")
+                    action = input("What do you want to do?  ")
+                    if action in ["add", "edit", "delete"]:
+                        if action == "add":
+                            add_phone_action(record)
+                        if action == "edit":
+                            edit_phone_action(record)
+                        if action == "delete":
+                            delete_phone_action(record)
+                    if action == "exit":
+                        break
+
+            if field_to_edit == "email":
+                while True:
+                    if record.email:
+                        edit_or_delete_email_choise(record)
+                        break
+                    print(f"Contact {name} has no email yet.")
+                    add_or_not_email_choise(record)
+                    break
+
+            if field_to_edit == "address":
+                while True:
+                    if record.address:
+                        edit_or_delete_address_choise(record)
+                        break
+                    print(f"Contact {name} has no address yet.")
+                    add_or_not_address_choise(record)
+                    break
+
+            if field_to_edit == "birthday":
+                while True:
+                    if record.birthday:
+                        edit_or_delete_birthday_choise(record)
+                        break
+                    print(f"Contact {name} has no birthday yet.")
+                    add_or_not_birthday_choise(record)
+                    break
+
+        if field_to_edit == "exit":
+            break
