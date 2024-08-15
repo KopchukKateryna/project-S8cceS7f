@@ -11,7 +11,6 @@ def edit_name(old_name, new_name, record, book):
     return "Name updated"
 
 
-
 def add_phone(number, record):
     """Edd the phone"""
     record.add_phone(number)
@@ -32,7 +31,6 @@ def edit_phone(old_phone, new_phone, record):
     return "Phone changed."
 
 
-
 def add_email(email, record):
     """Add email"""
     record.add_email(email)
@@ -51,7 +49,6 @@ def delete_email(record):
     return "Email deleted."
 
 
-
 def add_address(address, record):
     """Add address"""
     record.add_address(address)
@@ -68,7 +65,6 @@ def delete_address(record):
     """Delete address"""
     record.remove_address()
     return "Address deleted."
-
 
 
 def add_birthday(birthday, record):
