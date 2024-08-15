@@ -1,7 +1,7 @@
 """A module for working with a list of contacts:
 adding, editing, outputting, deleting."""
 
-from tabulate import tabulate
+from helpers.assistant_info import table_show
 
 from classes import AddressBook, Record
 
@@ -79,7 +79,7 @@ def show_all(book: AddressBook):
         str: message with a list of contacts
     """
     headers = ["Address Book"]
-    return tabulate(book.data.items(), headers, tablefmt="mixed_grid", stralign="left")
+    return table_show(headers, book.data.items())
 
 
 @empty_contact_list

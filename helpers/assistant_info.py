@@ -2,7 +2,7 @@
 
 from tabulate import tabulate
 
-from constants import ASSISTANT_INFO_TABLE_DATA, ASSISTANT_INFO_TABLE_HEADERS
+from constants import ASSISTANT_INFO_TABLE_DATA, ASSISTANT_INFO_TABLE_HEADERS, ADDRESSBOOK_INFO_TABLE_DATA, ADDRESSBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA, NOTEBOOK_INFO_TABLE_HEADERS
 
 
 def assistant_info():
@@ -12,6 +12,15 @@ def assistant_info():
     return tabulate(
         ASSISTANT_INFO_TABLE_DATA,
         ASSISTANT_INFO_TABLE_HEADERS,
+        tablefmt="mixed_grid",
+        stralign="left",
+    )
+
+
+def table_show(headers, data):
+    return tabulate(
+        data,
+        headers,
         tablefmt="mixed_grid",
         stralign="left",
     )

@@ -1,5 +1,5 @@
-from tabulate import tabulate
 from classes import NotesBook, Note
+from helpers.assistant_info import table_show
 
 
 def handle_errors(func):
@@ -70,4 +70,4 @@ def show_all_notes(notebook: NotesBook):
 
     headers = ["Note Name", "Text"]
     rows = [(note.name.value, note.text.value) for note in notebook.data.values()]
-    return tabulate(rows, headers, tablefmt="grid", stralign="left")
+    return table_show(headers, rows)

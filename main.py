@@ -16,9 +16,10 @@ from handlers import (
     add_contact_input,
 )
 from helpers import setup_logging
-from helpers.assistant_info import assistant_info
+from helpers.assistant_info import assistant_info, table_show
 from helpers.pickle_utils import load_data, save_data
 from classes import NotesBook
+from constants import ADDRESSBOOK_INFO_TABLE_DATA, ADDRESSBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA, NOTEBOOK_INFO_TABLE_HEADERS
 
 logger = setup_logging()
 
@@ -34,8 +35,9 @@ def main():
             "and you will see this table again."
         )
     )
-    print(assistant_info())
-    print()
+    # print(assistant_info())
+    print(table_show(ADDRESSBOOK_INFO_TABLE_HEADERS, ADDRESSBOOK_INFO_TABLE_DATA))
+    print(table_show(NOTEBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA))
 
     notes_book = NotesBook()
 
@@ -52,7 +54,14 @@ def main():
             print("How can I help you?")
 
         elif command == "info":
-            print(assistant_info())
+            print(table_show(ADDRESSBOOK_INFO_TABLE_HEADERS, ADDRESSBOOK_INFO_TABLE_DATA))
+            print(table_show(NOTEBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA))
+
+        elif command == "info-addressbook":
+            print(table_show(ADDRESSBOOK_INFO_TABLE_HEADERS, ADDRESSBOOK_INFO_TABLE_DATA))
+
+        elif command == "info-notebook":
+            print(table_show(NOTEBOOK_INFO_TABLE_HEADERS, NOTEBOOK_INFO_TABLE_DATA))
 
         elif command == "add-note":
             print(add_note(notes_book))

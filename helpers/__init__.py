@@ -15,7 +15,7 @@ configuration of log levels, output format, and log storage.
 These functions are available for import through the `__all__` declaration.
 """
 
-from helpers.assistant_info import assistant_info
+from helpers.assistant_info import assistant_info, table_show
 from helpers.logging_config import setup_logging
 from helpers.pickle_utils import load_data, save_data
 
@@ -24,4 +24,5 @@ __all__ = [
     "setup_logging",
     "save_data",
     "load_data",
+    "table_show"
 ]
