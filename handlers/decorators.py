@@ -28,6 +28,7 @@ where username is contact's name."
         show_add_phone_message = (
             "The phone number must contain 10 digits, only numbers are required"
         )
+        show_edit_contact_input_message = "Arguments are required. Enter edit-contact <name>"
         common_message = "Arguments are required."
 
         try:
@@ -41,7 +42,6 @@ where username is contact's name."
                 return show_birthday_message
             return common_message
         except ValueError:
-            print(func.__name__)
             if func.__name__ == "add_contact":
                 return add_contact_message
             if func.__name__ == "change_contact":
@@ -56,8 +56,12 @@ where username is contact's name."
                 return show_birthday_message
             if func.__name__ == "add_phone_to_contact":
                 return show_add_phone_message
+            if func.__name__ == "edit_contact_input":
+                print(show_edit_contact_input_message)
             return common_message
         except KeyError as e:
+            if func.__name__ == "edit_contact_input":
+                print(str(e).strip('"'))
             return f"KeyError: {str(e)}"
 
     return inner
@@ -74,11 +78,11 @@ def empty_contact_list(func):
         if len(args) <= 1:
             if len(args[0]) == 0:
                 return "The contacts list is empty. \
-Print 'add username 123456' to add your first contact."
+Print 'add-contact' to add your first contact."
         elif len(args) > 1:
             if len(args[1]) == 0:
                 return "The contacts list is empty. \
-Print 'add username 123456' to add your first contact."
+Print 'add-contact' to add your first contact."
         return func(*args, **kwargs)
 
     return inner

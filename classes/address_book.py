@@ -25,6 +25,9 @@ class AddressBook(UserDict):
             raise KeyError(f"Record with name '{record.name.value}' already exists.")
         self.data[record.name.value] = record
 
+    # def change_record(self, name):
+    #     self.data[record.name.value] = record
+
     def find(self, name):
         """
         Finds a record by name.
