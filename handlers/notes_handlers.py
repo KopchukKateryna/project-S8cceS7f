@@ -163,38 +163,33 @@ def remove_note(note_name: str, notebook: NotesBook):
             return "Note not found."
     else:
         return "Please enter the name."
-    return tabulate(rows, headers, tablefmt="grid", stralign="left")
 
 
 @handle_errors
-def add_tag(args, notebook: NotesBook):
-    note_name, tag, *_ = args 
-    return notebook.add_tag(note_name, tag)
+def add_tag(note, tag, notebook: NotesBook): 
+    return notebook.add_tag(note, tag)
 
 @handle_errors
 def add_tags(args, notebook: NotesBook):
-    note_name, *tags = args 
-    return notebook.add_tag(note_name, tags)
+    note_name, tags = args 
+    return notebook.add_tags(note_name, tags)
 
 @handle_errors
-def edit_tag(args, notebook: NotesBook):
-    note_name, old_tag, new_tag, *_ = args 
-    return notebook.edit_tag(note_name, old_tag, new_tag)
+def edit_tag(note, old_tag, new_tag, notebook: NotesBook):
+    return notebook.edit_tag(note, old_tag, new_tag)
 
 @handle_errors
-def remove_tag(args, notebook: NotesBook):
-    note_name, tag, *_ = args 
-    return notebook.add_tags(note_name, tag)
+def remove_tag(note, tag, notebook: NotesBook):
+    return notebook.remove_tag(note, tag)
 
 @handle_errors
 def remove_tags(args, notebook: NotesBook):
-    note_name, *tag = args 
-    return notebook.add_tags(note_name, *tag)
+    note_name, tags = args 
+    return notebook.remove_tags(note_name, tags)
 
 @handle_errors
-def all_tags_by_note_name(args, notebook: NotesBook):
-    note_name, *_ = args 
-    return notebook.all_tags_by_note_name(note_name)
+def note_tags(note, notebook: NotesBook): 
+    return notebook.find_note_tags(note)
 
 @handle_errors
 def all_tags(notebook: NotesBook):

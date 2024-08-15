@@ -78,3 +78,6 @@ def input_birthday_validation(user_input):
     except ValueError:
         res = False
         return res
+
+def input_tag_validation(tag: str):
+    return re.match(r"#\w+", tag)

@@ -98,35 +98,6 @@ ADDRESSBOOK_COMMANDS = [
         "usage": "exit",
         "exmp": "exit",
         "desc": "Exits the address book application.",
-        "command": "add-note",
-        "usage": "add-note <name> <text>",
-        "exmp": "add-note todo test",
-    },
-    {"command": "all-notes", "usage": "all-notes", "exmp": "all-notes"},
-    {
-        "command": "add-tag",
-        "usage": "add-tag <note-name> <tag>",
-        "exmp": "add-tag todo @task",
-    },
-    {
-        "command": "remove-tag",
-        "usage": "remove-tag <note_name> <tag>",
-        "exmp": "remove-tag todo @task",
-    },
-    {
-        "command": "edit-tag",
-        "usage": "edit-tag <note-name> <old_tag> <new_tag>",
-        "exmp": "edit-tag todo @task @list",
-    },
-    {
-        "command": "all-tags-by-note-name",
-        "usage": "all-tags-by-note-name <note-name> ",
-        "exmp": "all-tags-by-note-name todo",
-    },
-    {
-        "command": "all-tags",
-        "usage": "all-tags",
-        "exmp": "all-tags",
     },
 ]
 
@@ -193,6 +164,42 @@ NOTEBOOK_COMMANDS = [
         "usage": "exit",
         "exmp": "exit",
         "desc": "Exits the address book application.",
+    },
+    {
+        "command": "add-tag",
+        "usage": "add-tag <note-name> <tag>",
+        "exmp": "add-tag todo @task",
+        "desc": "",
+    },
+    {
+        "command": "add-tags",
+        "usage": "add-tags <note-name> <tag>",
+        "exmp": "add-tags todo @task @task @task ",
+        "desc": "",
+    },
+    {
+        "command": "remove-tag",
+        "usage": "remove-tag <note_name> <tag>",
+        "exmp": "remove-tag todo @task",
+        "desc": "",
+    },
+    {
+        "command": "edit-tag",
+        "usage": "edit-tag <note-name> <old_tag> <new_tag>",
+        "exmp": "edit-tag todo @task @list",
+        "desc": "",
+    },
+    {
+        "command": "note-tags",
+        "usage": "note-tags <note-name> ",
+        "exmp": "note-tags todo",
+        "desc": "",
+    },
+    {
+        "command": "all-tags",
+        "usage": "all-tags",
+        "exmp": "all-tags",
+        "desc": "",
     },
 ]
 

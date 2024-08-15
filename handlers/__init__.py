@@ -31,11 +31,19 @@ from handlers.notes_handlers import (
     remove_tags,
     edit_tag,
     all_tags,
-    all_tags_by_note_name
+    note_tags
 )
 
 from handlers.parse_input import parse_input
-from handlers.input_handlers import add_contact_input
+from handlers.input_handlers import (
+    add_contact_input, 
+    add_tag_input, 
+    add_tags_input,
+    remove_tag_input,
+    remove_tags_input,
+    edit_tag_input,
+    search_note_tags,
+)
 
 from handlers.validations import (
     input_name_validation,
@@ -43,6 +51,7 @@ from handlers.validations import (
     input_email_validation,
     input_address_validation,
     input_birthday_validation,
+    input_tag_validation,
 )
 
 __all__ = [
@@ -76,5 +85,12 @@ __all__ = [
     "remove_tags",
     "edit_tag",
     "all_tags",
-    "all_tags_by_note_name"
+    "note_tags",
+    "input_tag_validation",
+    "add_tag_input",
+    "add_tags_input",
+    "remove_tag_input",
+    "remove_tags_input",
+    "edit_tag_input",
+    "search_note_tags"
 ]
