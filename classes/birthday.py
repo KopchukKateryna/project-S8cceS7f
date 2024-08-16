@@ -29,7 +29,7 @@ class Birthday(Field):
             except ValueError as exc:
                 raise ValueError("Invalid date format. Use DD.MM.YYYY") from exc
         else:       
-            print("Invalid date format. Use DD.MM.YYYY")
+            raise ValueError("Invalid date format. Use DD.MM.YYYY")
 
         
 
