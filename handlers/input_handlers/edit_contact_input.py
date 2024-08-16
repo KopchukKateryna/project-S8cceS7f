@@ -41,6 +41,7 @@ def edit_contact_input(args, book):
 
             if field_to_edit == "name":
                 edit_name_in_contacts(name, record, book)
+                break
 
             if field_to_edit == "phones":
                 while True:
