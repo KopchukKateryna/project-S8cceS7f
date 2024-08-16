@@ -28,15 +28,9 @@ ADDRESSBOOK_COMMANDS = [
         "desc": "Edits contact.",
     },
     {
-        "command": "change",
-        "usage": "change <name> <old_number> <new_number>",
-        "exmp": "change bob 1234567890 0987654321",
-        "desc": "Changes the phone number of an existing contact.",
-    },
-    {
-        "command": "delete",
-        "usage": "delete <name> OR delete all",
-        "exmp": "delete bob OR delete all",
+        "command": "delete-contact",
+        "usage": "delete-contact <name> OR delete all",
+        "exmp": "delete-contact bob OR delete all",
         "desc": "Deletes a specific contact or all contacts from the address book.",
     },
     {
@@ -118,15 +112,15 @@ NOTEBOOK_COMMANDS = [
         "desc": "Edits note name or text and save it in the Notebook",
     },
     {
-        "command": "remove-note",
-        "usage": "remove-note <name>/<all>",
-        "exmp": "remove-note test OR all",
+        "command": "delete-note",
+        "usage": "delete-note <name>/<all>",
+        "exmp": "delete-note test OR all",
         "desc": "Removes a specific note by name or all notes if name is 'all'",
     },
     {
-        "command": "find-note",
-        "usage": "find-note <name>",
-        "exmp": "find-note <name>",
+        "command": "search-note",
+        "usage": "search-note <name>",
+        "exmp": "search-note <name>",
         "desc": "Searches for a note by the note name or keyword",
     },
     {
