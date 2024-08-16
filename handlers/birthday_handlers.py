@@ -49,6 +49,7 @@ def show_birthday(args, book: AddressBook):
         return f"There is no contact {name}"
 
 
+@input_error
 def show_upcoming_birthdays(book: AddressBook):
     """Shows all contacts with congratulations dates to the next 7 days
 

@@ -46,9 +46,9 @@ ADDRESSBOOK_COMMANDS = [
         "desc": "Displays the phone number of the specified contact.",
     },
     {
-        "command": "search",
-        "usage": "search <name/phone/email>",
-        "exmp": "search bob",
+        "command": "search-contact",
+        "usage": "search-contact <name/phone/email>",
+        "exmp": "search-contact bob",
         "desc": "Searches for a contact by name, phone number, or email address.",
     },
     {

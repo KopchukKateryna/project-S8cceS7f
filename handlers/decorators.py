@@ -23,7 +23,7 @@ where username is contact's name."
             "Argument is required. Print 'delete all', or 'delete username'."
         )
         add_birthday_message = "YYYY.MM.DD is format for birthday date."
-        show_birthday_message = "Arguments are required. Print 'show-birthday username, \
+        show_birthday_message = "Arguments are required. Print 'show-birthday username', \
 where username is contact's name."
         show_add_phone_message = (
             "The phone number must contain 10 digits, only numbers are required"
@@ -31,17 +31,22 @@ where username is contact's name."
         show_edit_contact_input_message = (
             "Arguments are required. Enter edit-contact <name>"
         )
+        search_contact_message = (
+            "Arguments are required. Enter search-contact <name> | <email> | <phone>"
+        )
         common_message = "Arguments are required."
 
         try:
             return func(*args, **kwargs)
-        except IndexError:
+        except IndexError as i:
             if func.__name__ == "show_phone":
                 return show_phone_message
             if func.__name__ == "delete_contact":
                 return delete_contact_message
             if func.__name__ == "show_birthday":
                 return show_birthday_message
+            if func.__name__ == "show_upcoming_birthdays":
+                return str(i).strip("'")
             return common_message
         except ValueError:
             if func.__name__ == "add_contact":
@@ -60,11 +65,14 @@ where username is contact's name."
                 return show_add_phone_message
             if func.__name__ == "edit_contact_input":
                 print(show_edit_contact_input_message)
+            if func.__name__ == "search_contact":
+                return search_contact_message
             return common_message
         except KeyError as e:
             if func.__name__ == "edit_contact_input":
                 print(str(e).strip('"'))
-            return f"KeyError: {str(e)}"
+
+            return str(e).strip("'")
 
     return inner
 
