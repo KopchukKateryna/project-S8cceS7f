@@ -61,7 +61,10 @@ def show_upcoming_birthdays(book: AddressBook):
     """
     try:
         days = int(
-            input("Enter the number of days from today to check for upcoming birthdays: ").strip())
+            input(
+                "Enter the number of days from today to check for upcoming birthdays: "
+            ).strip()
+        )
     except ValueError:
         return "Invalid input! Please enter a valid number of days."
 
