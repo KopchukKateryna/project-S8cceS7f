@@ -31,7 +31,7 @@ def input_number_validation(user_input):
         str: returns user input if passed validation
     """
 
-    pattern = r'(^[+0-9]{1,3})*([0-9]{10,11}$)'
+    pattern = r"(^[+0-9]{1,3})*([0-9]{10,11}$)"
     match = re.search(pattern, user_input, re.IGNORECASE)
     if match:
         return user_input
