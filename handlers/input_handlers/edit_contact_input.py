@@ -36,7 +36,9 @@ def edit_contact_input(args, book):
         raise KeyError(f"No such name '{name}' was found")
     while True:
         field_to_edit = input(
-            "What field do you want to edit: name | phones | email | address | birthday : ").lower()
+            "What field do you want to edit:"
+            "name | phones | email | address | birthday | exit: "
+        ).lower()
         if field_to_edit in ["name", "phones", "email", "address", "birthday"]:
 
             if field_to_edit == "name":
@@ -50,12 +52,17 @@ def edit_contact_input(args, book):
                     if action in ["add", "edit", "delete"]:
                         if action == "add":
                             add_phone_action(record)
+                            break
                         if action == "edit":
                             edit_phone_action(record)
+                            break
                         if action == "delete":
                             delete_phone_action(record)
+                            break
                     if action == "exit":
                         break
+                    break
+                break
 
             if field_to_edit == "email":
                 while True:
@@ -65,6 +72,7 @@ def edit_contact_input(args, book):
                     print(f"Contact {name} has no email yet.")
                     add_or_not_email_choise(record)
                     break
+                break
 
             if field_to_edit == "address":
                 while True:
@@ -74,6 +82,7 @@ def edit_contact_input(args, book):
                     print(f"Contact {name} has no address yet.")
                     add_or_not_address_choise(record)
                     break
+                break
 
             if field_to_edit == "birthday":
                 while True:
@@ -83,6 +92,7 @@ def edit_contact_input(args, book):
                     print(f"Contact {name} has no birthday yet.")
                     add_or_not_birthday_choise(record)
                     break
+                break
         elif field_to_edit == "exit":
             break
 
