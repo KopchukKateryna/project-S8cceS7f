@@ -22,7 +22,7 @@ where username is contact's name."
         delete_contact_message = (
             "Argument is required. Print 'delete all', or 'delete username'."
         )
-        add_birthday_message = "YYYY.MM.DD is format for birthday date."
+        add_birthday_message = "DD.MM.YYYY is format for birthday date."
         show_birthday_message = "Arguments are required. Print 'show-birthday username, \
 where username is contact's name."
         show_add_phone_message = (

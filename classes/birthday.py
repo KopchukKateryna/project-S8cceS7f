@@ -4,6 +4,10 @@ from datetime import datetime
 
 from classes.field import Field
 
+from handlers.validations import (
+    input_birthday_validation,
+)
+
 
 class Birthday(Field):
     """
@@ -17,11 +21,17 @@ class Birthday(Field):
     """
 
     def __init__(self, value: str):
-        try:
-            birthday = datetime.strptime(value, "%Y.%m.%d")
-            super().__init__(birthday)
-        except ValueError as exc:
-            raise ValueError("Invalid date format. Use YYYY.MM.DD") from exc
+
+        if input_birthday_validation(value):
+            try:
+                birthday = datetime.strptime(value, "%d.%m.%Y")
+                super().__init__(birthday)
+            except ValueError as exc:
+                raise ValueError("Invalid date format. Use DD.MM.YYYY") from exc
+        else:       
+            print("Invalid date format. Use DD.MM.YYYY")
+
+        
 
     def __str__(self):
-        return f'{self.value.strftime("%Y.%m.%d")}'
+        return f'{self.value.strftime("%d.%m.%Y")}'

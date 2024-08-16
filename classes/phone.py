@@ -2,6 +2,10 @@
 
 from classes.field import Field
 
+from handlers.validations import (
+    input_number_validation,
+)
+
 
 class Phone(Field):
     """Phone class"""
@@ -23,11 +27,6 @@ class Phone(Field):
         Returns:
             int: validated number
         """
-
-        if len(number) != 10:
-            raise ValueError("The phone number must contain 10 digits")
-
-        if not number.isdigit():
-            raise ValueError("The phone number must contain only numbers")
-
+        if input_number_validation(number) == False:
+            raise ValueError("The phone number must contain only numbers and lenth must contain 10 digits")
         return number
