@@ -41,7 +41,7 @@ def main():
     """The main function of the bot, manages the main cycle of command processing"""
     book = load_data()
     notes_book = load_notes()
-    # welcome()
+    welcome()
     while True:
         user_input = prompt(
             "Enter a command: > ",
