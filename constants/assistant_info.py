@@ -22,6 +22,12 @@ ADDRESSBOOK_COMMANDS = [
         "desc": "Adds a new contact to the address book.",
     },
     {
+        "command": "edit-contact",
+        "usage": "edit-contact <name>",
+        "exmp": "edit-contact bob",
+        "desc": "Edits contact.",
+    },
+    {
         "command": "change",
         "usage": "change <name> <old_number> <new_number>",
         "exmp": "change bob 1234567890 0987654321",
@@ -40,34 +46,10 @@ ADDRESSBOOK_COMMANDS = [
         "desc": "Displays the phone number of the specified contact.",
     },
     {
-        "command": "add-phone",
-        "usage": "add-phone <name> <phone>",
-        "exmp": "add-phone bob 1111111111",
-        "desc": "Adds a phone number to an existing contact.",
-    },
-    {
-        "command": "add-email",
-        "usage": "add-email <name> <email>",
-        "exmp": "add-email bob email@gmail.com",
-        "desc": "Adds an email address to an existing contact.",
-    },
-    {
-        "command": "add-address",
-        "usage": "add-address <name> <address>",
-        "exmp": "add-address bob some address",
-        "desc": "Adds a physical address to an existing contact.",
-    },
-    {
-        "command": "search-contact",
-        "usage": "search-contact <name/phone/email>",
+        "command": "search",
+        "usage": "search <name/phone/email>",
         "exmp": "search bob",
         "desc": "Searches for a contact by name, phone number, or email address.",
-    },
-    {
-        "command": "add-birthday",
-        "usage": "add-birthday <name> <birthday>",
-        "exmp": "add-birthday bob 12.12.1221",
-        "desc": "Adds a birthday to an existing contact.",
     },
     {
         "command": "show-birthday",
@@ -79,7 +61,7 @@ ADDRESSBOOK_COMMANDS = [
         "command": "birthdays",
         "usage": "birthdays",
         "exmp": "birthdays",
-        "desc": "Lists all upcoming birthdays.",
+        "desc": "Lists all upcoming birthdays in the range of given days.",
     },
     {
         "command": "all-contacts",

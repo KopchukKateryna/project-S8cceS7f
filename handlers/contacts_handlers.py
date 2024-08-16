@@ -20,7 +20,6 @@ def add_contact(name, book: AddressBook):
         str: message that the contact has been added or updated
     """
     record = book.find(name)
-    message = "Contact updated."
     if record is None:
         record = Record(name)
         book.add_record(record)

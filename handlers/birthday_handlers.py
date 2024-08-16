@@ -8,7 +8,7 @@ from .decorators import input_error
 
 
 @input_error
-def add_birthday(args, book: AddressBook):
+def add_birthday_to_contact(args, book: AddressBook):
     """Adds a birthday to the contact.
 
     Args:
@@ -49,18 +49,30 @@ def show_birthday(args, book: AddressBook):
         return f"There is no contact {name}"
 
 
+@input_error
 def show_upcoming_birthdays(book: AddressBook):
-    """Shows all contacts with congratulations dates to the next 7 days
+    """Shows all contacts with congratulations dates for the next X days.
 
     Args:
-        contacts (dict): contact list
+        book (AddressBook): contact list.
 
     Returns:
-        str: message with a list of contacts with congratulations dates
+        str: message with a list of contacts with congratulations dates.
     """
-    upcoming_birthdays = book.get_upcoming_birthdays()
+    try:
+        days = int(
+            input(
+                "Enter the number of days from today to check for upcoming birthdays: "
+            ).strip()
+        )
+    except ValueError:
+        return "Invalid input! Please enter a valid number of days."
+
+    upcoming_birthdays = book.get_upcoming_birthdays(days)
+
     if len(upcoming_birthdays) == 0:
-        raise IndexError("No contacts that need to be congratulated by day next week.")
+        return "No contacts that need to be congratulated within the specified period."
+
     headers = ["Name", "Congratulation date"]
     table_data = [
         [key["name"], key["congratulation_date"]] for key in upcoming_birthdays

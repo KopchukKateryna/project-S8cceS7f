@@ -122,17 +122,36 @@ def edit_note(notebook: NotesBook):
     note = notebook.find(name)
     if note:
         while True:
-            usr_chose = input("What do you want to change: (name/text):").strip()
+            usr_chose = input("What do you want to change: (name/text): ").strip()
             if usr_chose == "name":
-                new_name = input("Type new name: ").strip()
-                note.edit_name(new_name)
-                return "Name changed."
+                while True:
+                    new_name = input("Type new name or back to go back: ").strip()
+                    if new_name == "back":
+                        break
+                    elif new_name:
+                        note.edit_name(new_name)
+                        notebook.add_note(note)
+                        notebook.delete(name)
+                        return "Name changed."
+                    else:
+                        print("Type the name, should not be empty.")
+
             elif usr_chose == "text":
-                text = input("Enter note text: ").strip()
-                note.edit_note(text)
-                return "Text changed."
+                while True:
+                    text = input("Type new text or back to go back: ").strip()
+                    if text == "back":
+                        break
+                    elif text:
+                        note.edit_note(text)
+                        return "Text changed."
+                    else:
+                        print("Type the name, should not be empty.")
+
+            elif usr_chose == "exit":
+                return "Editing completed."
+
             else:
-                print("Command not found")
+                print("Command not found. If you don't want to edit note type | exit |")
     else:
         return f"Note {name} haven't found!"
 
@@ -154,15 +173,15 @@ def remove_note(note_name: str, notebook: NotesBook):
         note = notebook.find(note_name)
         if note:
             notebook.delete(note_name)
-            return f"Note {note_name} has been deleted"
+            return f"Note {note_name} has been deleted."
 
         if note_name == "all":
             notebook.data.clear()
-            return "All notes have been deleted"
+            return "All notes have been deleted."
         else:
             return "Note not found."
     else:
-        return "Please enter the name."
+        return "Please enter: remove-note <name> or remove-note <all>."
 
 
 @handle_errors

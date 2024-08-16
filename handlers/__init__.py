@@ -2,7 +2,7 @@
 and handling birthdays."""
 
 from handlers.birthday_handlers import (
-    add_birthday,
+    add_birthday_to_contact,
     show_birthday,
     show_upcoming_birthdays,
 )
@@ -43,6 +43,7 @@ from handlers.input_handlers import (
     remove_tags_input,
     edit_tag_input,
     search_note_tags,
+    edit_contact_input,
 )
 
 from handlers.validations import (
@@ -61,7 +62,7 @@ __all__ = [
     "show_all",
     "show_phone",
     "delete_contact",
-    "add_birthday",
+    "add_birthday_to_contact",
     "show_birthday",
     "show_upcoming_birthdays",
     "add_note",
@@ -79,6 +80,7 @@ __all__ = [
     "edit_note",
     "remove_note",
     "find_note",
+    "edit_contact_input",
     "add_tag",
     "add_tags",
     "remove_tag",
