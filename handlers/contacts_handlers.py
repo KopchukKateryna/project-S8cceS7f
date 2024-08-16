@@ -108,6 +108,7 @@ def delete_contact(args, book: AddressBook):
 
 
 @empty_contact_list
+@input_error
 def search_contact(args, book: AddressBook):
     """Search a contact in the book by name, phone or email
 
