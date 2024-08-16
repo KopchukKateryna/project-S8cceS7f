@@ -37,13 +37,16 @@ from handlers.notes_handlers import (
 from handlers.parse_input import parse_input
 from handlers.input_handlers import (
     add_contact_input, 
+    edit_contact_input,
+)
+
+from handlers.input_handlers.tag_input import (
     add_tag_input, 
     add_tags_input,
     remove_tag_input,
     remove_tags_input,
     edit_tag_input,
     search_note_tags,
-    edit_contact_input,
 )
 
 from handlers.validations import (

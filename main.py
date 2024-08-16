@@ -140,9 +140,6 @@ def main():
 
         elif command == "remove-tags":
             remove_tags_input(notes_book)
-
-        elif command == "add-birthday":
-            print(add_birthday(args, book))
         
         elif command == "add-tag":
             add_tag_input(notes_book)
