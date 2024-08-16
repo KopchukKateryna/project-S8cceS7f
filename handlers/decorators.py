@@ -10,21 +10,21 @@ def input_error(func):
 
     def inner(*args, **kwargs):
         add_contact_message = (
-            "Arguments are required. Print 'add username 1234567890', "
-            "where username is contact's name, and 1234567890 is contacts phone number: "
-            "10 digits only numbers."
+            "Arguments are required. Print 'add name 1234567890', "
+            "where name is contact's name, and 1234567890 is contacts phone number: "
+            "10 digits numbers only."
         )
-        change_contact_message = "Arguments are required. Print 'change username \
-1234567890 0987654321', where username is contact's name, and 1234567890 is old \
-number and 0987654321 is new number: 10 digits only numbers."
-        show_phone_message = "Argument is required. Print 'phone username', \
-where username is contact's name."
+        change_contact_message = "Arguments are required. Print 'change name \
+number new-number', where name is contact's name, and number is old \
+number and then a new number: 10 digits numbers only."
+        show_phone_message = "Argument is required. Print 'phone name', \
+where name is contact's name."
         delete_contact_message = (
-            "Argument is required. Print 'delete all', or 'delete username'."
+            "Argument is required. Print 'delete all', or 'delete name'."
         )
         add_birthday_message = "YYYY.MM.DD is format for birthday date."
-        show_birthday_message = "Arguments are required. Print 'show-birthday username', \
-where username is contact's name."
+        show_birthday_message = "Arguments are required. Print 'show-birthday name', \
+where name is contact's name."
         show_add_phone_message = (
             "The phone number must contain 10 digits, only numbers are required"
         )
@@ -88,11 +88,11 @@ def empty_contact_list(func):
         if len(args) <= 1:
             if len(args[0]) == 0:
                 return "The contacts list is empty. \
-Print 'add-contact' to add your first contact."
+Type 'add-contact' to add your first contact."
         elif len(args) > 1:
             if len(args[1]) == 0:
                 return "The contacts list is empty. \
-Print 'add-contact' to add your first contact."
+Type 'add-contact' to add your first contact."
         return func(*args, **kwargs)
 
     return inner
