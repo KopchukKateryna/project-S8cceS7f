@@ -7,7 +7,9 @@ from pathlib import Path
 from classes import AddressBook
 
 
-def save_data(book: AddressBook, filename: str = "addressbook.pkl") -> None:
+def save_data(
+    book: AddressBook, filename: str = "addressbook.pkl", log_msg=True
+) -> None:
     """
     Save data to a pickle file.
 
@@ -22,7 +24,8 @@ def save_data(book: AddressBook, filename: str = "addressbook.pkl") -> None:
     try:
         with Path(filename).open("wb") as f:
             pickle.dump(book, f)
-        logging.info("Data successfully saved to %s", filename)
+        if log_msg:
+            logging.info("Data successfully saved to %s", filename)
     except Exception as e:
         logging.error("Error occurred while saving data to %s: %s", filename, e)
 

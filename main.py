@@ -88,9 +88,13 @@ def main():
 
         elif command == "add-contact":
             add_contact_input(book)
+            save_data(book, "addressbook.pkl", False)
+            print("Contact saved!")
 
         elif command == "edit-contact":
             edit_contact_input(args, book)
+            save_data(book, "addressbook.pkl", False)
+            print("Contact updated!")
 
         elif command == "phone":
             print(show_phone(args, book))
