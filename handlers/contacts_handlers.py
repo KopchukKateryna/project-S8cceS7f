@@ -27,12 +27,6 @@ def add_contact(name, book: AddressBook):
     return message
 
 
-# def edit_name(name, new_name, book: AddressBook):
-
-
-# def edit_name(name, new_name, book: AddressBook):
-
-
 @empty_contact_list
 @input_error
 def change_contact(args, book: AddressBook):

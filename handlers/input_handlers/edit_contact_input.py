@@ -35,7 +35,8 @@ def edit_contact_input(args, book):
     if record is None:
         raise KeyError(f"No such name '{name}' was found")
     while True:
-        field_to_edit = input("What field do you want to edit? ").lower()
+        field_to_edit = input(
+            "What field do you want to edit: name | phones | email | address | birthday : ").lower()
         if field_to_edit in ["name", "phones", "email", "address", "birthday"]:
 
             if field_to_edit == "name":
@@ -81,6 +82,8 @@ def edit_contact_input(args, book):
                     print(f"Contact {name} has no birthday yet.")
                     add_or_not_birthday_choise(record)
                     break
-
-        if field_to_edit == "exit":
+        elif field_to_edit == "exit":
             break
+
+        else:
+            print("Command is wrong, if you don't want to edit something type: exit ")
