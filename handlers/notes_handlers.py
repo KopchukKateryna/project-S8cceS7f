@@ -124,17 +124,34 @@ def edit_note(notebook: NotesBook):
         while True:
             usr_chose = input("What do you want to change: (name/text): ").strip()
             if usr_chose == "name":
-                new_name = input("Type new name: ").strip()
-                note.edit_name(new_name)
-                notebook.add_note(note)
-                notebook.delete(name)
-                return "Name changed."
+                while True:
+                    new_name = input("Type new name or back to go back: ").strip()
+                    if new_name == "back":
+                        break
+                    elif new_name:
+                        note.edit_name(new_name)
+                        notebook.add_note(note)
+                        notebook.delete(name)
+                        return "Name changed."
+                    else:
+                        print("Type the name, should not be empty.")
+
             elif usr_chose == "text":
-                text = input("Enter note text: ").strip()
-                note.edit_note(text)
-                return "Text changed."
+                while True:
+                    text = input("Type new text or back to go back: ").strip()
+                    if text == "back":
+                        break
+                    elif text:
+                        note.edit_note(text)
+                        return "Text changed."
+                    else:
+                        print("Type the name, should not be empty.")
+
+            elif usr_chose == "exit":
+                return "Editing completed."
+
             else:
-                print("Command not found.")
+                print("Command not found. If you don't want to edit note type | exit |")
     else:
         return f"Note {name} haven't found!"
 
