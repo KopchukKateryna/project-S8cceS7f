@@ -2,7 +2,7 @@
 and handling birthdays."""
 
 from handlers.birthday_handlers import (
-    add_birthday,
+    add_birthday_to_contact,
     show_birthday,
     show_upcoming_birthdays,
 )
@@ -28,7 +28,13 @@ from handlers.notes_handlers import (
 )
 
 from handlers.parse_input import parse_input
-from handlers.input_handlers import add_contact_input
+from handlers.input_handlers.add_contact_input import (
+    add_contact_input,
+)
+
+from handlers.input_handlers.edit_contact_input import (
+    edit_contact_input,
+)
 
 from handlers.validations import (
     input_name_validation,
@@ -45,7 +51,7 @@ __all__ = [
     "show_all",
     "show_phone",
     "delete_contact",
-    "add_birthday",
+    "add_birthday_to_contact",
     "show_birthday",
     "show_upcoming_birthdays",
     "add_note",
@@ -63,4 +69,5 @@ __all__ = [
     "edit_note",
     "remove_note",
     "find_note",
+    "edit_contact_input",
 ]

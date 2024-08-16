@@ -122,7 +122,7 @@ def edit_note(notebook: NotesBook):
     note = notebook.find(name)
     if note:
         while True:
-            usr_chose = input("What do you want to change: (name/text):").strip()
+            usr_chose = input("What do you want to change: (name/text): ").strip()
             if usr_chose == "name":
                 new_name = input("Type new name: ").strip()
                 note.edit_name(new_name)

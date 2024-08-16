@@ -1,5 +1,6 @@
 """Record class"""
 
+from datetime import datetime
 from classes.birthday import Birthday
 from classes.name import Name
 from classes.phone import Phone
@@ -24,10 +25,9 @@ class Record:
         self.address = None
 
     def __str__(self):
-        contact_string = (
-            f"Contact name: {self.name.value}, phones: "
-            f"{', '.join(p.value for p in self.phones)}"
-        )
+        contact_string = f"Contact name: {self.name.value}"
+        if len(self.phones) > 0:
+            contact_string += f", phones: {', '.join(p.value for p in self.phones)}"
 
         if self.birthday:
             contact_string += f", birthday: {self.birthday}"
@@ -57,7 +57,9 @@ class Record:
             * phone (str) - The phone number to be removed.
         """
 
-        self.phones = list(filter(lambda phone: phone == number, self.phones))
+        for phone in self.phones:
+            if str(phone.value) == number:
+                self.phones.remove(phone)
 
     def edit_phone(self, old_number: str, new_number: str):
         """
@@ -101,3 +103,37 @@ class Record:
     def add_address(self, address_string):
         """Add an address to the record."""
         self.address = Address(address_string)
+
+    def edit_name(self, new_name):
+        """Edit name in the record."""
+        self.name.value = new_name
+
+    def edit_email(self, new_email):
+        """Edit email in the record."""
+        if self.email is None:
+            self.email = Email(new_email)
+        self.email.value = new_email
+
+    def edit_address(self, new_address):
+        """Edit address in the record."""
+        if self.address is None:
+            self.address = Address(new_address)
+        self.address.value = new_address
+
+    def edit_birthday(self, new_birthday):
+        """Edit birthday in the record."""
+        if self.birthday is None:
+            self.add_birthday(new_birthday)
+        self.birthday.value = datetime.strptime(new_birthday, "%Y.%m.%d")
+
+    def remove_email(self):
+        """Delete email in the record."""
+        self.email = None
+
+    def remove_address(self):
+        """Delete address in the record."""
+        self.address = None
+
+    def remove_birthday(self):
+        """Delete birthday in the record."""
+        self.birthday = None

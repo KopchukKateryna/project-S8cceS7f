@@ -1,5 +1,5 @@
 """An addition input module for adding the first contact,
-his phone number, email, address, birthday
+    his phone number, email, address, birthday
     """
 
 from handlers import (
@@ -7,10 +7,10 @@ from handlers import (
     add_phone_to_contact,
     add_email_to_contact,
     add_address_to_contact,
-    add_birthday,
+    add_birthday_to_contact,
 )
 
-from .validations import (
+from ..validations import (
     input_name_validation,
     input_number_validation,
     input_email_validation,
@@ -24,8 +24,9 @@ def add_contact_input(book):
     his phone number, email, address, birthday
 
         Args:
-            book (class): contact list
+            book (class): class AddressBook that contains all contacts
     """
+
     while True:
         user_input = input("Enter contact's name: ").lower()
         if input_name_validation(user_input):
@@ -82,7 +83,7 @@ def add_contact_input(book):
                     if input_birthday_validation(user_input):
                         contact_birthday = user_input
                         args = [contact_name, contact_birthday]
-                        print(add_birthday(args, book))
+                        print(add_birthday_to_contact(args, book))
                         break
                     print("Invalid date format. Use YYYY.MM.DD")
                 break

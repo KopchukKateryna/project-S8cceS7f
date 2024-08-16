@@ -1,8 +1,6 @@
 from prompt_toolkit import prompt
 from handlers import (
-    add_birthday,
     add_note,
-    change_contact,
     delete_contact,
     parse_input,
     show_all,
@@ -11,10 +9,8 @@ from handlers import (
     show_upcoming_birthdays,
     show_all_notes,
     search_contact,
-    add_email_to_contact,
-    add_phone_to_contact,
-    add_address_to_contact,
     add_contact_input,
+    edit_contact_input,
     edit_note,
     remove_note,
     find_note,
@@ -93,8 +89,8 @@ def main():
         elif command == "add-contact":
             add_contact_input(book)
 
-        elif command == "change":
-            print(change_contact(args, book))
+        elif command == "edit-contact":
+            edit_contact_input(args, book)
 
         elif command == "phone":
             print(show_phone(args, book))
@@ -118,9 +114,6 @@ def main():
         elif command == "delete":
             print(delete_contact(args, book))
 
-        elif command == "add-birthday":
-            print(add_birthday(args, book))
-
         elif command == "show-birthday":
             print(show_birthday(args, book))
 
@@ -129,15 +122,6 @@ def main():
 
         elif command == "search-contact":
             print(search_contact(args, book))
-
-        elif command == "add-phone":
-            print(add_phone_to_contact(args, book))
-
-        elif command == "add-email":
-            print(add_email_to_contact(args, book))
-
-        elif command == "add-address":
-            print(add_address_to_contact(args, book))
 
         else:
             print("Invalid command.")

@@ -8,7 +8,7 @@ from .decorators import input_error
 
 
 @input_error
-def add_birthday(args, book: AddressBook):
+def add_birthday_to_contact(args, book: AddressBook):
     """Adds a birthday to the contact.
 
     Args:
