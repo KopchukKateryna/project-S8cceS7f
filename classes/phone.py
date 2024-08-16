@@ -27,6 +27,9 @@ class Phone(Field):
         Returns:
             int: validated number
         """
-        if input_number_validation(number) == False:
-            raise ValueError("The phone number must contain only numbers and lenth must contain 10 digits")
+        if input_number_validation(number) is False:
+            raise ValueError(
+                "The phone number must contain only "
+                "numbers and lenth must contain 10 digits"
+            )
         return number

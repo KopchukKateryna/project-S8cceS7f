@@ -13,7 +13,7 @@ class Birthday(Field):
     """
     A class for storing a contact's birthday.
 
-    Inherits from Field. Validates that the birthday is in the format YYYY.MM.DD and
+    Inherits from Field. Validates that the birthday is in the format DD.MM.YYYY and
     converts the string representation to a datetime object.
 
     Method:
@@ -28,10 +28,8 @@ class Birthday(Field):
                 super().__init__(birthday)
             except ValueError as exc:
                 raise ValueError("Invalid date format. Use DD.MM.YYYY") from exc
-        else:       
+        else:
             raise ValueError("Invalid date format. Use DD.MM.YYYY")
-
-        
 
     def __str__(self):
         return f'{self.value.strftime("%d.%m.%Y")}'

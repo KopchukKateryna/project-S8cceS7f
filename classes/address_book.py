@@ -84,7 +84,7 @@ class AddressBook(UserDict):
         for name, record in self.data.items():
             if record.birthday:
                 user_birthday = datetime.strptime(
-                    str(record.birthday), "%Y.%m.%d"
+                    str(record.birthday), "%d.%m.%Y"
                 ).date()
                 birthday_prepared = user_birthday.replace(year=today_datetime.year)
                 if birthday_prepared < today_datetime:
@@ -98,7 +98,7 @@ class AddressBook(UserDict):
                 if birthday_prepared.weekday() > 5:
                     birthday_prepared += timedelta(days=7 - birthday_prepared.weekday())
 
-                congratulation_date_str = birthday_prepared.strftime("%Y.%m.%d")
+                congratulation_date_str = birthday_prepared.strftime("%d.%m.%Y")
                 upcoming_birthdays.append(
                     {"name": name, "congratulation_date": congratulation_date_str}
                 )
