@@ -124,7 +124,7 @@ class Record:
         """Edit birthday in the record."""
         if self.birthday is None:
             self.add_birthday(new_birthday)
-        self.birthday.value = datetime.strptime(new_birthday, "%Y.%m.%d")
+        self.birthday.value = datetime.strptime(new_birthday, "%d.%m.%Y")
 
     def remove_email(self):
         """Delete email in the record."""

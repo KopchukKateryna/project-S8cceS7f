@@ -77,7 +77,7 @@ def edit_birthday_in_contacts(record):
         if input_birthday_validation(new_birthday):
             print(edit_birthday(new_birthday, record))
             break
-        print("Invalid date format. Use YYYY.MM.DD")
+        print("Invalid date format. Use DD.MM.YYYY")
 
 
 def edit_name_in_contacts(old_name, record, book):
@@ -85,7 +85,7 @@ def edit_name_in_contacts(old_name, record, book):
 
     Args:
         old_name (str): old name of contact
-        record (oblect): record of current contact
+        record (object): record of current contact
         book (class): class AddressBook that contains all contacts
     """
     while True:
@@ -194,7 +194,7 @@ def add_birthday_action(record):
         if input_birthday_validation(birthday):
             print(add_birthday(birthday, record))
             break
-        print("Invalid date format. Use YYYY.MM.DD")
+        print("Invalid date format. Use DD.MM.YYYY")
 
 
 def edit_or_delete_phone_choise(number, record):
