@@ -79,7 +79,7 @@ ADDRESSBOOK_COMMANDS = [
         "command": "birthdays",
         "usage": "birthdays",
         "exmp": "birthdays",
-        "desc": "Lists all upcoming birthdays.",
+        "desc": "Lists all upcoming birthdays in the range of given days.",
     },
     {
         "command": "all-contacts",
