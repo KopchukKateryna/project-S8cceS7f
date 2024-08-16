@@ -85,6 +85,6 @@ def add_contact_input(book):
                         args = [contact_name, contact_birthday]
                         print(add_birthday_to_contact(args, book))
                         break
-                    print("Invalid date format. Use YYYY.MM.DD")
+                    print("Invalid date format. Use DD.MM.YYYY")
                 break
             break
