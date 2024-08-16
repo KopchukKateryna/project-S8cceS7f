@@ -126,13 +126,15 @@ def edit_note(notebook: NotesBook):
             if usr_chose == "name":
                 new_name = input("Type new name: ").strip()
                 note.edit_name(new_name)
+                notebook.add_note(note)
+                notebook.delete(name)
                 return "Name changed."
             elif usr_chose == "text":
                 text = input("Enter note text: ").strip()
                 note.edit_note(text)
                 return "Text changed."
             else:
-                print("Command not found")
+                print("Command not found.")
     else:
         return f"Note {name} haven't found!"
 
@@ -154,12 +156,12 @@ def remove_note(note_name: str, notebook: NotesBook):
         note = notebook.find(note_name)
         if note:
             notebook.delete(note_name)
-            return f"Note {note_name} has been deleted"
+            return f"Note {note_name} has been deleted."
 
         if note_name == "all":
             notebook.data.clear()
-            return "All notes have been deleted"
+            return "All notes have been deleted."
         else:
             return "Note not found."
     else:
-        return "Please enter the name."
+        return "Please enter: remove-note <name> or remove-note <all>."

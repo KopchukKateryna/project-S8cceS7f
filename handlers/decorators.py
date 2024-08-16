@@ -9,6 +9,7 @@ def input_error(func):
     """
 
     def inner(*args, **kwargs):
+        # parse_input_message = ("Invalid command")
         add_contact_message = (
             "Arguments are required. Print 'add username 1234567890', "
             "where username is contact's name, and 1234567890 is contacts phone number: "
