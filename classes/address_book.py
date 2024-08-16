@@ -68,12 +68,15 @@ class AddressBook(UserDict):
             raise KeyError(f"Record with name '{name}' not found.")
         del self.data[name]
 
-    def get_upcoming_birthdays(self):
+    def get_upcoming_birthdays(self, days):
         """
-        Creates a list of contacts to wish happy birthday the next 7 days.
+        Creates a list of contacts to wish happy birthday within the next 'days' days.
+
+        Args:
+            days (int): The number of days from today to check for upcoming birthdays.
 
         Returns:
-            * list - list of dicts of contacts
+            list: List of dicts containing contacts with upcoming birthdays.
         """
         today_datetime = datetime.today().date()
         upcoming_birthdays = []
@@ -89,7 +92,7 @@ class AddressBook(UserDict):
                         year=today_datetime.year + 1
                     )
 
-                if (birthday_prepared - today_datetime).days > 7:
+                if (birthday_prepared - today_datetime).days > days:
                     continue
 
                 if birthday_prepared.weekday() > 5:
