@@ -2,6 +2,8 @@ import pyfiglet
 import time
 import sys
 
+from handlers.bot_name_handlers import create_bot_name
+
 team_name = "NO NAME BOT"
 bye_msg = "SEE YOU LATER"
 
@@ -28,16 +30,6 @@ def live_print(text, delay=0.05):
         sys.stdout.flush()
         time.sleep(delay)
     print()
-
-
-def create_bot_name():
-    """Creates the name of the main bot
-
-    Returns:
-        str: bot name in string format
-    """
-    bot_name = input(">>> ").upper()
-    return bot_name
 
 
 def pre_wellcome():

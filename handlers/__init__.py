@@ -60,6 +60,8 @@ from handlers.validations import (
     input_tag_validation,
 )
 
+from handlers.bot_name_handlers import edit_bot_name, create_bot_name
+
 __all__ = [
     "parse_input",
     "add_contact",
@@ -102,4 +104,6 @@ __all__ = [
     "search_note_tags",
     "sort_by_tag",
     "sort_by_tag_input",
+    "edit_bot_name",
+    "create_bot_name",
 ]

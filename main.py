@@ -22,6 +22,7 @@ from handlers import (
     edit_tag_input,
     search_note_tags,
     sort_by_tag_input,
+    edit_bot_name,
 )
 from helpers import setup_logging
 from helpers import (
@@ -179,6 +180,14 @@ def main():
 
             elif command == "sort-by-tag":
                 sort_by_tag_input(notes_book)
+            
+            elif command == "edit-bot-name":
+                new_bot_name = edit_bot_name(bot_name)
+                save_bot_name(new_bot_name)
+                print(f"Bot name {new_bot_name} saved.")
+                good_bye()
+                break
+
             else:
                 print("Invalid command.")
     except KeyboardInterrupt:
