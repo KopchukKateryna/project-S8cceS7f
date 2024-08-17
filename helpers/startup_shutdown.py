@@ -30,19 +30,44 @@ def live_print(text, delay=0.05):
     print()
 
 
-def welcome():
-    """Display a welcome message and ASCII art."""
-    display_ascii_welcome_art(team_name)
+def create_bot_name():
+    """Creates the name of the main bot
 
-    live_print(f"Welcome to the {team_name}.\n")
+    Returns:
+        str: bot name in string format
+    """
+    bot_name = input(">>> ").upper()
+    return bot_name
+
+
+def pre_wellcome():
+    """Display a first welcome message and ASCII art."""
+    time.sleep(0.4)
+    display_ascii_welcome_art("NONAME BOT")
+    live_print("Welcome to the NONAME BOT.\n")
+    live_print("Your private contact-book and note-book.\n")
+    live_print("Make it personal.\n")
+    live_print("Enter the name for your bot:\n")
+    bot_name = create_bot_name()
+    time.sleep(0.4)
+    display_ascii_welcome_art("wellcome")
+    time.sleep(0.4)
+    display_ascii_welcome_art(bot_name)
     live_print("Preparing your environment...\n")
-    live_print(f"Initializing {team_name}...\n")
+    live_print(f"Initializing {bot_name}...\n")
     time.sleep(0.2)
     live_print("Loading your Contact Book...\n")
     time.sleep(0.4)
     live_print("Loading your NoteBook...\n")
     time.sleep(0.3)
     live_print("Setup complete!\n")
+    return bot_name
+
+
+def welcome(bot_name):
+    """Display a welcome message."""
+    time.sleep(0.4)
+    live_print(f"\nWelcome to the {bot_name}!\n")
 
 
 def good_bye():
@@ -59,3 +84,4 @@ def good_bye():
 if __name__ == "__main__":
     welcome()
     good_bye()
+    pre_wellcome()

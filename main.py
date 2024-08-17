@@ -34,6 +34,8 @@ from helpers import (
     welcome,
     good_bye,
     display_ascii_welcome_art,
+    load_bot_name,
+    save_bot_name,
 )
 from constants import (
     ADDRESSBOOK_INFO_TABLE_DATA,
@@ -50,7 +52,9 @@ def main():
     """The main function of the bot, manages the main cycle of command processing"""
     book = load_data()
     notes_book = load_notes()
-    welcome()
+    bot_name = load_bot_name()
+
+    welcome(bot_name)
     try:
         while True:
             user_input = prompt(
@@ -65,6 +69,7 @@ def main():
             if command in ["close", "exit"]:
                 save_data(book)
                 save_notes(notes_book)
+                save_bot_name(bot_name)
                 good_bye()
                 break
 
@@ -179,6 +184,7 @@ def main():
     except KeyboardInterrupt:
         save_data(book)
         save_notes(notes_book)
+        save_bot_name(bot_name="NONAME BOT")
         display_ascii_welcome_art("Good bye")
 
 
