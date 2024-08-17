@@ -29,11 +29,13 @@ def add_contact_input(book):
 
     while True:
         user_input = input("Enter contact's name: ").lower()
-        if input_name_validation(user_input):
-            contact_name = user_input
+        if not input_name_validation(user_input):
+            print("The name must contain at least one symbol")
+        contact_name = user_input
+        if not book.find(contact_name):
             print(add_contact(contact_name, book))
             break
-        print("The name must contain at least one symbol")
+        print(f"Contact {contact_name} already exists.")
 
     while True:
         user_input = input("Enter contact's phone number: ").lower()
