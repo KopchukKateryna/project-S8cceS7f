@@ -1,6 +1,8 @@
 from classes import NotesBook, Note
 from helpers.assistant_info import table_show
 
+headers = ["Note Name", "Text", "Tags"]
+header = ["Tags"]
 
 def handle_errors(func):
     """
@@ -68,8 +70,7 @@ def show_all_notes(notebook: NotesBook):
     if not notebook.data:
         return "No notes found."
 
-    headers = ["Note Name", "Text"]
-    rows = [(note.name.value, note.text.value) for note in notebook.data.values()]
+    rows = [(note.name.value, note.text.value, ' '.join(note.tags)) for note in notebook.data.values()]
     return table_show(headers, rows)
 
 
@@ -92,8 +93,7 @@ def find_note(notebook: NotesBook):
                 if note_name in str(note.name).lower()
             ]
             if matching_notes:
-                headers = ["Note Name", "Text"]
-                rows = [(str(note.name), str(note.text)) for note in matching_notes]
+                rows = [(str(note.name), str(note.text), " ".join(note.tags)) for note in matching_notes]
                 return table_show(headers, rows)
             else:
                 return "No notes found matching that keyword."
@@ -182,3 +182,136 @@ def remove_note(note_name: str, notebook: NotesBook):
             return "Note not found."
     else:
         return "Please enter: remove-note <name> or remove-note <all>."
+
+
+@handle_errors
+def add_tag(note, tag, notebook: NotesBook):
+    """
+    Adds a tag to a note in the notebook.
+
+    Args:
+        note (str): The name of the note to add the tag to.
+        tag (str): The tag to add to the note.
+        notebook (NotesBook): The notebook to add the tag to.
+
+    Returns:
+        None
+    """
+    return notebook.add_tag(note, tag)
+
+@handle_errors
+def add_tags(args, notebook: NotesBook):
+    """
+    Adds multiple tags to a note in the notebook.
+
+    Args:
+        args (tuple): A tuple containing the note name and a list of tags to add.
+        notebook (NotesBook): The notebook to add the tags to.
+
+    Returns:
+        None
+    """
+    note_name, tags = args 
+    return notebook.add_tags(note_name, tags)
+
+@handle_errors
+def edit_tag(note, old_tag, new_tag, notebook: NotesBook):
+    """
+    Edits a tag on a note in the notebook.
+
+    Args:
+        note (str): The name of the note to edit the tag on.
+        old_tag (str): The old tag to replace.
+        new_tag (str): The new tag to replace the old tag with.
+        notebook (NotesBook): The notebook to edit the tag in.
+
+    Returns:
+        None
+    """
+    return notebook.edit_tag(note, old_tag, new_tag)
+
+@handle_errors
+def remove_tag(note, tag, notebook: NotesBook):
+    """
+    Removes a tag from a note in the notebook.
+
+    Args:
+        note (str): The name of the note to remove the tag from.
+        tag (str): The tag to remove from the note.
+        notebook (NotesBook): The notebook to remove the tag from.
+
+    Returns:
+        None
+    """
+    return notebook.remove_tag(note, tag)
+
+@handle_errors
+def remove_tags(args, notebook: NotesBook):
+    """
+    Removes multiple tags from a note in the notebook.
+
+    Args:
+        args (tuple): A tuple containing the note name and a list of tags to remove.
+        notebook (NotesBook): The notebook to remove the tags from.
+
+    Returns:
+        None
+    """
+    note_name, tags = args 
+    return notebook.remove_tags(note_name, tags)
+
+@handle_errors
+def note_tags(note, notebook: NotesBook):
+    """
+    Retrieves the tags associated with a note in the notebook.
+
+    Args:
+        note (str): The name of the note to retrieve the tags for.
+        notebook (NotesBook): The notebook to retrieve the tags from.
+
+    Returns:
+        list: A list of tags associated with the note.
+    """
+    tags = notebook.find_note_tags(note)
+    if len(tags) > 0:
+        rows = [[tag] for tag in tags]
+        return table_show(header, rows)
+    else:
+        return 'No tags found for this note'
+
+@handle_errors
+def all_tags(notebook: NotesBook):
+    """
+    Retrieves all tags in the notebook.
+
+    Args:
+        notebook (NotesBook): The notebook to retrieve the tags from.
+
+    Returns:
+        list: A list of all tags in the notebook.
+    """
+    tags = notebook.all_tags()
+    if len(tags) > 0:
+        rows = [[tag] for tag in tags]
+        return table_show(header, rows)
+    else:
+        return 'No tags at all' 
+
+@handle_errors
+def sort_by_tag(order:str, notebook: NotesBook):
+    """
+    Sorts the notes in the notebook by tag in the specified order.
+
+    Args:
+        order (str): The order in which to sort the notes (e.g. "asc" or "desc")
+        notebook (NotesBook): The notebook to sort
+
+    Returns:
+        str: A string representation of the sorted notebook
+    """
+    sorted_notes = notebook.sort_by_tag(order)
+    if sorted_notes:
+        rows = [(note.name.value, note.text.value, ' '.join(note.tags)) for note in sorted_notes]
+        return table_show(headers, rows)
+    else:
+        return 'No notes found'
