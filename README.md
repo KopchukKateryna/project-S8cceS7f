@@ -114,7 +114,19 @@ pip install <package-name>
 pip freeze > requirements.txt
 ```
 
-- Commit the updated requirements.txt (step 5 and 6). Make sure that you included the updated requirements.txt in your Pull Request!!!
+= Commit the updated requirements.txt (step 5 and 6). Make sure that you included the updated requirements.txt in your Pull Request!!!
+
+### 8. Create package in pip repository
+= Create files for pip  
+```bash
+python setup.py sdist bdist_wheel
+```
+= Rename .pypirc.template to .pypirc
+= Inset your username and passport of pip repository
+= Publish on pip our project
+```bash
+twine upload dist/*
+```
 
 
 
