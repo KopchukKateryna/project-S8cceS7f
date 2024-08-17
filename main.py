@@ -14,6 +14,14 @@ from handlers import (
     edit_note,
     remove_note,
     find_note,
+    add_tag_input,
+    add_tags_input,
+    all_tags,
+    remove_tag_input,
+    remove_tags_input,
+    edit_tag_input,
+    search_note_tags,
+    sort_by_tag_input
 )
 from helpers import setup_logging
 from helpers import (
@@ -96,6 +104,9 @@ def main():
             elif command == "add-note":
                 print(add_note(notes_book))
 
+            elif command == "edit-tag":
+                edit_tag_input(notes_book)
+
             elif command == "add-contact":
                 add_contact_input(book)
                 save_data(book, "addressbook.pkl", False)
@@ -118,6 +129,30 @@ def main():
             elif command == "search-note":
                 print(find_note(notes_book))
 
+            elif command == "remove-note":
+                note_name = " ".join(args).strip()
+                print(remove_note(note_name, notes_book))
+            
+            elif command == "all-tags":
+                print(all_tags(notes_book))
+        
+            elif command == "note-tags":
+                search_note_tags(notes_book)
+
+            elif command == "delete":
+                print(delete_contact(args, book))
+        
+            elif command == "remove-tag":
+                remove_tag_input(notes_book)
+
+            elif command == "remove-tags":
+                remove_tags_input(notes_book)
+        
+            elif command == "add-tag":
+                add_tag_input(notes_book)
+        
+            elif command == "add-tags":
+                add_tags_input(notes_book)
             elif command == "edit-note":
                 print(edit_note(notes_book))
 
@@ -137,6 +172,8 @@ def main():
             elif command == "search-contact":
                 print(search_contact(args, book))
 
+            elif command == "sort-by-tag":
+                sort_by_tag_input(notes_book)
             else:
                 print("Invalid command.")
     except KeyboardInterrupt:
