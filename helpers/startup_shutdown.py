@@ -74,6 +74,6 @@ def good_bye():
 
 
 if __name__ == "__main__":
-    welcome()
+    welcome("no name")
     good_bye()
     pre_wellcome()
