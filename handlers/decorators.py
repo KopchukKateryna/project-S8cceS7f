@@ -67,7 +67,7 @@ where name is contact's name."
             if func.__name__ == "edit_contact_input":
                 print(show_edit_contact_input_message)
             if func.__name__ == "search_contact":
-                return search_contact_message
+                print(search_contact_message)
             return common_message
         except KeyError as e:
             if func.__name__ == "edit_contact_input":

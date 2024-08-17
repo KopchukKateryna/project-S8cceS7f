@@ -38,7 +38,7 @@ class AddressBook(UserDict):
         record = self.data.get(name, None)
         return record
 
-    def find_email(self, email):
+    def find_by_email(self, email):
         """
         Finds a record by email.
 
@@ -46,16 +46,11 @@ class AddressBook(UserDict):
             * email(str) - The email of the contact to find.
 
         Returns:
-            * Record - The contact record if found
+            * generator - The contact records if found
         """
-        return next(
-            (
-                record
-                for record in self.data.values()
-                if record.email and record.email.value == email
-            ),
-            None,
-        )
+        for record in self.data.values():
+            if record.email and record.email.value == email:
+                yield record
 
     def delete(self, name):
         """
@@ -111,14 +106,23 @@ class AddressBook(UserDict):
         Args:
         * phone(str) - The phone number to search for.
         Returns:
-        * dict - The record with the matching phone number.
+        * generator - The records with the matching phone number.
         """
-        return next(
-            (
-                record
-                for record in self.data.values()
-                for p in record.phones
-                if p.value == phone
-            ),
-            None,
-        )
+        for record in self.data.values():
+            for p in record.phones:
+                if p.value == phone:
+                    yield record
+
+    def find_by_address(self, address):
+        """
+        Finds a record by address.
+
+        Args:
+            * address(str) - The address of the contact to find.
+
+        Returns:
+            * generator - The contact records if found
+        """
+        for record in self.data.values():
+            if record.address and record.address.value == address:
+                yield record
