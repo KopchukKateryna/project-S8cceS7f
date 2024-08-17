@@ -34,6 +34,14 @@ class Note:
     
     def __repr__(self):
         return f"Note: {self.name.value}, Text: {self.text.value}, Tag: {self.tags}"
+    
+    def __getstate__(self):
+        return {'text': self.text, 'name': self.name, 'tags': self.__tags}
+
+    def __setstate__(self, state):
+        self.text = state['text']
+        self.name = state['name']
+        self.__tags = state['tags']
 
     def edit_name(self, new_name):
         """A function for editing note name"""

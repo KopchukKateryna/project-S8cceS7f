@@ -1,6 +1,8 @@
 from classes import NotesBook, Note
 from helpers.assistant_info import table_show
 
+headers = ["Note Name", "Text", "Tags"]
+header = ["Tags"]
 
 def handle_errors(func):
     """
@@ -68,8 +70,7 @@ def show_all_notes(notebook: NotesBook):
     if not notebook.data:
         return "No notes found."
 
-    headers = ["Note Name", "Text"]
-    rows = [(note.name.value, note.text.value) for note in notebook.data.values()]
+    rows = [(note.name.value, note.text.value, ' '.join(note.tags)) for note in notebook.data.values()]
     return table_show(headers, rows)
 
 
@@ -92,8 +93,7 @@ def find_note(notebook: NotesBook):
                 if note_name in str(note.name).lower()
             ]
             if matching_notes:
-                headers = ["Note Name", "Text"]
-                rows = [(str(note.name), str(note.text)) for note in matching_notes]
+                rows = [(str(note.name), str(note.text), " ".join(note.tags)) for note in matching_notes]
                 return table_show(headers, rows)
             else:
                 return "No notes found matching that keyword."
@@ -272,7 +272,12 @@ def note_tags(note, notebook: NotesBook):
     Returns:
         list: A list of tags associated with the note.
     """
-    return notebook.find_note_tags(note)
+    tags = notebook.find_note_tags(note)
+    if len(tags) > 0:
+        rows = [[tag] for tag in tags]
+        return table_show(header, rows)
+    else:
+        return 'No tags found for this note'
 
 @handle_errors
 def all_tags(notebook: NotesBook):
@@ -285,7 +290,12 @@ def all_tags(notebook: NotesBook):
     Returns:
         list: A list of all tags in the notebook.
     """
-    return notebook.all_tags()
+    tags = notebook.all_tags()
+    if len(tags) > 0:
+        rows = [[tag] for tag in tags]
+        return table_show(header, rows)
+    else:
+        return 'No tags at all' 
 
 @handle_errors
 def sort_by_tag(order:str, notebook: NotesBook):
@@ -299,4 +309,9 @@ def sort_by_tag(order:str, notebook: NotesBook):
     Returns:
         str: A string representation of the sorted notebook
     """
-    return str(notebook.sort_by_tag(order))
+    sorted_notes = notebook.sort_by_tag(order)
+    if sorted_notes:
+        rows = [(note.name.value, note.text.value, ' '.join(note.tags)) for note in sorted_notes]
+        return table_show(headers, rows)
+    else:
+        return 'No notes found'
