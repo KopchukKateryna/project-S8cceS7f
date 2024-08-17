@@ -5,6 +5,7 @@
     """
 
 from datetime import datetime
+from classes.notes_book import NotesBook
 import re
 
 
@@ -81,6 +82,12 @@ def input_birthday_validation(user_input):
     except ValueError:
         res = False
         return res
+
+def input_note_validation(note_name: str, book: NotesBook):
+    if book.find(note_name) is not None:
+        return True
+    else: 
+        return False
 
 def input_tag_validation(tag: str):
     """
