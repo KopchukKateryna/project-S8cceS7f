@@ -36,10 +36,14 @@ from handlers.notes_handlers import (
 )
 
 from handlers.parse_input import parse_input
-from handlers.input_handlers import (
-    add_contact_input, 
-    edit_contact_input,
+from handlers.input_handlers.add_contact_input import (
+    add_contact_input
 )
+
+from handlers.input_handlers.edit_contact_input import (
+    edit_contact_input
+)
+
 
 from handlers.input_handlers.tag_input import (
     add_tag_input, 
