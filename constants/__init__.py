@@ -7,7 +7,7 @@ from constants.assistant_info import (
     NOTEBOOK_INFO_TABLE_HEADERS,
 )
 
-from constants.auto_complete_cl import COMPLETER, COMMAND_CORRECTIONS
+from constants.auto_complete_cl import COMPLETER, COMMAND_CORRECTIONS, COMPLETER_FOR_EDIT, COMMAND_FOR_EDIT_CONTACT
 
 __all__ = [
     "ADDRESSBOOK_INFO_TABLE_DATA",
@@ -15,5 +15,7 @@ __all__ = [
     "NOTEBOOK_INFO_TABLE_DATA",
     "NOTEBOOK_INFO_TABLE_HEADERS",
     "COMPLETER",
+    "COMPLETER_FOR_EDIT",
+    "COMMAND_FOR_EDIT_CONTACT",
     "COMMAND_CORRECTIONS",
 ]

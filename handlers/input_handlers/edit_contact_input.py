@@ -15,7 +15,9 @@ from .inputs_helpers import (
     edit_or_delete_birthday_choise,
     add_or_not_birthday_choise,
 )
-
+from prompt_toolkit import prompt
+from constants import COMPLETER_FOR_EDIT
+from helpers import bindings_for_contact
 
 @input_error
 def edit_contact_input(args, book):
@@ -35,10 +37,14 @@ def edit_contact_input(args, book):
     if record is None:
         raise KeyError(f"No such name '{name}' was found")
     while True:
-        field_to_edit = input(
-            "What field do you want to edit: "
-            "name | phones | email | address | birthday | exit: "
-        ).lower()
+        field_to_edit = prompt(
+                "What field do you want to edit: "
+                "name | phones | email | address | birthday | exit: ",
+                completer=COMPLETER_FOR_EDIT,
+                complete_while_typing=True,
+                key_bindings=bindings_for_contact,
+                multiline=True,
+            )
         if field_to_edit in ["name", "phones", "email", "address", "birthday"]:
 
             if field_to_edit == "name":

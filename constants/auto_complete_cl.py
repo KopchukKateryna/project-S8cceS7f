@@ -1,8 +1,10 @@
 from prompt_toolkit.completion import WordCompleter
-from constants.assistant_info import NOTEBOOK_COMMANDS, ADDRESSBOOK_COMMANDS
+from constants.assistant_info import NOTEBOOK_COMMANDS, ADDRESSBOOK_COMMANDS, COMMAND_EDIT_CONTACT
+from prompt_toolkit.document import _FIND_BIG_WORD_RE
 
 notebook_commands = [c["command"] for c in NOTEBOOK_COMMANDS]
 addressbook_commands = [c["command"] for c in ADDRESSBOOK_COMMANDS]
+edit_contact_commands = [c["command"] for c in COMMAND_EDIT_CONTACT]
 
 COMBINED_BOT_COMMANDS = list(set(notebook_commands + addressbook_commands))
 
@@ -30,6 +32,7 @@ COMMAND_CORRECTIONS = {
     "info-addresbook": "info-addressbook",
     "info-addressbokk": "info-addressbook",
     # "add-contact"
+    "ac": "add-contact",
     "add contact": "add-contact",
     "ad-contact": "add-contact",
     "add-contct": "add-contact",
@@ -156,4 +159,45 @@ COMMAND_CORRECTIONS = {
     "exiit": "exit",
 }
 
+COMMAND_FOR_EDIT_CONTACT = {
+    # "name"
+    "name": "name",
+    "n": "name",
+    "anme": "name",
+    "nm": "name",
+    # "phones"
+    "p": "phones",
+    "ps": "phones",
+    "ph": "phones",
+    "phones": "phones",
+    "hpones": "phones",
+    # "email"
+    "email": "email",
+    "e": "email",
+    "em": "email",
+    "eml": "email",
+    "meail": "email",
+    # "address"
+    "address": "address",
+    "ad": "address",
+    "adr": "address",
+    "adress": "address",
+    "adres": "address",
+    "adress": "address",
+    # "birthday"
+    "birthday": "birthday",
+    "b": "birthday",
+    "br": "birthday",
+    "bith": "birthday",
+    "birt": "birthday",
+    "bd": "birthday",
+    # "exit"
+    "exi": "exit",
+    "exitt": "exit",
+    "exti": "exit",
+    "eixt": "exit",
+    "exiit": "exit",
+}
+
 COMPLETER = WordCompleter(COMBINED_BOT_COMMANDS, ignore_case=True, sentence=True)
+COMPLETER_FOR_EDIT = WordCompleter(list(set(edit_contact_commands)), ignore_case=True, sentence=True)
