@@ -33,7 +33,7 @@ where name is contact's name."
             "Arguments are required. Enter edit-contact <name>"
         )
         search_contact_message = (
-            "Arguments are required. Enter search-contact <name> | <email> | <phone>"
+            "Arguments are required. Enter search-contact <name> | <email> | <phone> | <address>"
         )
         common_message = "Arguments are required."
 
@@ -67,7 +67,7 @@ where name is contact's name."
             if func.__name__ == "edit_contact_input":
                 print(show_edit_contact_input_message)
             if func.__name__ == "search_contact":
-                print(search_contact_message)
+                return search_contact_message
             return common_message
         except KeyError as e:
             if func.__name__ == "edit_contact_input":

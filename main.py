@@ -177,8 +177,7 @@ def main():
 
             elif command == "search-contact":
                 # print(search_contact(args, book))
-                search_contact(args, book)
-
+                print(search_contact(args, book))
 
             elif command == "sort-by-tag":
                 sort_by_tag_input(notes_book)

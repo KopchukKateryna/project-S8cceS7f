@@ -36,7 +36,6 @@ def add_contact_input(book):
             print(add_contact(contact_name, book))
             break
         print(f"Contact {contact_name} already exists.")
-        
 
     while True:
         user_input = input("Enter contact's phone number: ").lower()
