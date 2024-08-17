@@ -24,7 +24,7 @@ from helpers.startup_shutdown import (
     welcome,
     good_bye,
     display_ascii_welcome_art,
-    pre_wellcome,
+    pre_welcome,
 )
 from helpers.bot_name_pickle_utils import load_bot_name, save_bot_name
 
@@ -41,5 +41,5 @@ __all__ = [
     "display_ascii_welcome_art",
     "load_bot_name",
     "save_bot_name",
-    "pre_wellcome",
+    "pre_welcome",
 ]

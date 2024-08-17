@@ -32,7 +32,7 @@ def live_print(text, delay=0.05):
     print()
 
 
-def pre_wellcome():
+def pre_welcome():
     """Display a first welcome message and ASCII art."""
     time.sleep(0.4)
     display_ascii_welcome_art("NONAME BOT")
@@ -76,4 +76,4 @@ def good_bye():
 if __name__ == "__main__":
     welcome("no name")
     good_bye()
-    pre_wellcome()
+    pre_welcome()
