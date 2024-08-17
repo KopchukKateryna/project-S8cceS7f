@@ -3,9 +3,11 @@ adding, editing, outputting, deleting."""
 
 from helpers.assistant_info import table_show
 
-from classes import AddressBook, Record
+from classes import AddressBook, Record, ContactTableFormatter
 
 from .decorators import empty_contact_list, input_error
+
+table_headers = ["Name", "Contact info"]
 
 
 @input_error
@@ -122,33 +124,46 @@ def search_contact(args, book: AddressBook):
     search_string = search_string.strip()
     message = f"No contact with data '{search_string}' was found"
 
-    record_by_name = book.find(search_string)
-    if record_by_name:
-        return record_by_name
+    # find by name
+    records_by_name_generator = book.find_by_name(search_string)
+    formatted_contacts = ContactTableFormatter.format_contacts(
+        records_by_name_generator
+    )
+    if len(formatted_contacts) > 0:
+        return table_show(table_headers, formatted_contacts)
 
+    # find by phone
     records_by_phone_generator = book.find_by_phone(search_string)
-    res = [[record.__str__()] for record in records_by_phone_generator]
-    if len(res) > 0:
-        headers = ["Contacts by phone"]
-        return table_show(headers, res)
+    formatted_contacts = ContactTableFormatter.format_contacts(
+        records_by_phone_generator
+    )
+    if len(formatted_contacts) > 0:
+        return table_show(table_headers, formatted_contacts)
 
+    # find by email
     records_by_email_generator = book.find_by_email(search_string)
-    res = [[record.__str__()] for record in records_by_email_generator]
-    if len(res) > 0:
-        headers = ["Contacts by email"]
-        return table_show(headers, res)
+    formatted_contacts = ContactTableFormatter.format_contacts(
+        records_by_email_generator
+    )
+    if len(formatted_contacts) > 0:
+        return table_show(table_headers, formatted_contacts)
 
+    # find by address
     records_by_address_generator = book.find_by_address(search_string)
-    res = [[record.__str__()] for record in records_by_address_generator]
-    if len(res) > 0:
-        headers = ["Contacts by address"]
-        return table_show(headers, res)
+    formatted_contacts = ContactTableFormatter.format_contacts(
+        records_by_address_generator
+    )
+    print(formatted_contacts)
+    if len(formatted_contacts) > 0:
+        return table_show(table_headers, formatted_contacts)
 
+    # find by birthday
     records_by_birthday_generator = book.find_by_birthday(search_string)
-    res = [[record.__str__()] for record in records_by_birthday_generator]
-    if len(res) > 0:
-        headers = ["Contacts by birthday"]
-        return table_show(headers, res)
+    formatted_contacts = ContactTableFormatter.format_contacts(
+        records_by_birthday_generator
+    )
+    if len(formatted_contacts) > 0:
+        return table_show(table_headers, formatted_contacts)
 
     return message
 

@@ -176,7 +176,6 @@ def main():
                 print(show_upcoming_birthdays(book))
 
             elif command == "search-contact":
-                # print(search_contact(args, book))
                 print(search_contact(args, book))
 
             elif command == "sort-by-tag":
