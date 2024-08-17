@@ -83,11 +83,13 @@ def input_birthday_validation(user_input):
         res = False
         return res
 
+
 def input_note_validation(note_name: str, book: NotesBook):
     if book.find(note_name) is not None:
         return True
-    else: 
+    else:
         return False
+
 
 def input_tag_validation(tag: str):
     """

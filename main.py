@@ -21,7 +21,7 @@ from handlers import (
     remove_tags_input,
     edit_tag_input,
     search_note_tags,
-    sort_by_tag_input
+    sort_by_tag_input,
 )
 from helpers import setup_logging
 from helpers import (
@@ -132,25 +132,25 @@ def main():
             elif command == "remove-note":
                 note_name = " ".join(args).strip()
                 print(remove_note(note_name, notes_book))
-            
+
             elif command == "all-tags":
                 print(all_tags(notes_book))
-        
+
             elif command == "note-tags":
                 search_note_tags(notes_book)
 
             elif command == "delete":
                 print(delete_contact(args, book))
-        
+
             elif command == "remove-tag":
                 remove_tag_input(notes_book)
 
             elif command == "remove-tags":
                 remove_tags_input(notes_book)
-        
+
             elif command == "add-tag":
                 add_tag_input(notes_book)
-        
+
             elif command == "add-tags":
                 add_tags_input(notes_book)
             elif command == "edit-note":
