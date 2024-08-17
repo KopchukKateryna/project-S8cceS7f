@@ -75,6 +75,12 @@ ADDRESSBOOK_COMMANDS = [
         "exmp": "exit",
         "desc": "Exits the address book application.",
     },
+    {
+        "command": "edit-bot-name",
+        "usage": "edit-bot-name",
+        "exmp": "edit-bot-name",
+        "desc": "Edits bot name.",
+    },
 ]
 
 ADDRESSBOOK_INFO_TABLE_HEADERS = ["COMMAND", "USAGE", "EXAMPLE", "DESCRIPTION"]
