@@ -126,3 +126,17 @@ class AddressBook(UserDict):
         for record in self.data.values():
             if record.address and record.address.value == address:
                 yield record
+
+    def find_by_birthday(self, birthday):
+        """
+        Finds a record by birthday.
+
+        Args:
+            * birthday(str) - The birthday of the contact to find.
+
+        Returns:
+            * generator - The contact records if found
+        """
+        for record in self.data.values():
+            if record.birthday.__str__() == birthday:
+                yield record

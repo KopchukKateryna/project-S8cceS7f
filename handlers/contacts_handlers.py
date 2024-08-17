@@ -144,6 +144,12 @@ def search_contact(args, book: AddressBook):
         headers = ["Contacts by address"]
         return table_show(headers, res)
 
+    records_by_birthday_generator = book.find_by_birthday(search_string)
+    res = [[record.__str__()] for record in records_by_birthday_generator]
+    if len(res) > 0:
+        headers = ["Contacts by birthday"]
+        return table_show(headers, res)
+
     return message
 
 

@@ -32,10 +32,8 @@ where name is contact's name."
         show_edit_contact_input_message = (
             "Arguments are required. Enter edit-contact <name>"
         )
-        search_contact_message = (
-            "Arguments are required. \
-Enter search-contact <name> | <email> | <phone> | <address>"
-        )
+        search_contact_message = "Arguments are required. \
+Enter search-contact <name> | <email> | <phone> | <address> | <birthday>"
         common_message = "Arguments are required."
 
         try:
