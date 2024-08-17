@@ -20,7 +20,8 @@ from handlers import (
     remove_tag_input,
     remove_tags_input,
     edit_tag_input,
-    search_note_tags
+    search_note_tags,
+    sort_by_tag_input
 )
 from helpers import setup_logging
 from helpers import (
@@ -171,6 +172,8 @@ def main():
             elif command == "search-contact":
                 print(search_contact(args, book))
 
+            elif command == "sort-by-tag":
+                sort_by_tag_input(notes_book)
             else:
                 print("Invalid command.")
     except KeyboardInterrupt:

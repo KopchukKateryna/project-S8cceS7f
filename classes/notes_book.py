@@ -211,10 +211,27 @@ class NotesBook(UserDict):
             for note in self.data.values():
                 tags.update(note.tags)
         return tags
+    
+    def sort_by_tag(self, order: str = 'asc'):
+        """
+        Sorts notes in ascending or descending order by tags.
 
+        Args:
+            order (str): The order to sort in ('asc' or 'desc'). Default is 'asc'.
+
+        Returns:
+            list: A list of notes in the specified order.
+        """
+        if order == 'asc':
+            return sorted(self.data.values(), key=lambda x: list(x.tags)[0])
+        elif order == 'desc':
+            return sorted(self.data.values(), key=lambda x: list(x.tags)[0], reverse=True)
+        else:
+            raise ValueError("Invalid order parameter. Must be 'asc' or 'desc'.")
+            
     def __split_tags(self, tags: str) -> list:
         """
-        Splits a string of tags into individual tags.
+        Splits a string of tags into individual tags.' or 'desc'.")
 
         Args:
             tags (str): A string of tags, separated by something.

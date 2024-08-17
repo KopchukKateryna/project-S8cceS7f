@@ -9,6 +9,7 @@ from handlers import (
     remove_tags,
     edit_tag,
     note_tags,
+    sort_by_tag
 )
 
 from ..validations import (
@@ -101,3 +102,12 @@ def search_note_tags(book):
             break
         else:
             print("The name must contain at least one symbol")    
+
+def sort_by_tag_input(book):
+    while(True):
+        sort = input("Enter sort by asc or desc:").strip().lower()
+        if sort == "asc" or sort == "desc":
+            print(sort_by_tag(sort, book))
+            break
+        else:
+            print("Invalid sort option. Please use asc or desc")

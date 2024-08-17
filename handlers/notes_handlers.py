@@ -286,3 +286,17 @@ def all_tags(notebook: NotesBook):
         list: A list of all tags in the notebook.
     """
     return notebook.all_tags()
+
+@handle_errors
+def sort_by_tag(order:str, notebook: NotesBook):
+    """
+    Sorts the notes in the notebook by tag in the specified order.
+
+    Args:
+        order (str): The order in which to sort the notes (e.g. "asc" or "desc")
+        notebook (NotesBook): The notebook to sort
+
+    Returns:
+        str: A string representation of the sorted notebook
+    """
+    return str(notebook.sort_by_tag(order))

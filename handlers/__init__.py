@@ -31,7 +31,8 @@ from handlers.notes_handlers import (
     remove_tags,
     edit_tag,
     all_tags,
-    note_tags
+    note_tags,
+    sort_by_tag
 )
 
 from handlers.parse_input import parse_input
@@ -47,6 +48,7 @@ from handlers.input_handlers.tag_input import (
     remove_tags_input,
     edit_tag_input,
     search_note_tags,
+    sort_by_tag_input
 )
 
 from handlers.validations import (
@@ -97,5 +99,7 @@ __all__ = [
     "remove_tag_input",
     "remove_tags_input",
     "edit_tag_input",
-    "search_note_tags"
+    "search_note_tags",
+    "sort_by_tag",
+    "sort_by_tag_input"
 ]
