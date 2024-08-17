@@ -33,7 +33,8 @@ where name is contact's name."
             "Arguments are required. Enter edit-contact <name>"
         )
         search_contact_message = (
-            "Arguments are required. Enter search-contact <name> | <email> | <phone> | <address>"
+            "Arguments are required. \
+Enter search-contact <name> | <email> | <phone> | <address>"
         )
         common_message = "Arguments are required."
 

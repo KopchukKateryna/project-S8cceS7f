@@ -146,6 +146,7 @@ def search_contact(args, book: AddressBook):
 
     return message
 
+
 @input_error
 def add_email_to_contact(args, book: AddressBook):
     """Function to add email to contact
@@ -212,4 +213,3 @@ def add_address_to_contact(args, book: AddressBook):
         return "Address added"
     else:
         return f"There is no contact {name}"
-
