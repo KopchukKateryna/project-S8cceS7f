@@ -15,8 +15,9 @@ from handlers import (
 from ..validations import (
     input_name_validation,
     input_tag_validation,
-    input_note_validation
+    input_note_validation,
 )
+
 
 def add_tag_input(book):
     while True:
@@ -36,6 +37,7 @@ def add_tag_input(book):
         else:
             print("The name must contain at least one symbol")
 
+
 def add_tags_input(book):
     while True:
         note = input("Enter note name: ").lower()
@@ -47,13 +49,16 @@ def add_tags_input(book):
                     print(add_tags(args, book))
                     break
                 else:
-                    print("Invalid tag format. You need input at least 1 tag(exp. #aaa)")
+                    print(
+                        "Invalid tag format. You need input at least 1 tag(exp. #aaa)"
+                    )
                     break
             else:
                 print(f"Note with name: {note} not found")
                 break
         else:
             print("The name must contain at least one symbol")
+
 
 def remove_tag_input(book):
     while True:
@@ -73,6 +78,7 @@ def remove_tag_input(book):
         else:
             print("The name must contain at least one symbol")
 
+
 def remove_tags_input(book):
     while True:
         note = input("Enter note name: ").lower()
@@ -84,13 +90,16 @@ def remove_tags_input(book):
                     print(remove_tags(args, book))
                     break
                 else:
-                    print("Invalid tag format. You need input at least 1 tag(exp. #aaa)")
+                    print(
+                        "Invalid tag format. You need input at least 1 tag(exp. #aaa)"
+                    )
                     break
             else:
                 print(f"Note with name: {note} not found")
                 break
         else:
             print("The name must contain at least one symbol")
+
 
 def edit_tag_input(book):
     while True:
@@ -115,6 +124,7 @@ def edit_tag_input(book):
         else:
             print("The name must contain at least one symbol")
 
+
 def search_note_tags(book):
     while True:
         note = input("Enter note name: ").lower()
@@ -126,10 +136,11 @@ def search_note_tags(book):
                 print(f"Note with name: {note} not found")
                 break
         else:
-            print("The name must contain at least one symbol")    
+            print("The name must contain at least one symbol")
+
 
 def sort_by_tag_input(book):
-    while(True):
+    while True:
         sort = input("Enter sort by asc or desc:").strip().lower()
         if sort == "asc" or sort == "desc":
             print(sort_by_tag(sort, book))

@@ -4,6 +4,7 @@ from helpers.assistant_info import table_show
 headers = ["Note Name", "Text", "Tags"]
 header = ["Tags"]
 
+
 def handle_errors(func):
     """
     Decorator to handle errors and provide user-friendly messages.
@@ -70,7 +71,10 @@ def show_all_notes(notebook: NotesBook):
     if not notebook.data:
         return "No notes found."
 
-    rows = [(note.name.value, note.text.value, ' '.join(note.tags)) for note in notebook.data.values()]
+    rows = [
+        (note.name.value, note.text.value, " ".join(note.tags))
+        for note in notebook.data.values()
+    ]
     return table_show(headers, rows)
 
 
@@ -93,7 +97,10 @@ def find_note(notebook: NotesBook):
                 if note_name in str(note.name).lower()
             ]
             if matching_notes:
-                rows = [(str(note.name), str(note.text), " ".join(note.tags)) for note in matching_notes]
+                rows = [
+                    (str(note.name), str(note.text), " ".join(note.tags))
+                    for note in matching_notes
+                ]
                 return table_show(headers, rows)
             else:
                 return "No notes found matching that keyword."
@@ -199,6 +206,7 @@ def add_tag(note, tag, notebook: NotesBook):
     """
     return notebook.add_tag(note, tag)
 
+
 @handle_errors
 def add_tags(args, notebook: NotesBook):
     """
@@ -211,8 +219,9 @@ def add_tags(args, notebook: NotesBook):
     Returns:
         None
     """
-    note_name, tags = args 
+    note_name, tags = args
     return notebook.add_tags(note_name, tags)
+
 
 @handle_errors
 def edit_tag(note, old_tag, new_tag, notebook: NotesBook):
@@ -230,6 +239,7 @@ def edit_tag(note, old_tag, new_tag, notebook: NotesBook):
     """
     return notebook.edit_tag(note, old_tag, new_tag)
 
+
 @handle_errors
 def remove_tag(note, tag, notebook: NotesBook):
     """
@@ -245,6 +255,7 @@ def remove_tag(note, tag, notebook: NotesBook):
     """
     return notebook.remove_tag(note, tag)
 
+
 @handle_errors
 def remove_tags(args, notebook: NotesBook):
     """
@@ -257,8 +268,9 @@ def remove_tags(args, notebook: NotesBook):
     Returns:
         None
     """
-    note_name, tags = args 
+    note_name, tags = args
     return notebook.remove_tags(note_name, tags)
+
 
 @handle_errors
 def note_tags(note, notebook: NotesBook):
@@ -277,7 +289,8 @@ def note_tags(note, notebook: NotesBook):
         rows = [[tag] for tag in tags]
         return table_show(header, rows)
     else:
-        return 'No tags found for this note'
+        return "No tags found for this note"
+
 
 @handle_errors
 def all_tags(notebook: NotesBook):
@@ -295,10 +308,11 @@ def all_tags(notebook: NotesBook):
         rows = [[tag] for tag in tags]
         return table_show(header, rows)
     else:
-        return 'No tags at all' 
+        return "No tags at all"
+
 
 @handle_errors
-def sort_by_tag(order:str, notebook: NotesBook):
+def sort_by_tag(order: str, notebook: NotesBook):
     """
     Sorts the notes in the notebook by tag in the specified order.
 
@@ -311,7 +325,10 @@ def sort_by_tag(order:str, notebook: NotesBook):
     """
     sorted_notes = notebook.sort_by_tag(order)
     if sorted_notes:
-        rows = [(note.name.value, note.text.value, ' '.join(note.tags)) for note in sorted_notes]
+        rows = [
+            (note.name.value, note.text.value, " ".join(note.tags))
+            for note in sorted_notes
+        ]
         return table_show(headers, rows)
     else:
-        return 'No notes found'
+        return "No notes found"

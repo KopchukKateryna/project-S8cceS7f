@@ -2,6 +2,7 @@
 
 from classes.field import Field
 
+
 class Note:
     """
     A class representing a note with a name and text.
@@ -31,17 +32,17 @@ class Note:
             str: A formatted string with the note's name and text.
         """
         return f"Note: {self.name.value}, Text: {self.text.value}, Tag: {self.tags}"
-    
+
     def __repr__(self):
         return f"Note: {self.name.value}, Text: {self.text.value}, Tag: {self.tags}"
-    
+
     def __getstate__(self):
-        return {'text': self.text, 'name': self.name, 'tags': self.__tags}
+        return {"text": self.text, "name": self.name, "tags": self.__tags}
 
     def __setstate__(self, state):
-        self.text = state['text']
-        self.name = state['name']
-        self.__tags = state['tags']
+        self.text = state["text"]
+        self.name = state["name"]
+        self.__tags = state["tags"]
 
     def edit_name(self, new_name):
         """A function for editing note name"""
@@ -53,12 +54,12 @@ class Note:
         if new_text:
             self.text.value = new_text
         return f"Note: {self.name.value}, Text: {self.text.value}, Tag: {self.tags}"
-    
+
     @property
     def tags(self) -> set:
         """A function for getting note tags"""
         return self.__tags
-    
+
     def add_tag(self, tag: str) -> str:
         """A function for adding a tag to the note"""
         if not self.has_tag(tag):
@@ -67,7 +68,6 @@ class Note:
         else:
             return f"{tag} already is used for note"
 
-        
     def remove_tag(self, tag: str):
         """A function for removing a tag from the note"""
         if self.has_tag(tag):
@@ -75,7 +75,7 @@ class Note:
             return f"{tag} removed successfully"
         else:
             return f"{tag} not use for this note"
-        
+
     def edit_tag(self, old_tag: str, new_tag: str):
         """A function for editing a tag in the note"""
         if self.has_tag(old_tag):
@@ -84,12 +84,12 @@ class Note:
             return f"{old_tag} changed successfully"
         else:
             return f"{old_tag} not use for this note"
-        
+
     def find_tag(self, tag: str) -> str:
         """A function for finding a tag in the note"""
         if self.has_tag(tag):
             return self.__str__()
-        
+
     def has_tag(self, tag: str) -> bool:
         """A function for checking if a tag is in the note"""
-        return tag in self.__tags      
+        return tag in self.__tags
