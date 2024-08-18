@@ -107,13 +107,18 @@ def show_all_notes(notebook: NotesBook):
         str: Formatted string with all notes or an error message.
     """
     if not notebook.data:
-        return "No notes found."
+        custom_print(
+            command_logger,
+            "No notes found.",
+            space="top",
+            level="warning",
+        )
 
     rows = [
         (note.name.value, note.text.value, " ".join(note.tags))
         for note in notebook.data.values()
     ]
-    return table_show(headers, rows)
+    print(table_show(headers, rows))
 
 
 @handle_errors
