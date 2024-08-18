@@ -121,12 +121,12 @@ pip freeze > requirements.txt
 ```bash
 python setup.py sdist bdist_wheel
 ```
-- Rename .pypirc.template to .pypirc
-- Insert your username and passport of pip repository
-- Publish on pip our project
+- Insert your username and passport of pipy repository
+- Publish on pipy our project
 ```bash
 twine upload dist/*
 ```
+- Input your usename and password or provide API-KEY
 - Check your pip account
 
 
