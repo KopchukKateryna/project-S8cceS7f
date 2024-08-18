@@ -33,7 +33,7 @@ def save_data(
     except Exception as e:
         custom_print(
             debug_logger,
-            "Error occurred while loading data from {filename} - {e}",
+            "Error occurred while saving data from {filename} - {e}",
             level="error",
             filename=("blue", filename),
             e=("red", e),

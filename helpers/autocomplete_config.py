@@ -52,4 +52,3 @@ bindings_for_add_edit_delete.add("enter")(
 )
 bindings_for_edit_delete.add("enter")(create_enter_handler(COMMAND_FOR_EDIT_DELETE))
 bindings_for_name_text.add("enter")(create_enter_handler(COMMAND_FOR_NAME_TEXT))
-# bindings_for_notes.add("enter")(create_enter_handler(________))
