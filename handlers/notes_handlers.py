@@ -1,8 +1,7 @@
-from classes import NotesBook, Note
-from helpers.assistant_info import table_show
 from prompt_toolkit import prompt
+from classes import NotesBook, Note
 from constants import COMPLETER_FOR_NAME_TEXT
-from helpers import bindings_for_name_text
+from helpers import bindings_for_name_text, table_show, custom_print, command_logger
 
 headers = ["Note Name", "Text", "Tags"]
 header = ["Tags"]
@@ -43,21 +42,57 @@ def add_note(notebook: NotesBook):
     Returns:
         str: Message indicating that the note has been added or an error occurred.
     """
-    name = input("Enter note name: ").strip()
+    custom_print(
+        command_logger,
+        "{msg}",
+        space="top",
+        level="info",
+        msg=("cyan", "Please, enter the note name:"),
+    )
+    name = input(">> ").strip()
     if name:
-        text = input("Enter note text: ")
+        custom_print(
+            command_logger,
+            "{msg}",
+            space="top",
+            level="info",
+            msg=("cyan", "Please, enter the note text:"),
+        )
+        text = input(">> ")
         if text:
             note = notebook.find(name)
             if note is None:
                 note = Note(name, text)
                 notebook.add_note(note)
-                return "Note added."
+                custom_print(
+                    command_logger,
+                    "{msg}",
+                    space="top",
+                    level="info",
+                    msg=("green", "Note successfully added!"),
+                )
             else:
-                return f"Note with name '{name}' already exists."
+                custom_print(
+                    command_logger,
+                    "Note with name {name} already exists.",
+                    space="top",
+                    level="warning",
+                    name=("bright_cyan", name),
+                )
         else:
-            return "Text cannot be empty."
+            custom_print(
+                command_logger,
+                "Text cannot be empty.",
+                space="top",
+                level="warning",
+            )
     else:
-        return "Name cannot be empty."
+        custom_print(
+            command_logger,
+            "Name cannot be empty.",
+            space="top",
+            level="warning",
+        )
 
 
 @handle_errors
@@ -72,13 +107,18 @@ def show_all_notes(notebook: NotesBook):
         str: Formatted string with all notes or an error message.
     """
     if not notebook.data:
-        return "No notes found."
+        custom_print(
+            command_logger,
+            "No notes found.",
+            space="top",
+            level="warning",
+        )
 
     rows = [
         (note.name.value, note.text.value, " ".join(note.tags))
         for note in notebook.data.values()
     ]
-    return table_show(headers, rows)
+    print(table_show(headers, rows))
 
 
 @handle_errors
@@ -92,23 +132,44 @@ def find_note(notebook: NotesBook):
         str: The notes that match the search, or a message if no matches are found."""
 
     while True:
-        note_name = input("Enter the note name or keyword: ").strip().lower()
-        if note_name:
+        custom_print(
+            command_logger,
+            "Please, enter the note name or keyword or {exit} to exit:",
+            space="top",
+            level="info",
+            exit=("bright_magenta"),
+        )
+        note_name = input(">> ").strip()
+        if note_name == "exit":
+            break
+        elif note_name:
             matching_notes = [
                 note
                 for note in notebook.data.values()
-                if note_name in str(note.name).lower()
+                if note_name.lower() in str(note.name).lower()
             ]
             if matching_notes:
                 rows = [
                     (str(note.name), str(note.text), " ".join(note.tags))
                     for note in matching_notes
                 ]
-                return table_show(headers, rows)
+                print(table_show(headers, rows))
+                return
             else:
-                return "No notes found matching that keyword."
-        if note_name == "no":
-            break
+                custom_print(
+                    command_logger,
+                    "No notes found matching that keyword.",
+                    space="top",
+                    level="warning",
+                )
+                return
+        else:
+            custom_print(
+                command_logger,
+                "Please, enter a note name or keyword.",
+                space="top",
+                level="warning",
+            )
 
 
 @handle_errors
@@ -128,46 +189,122 @@ def edit_note(notebook: NotesBook):
         str: The updated note if the operation is successful, or an error message
             if the note is not found or if the new text is empty.
     """
-    name = input("Enter note name: ").strip()
+    custom_print(
+        command_logger,
+        "{msg}",
+        space="top",
+        level="info",
+        msg=("cyan", "Please enter the name of the note you want to edit: "),
+    )
+    name = input(">> ").strip()
     note = notebook.find(name)
     if note:
         while True:
-            usr_chose = prompt("What do you want to change: (name/text): ",
-                    completer=COMPLETER_FOR_NAME_TEXT,
-                    complete_while_typing=True,
-                    key_bindings=bindings_for_name_text,
-                     multiline=True,)
+            custom_print(
+                command_logger,
+                "What do you want to change: ({name}/{text} or {exit} for go exit)",
+                space="top",
+                level="info",
+                name="bright_magenta",
+                text="bright_magenta",
+                exit="magenta",
+            )
+            usr_chose = prompt(
+                ">> ",
+                completer=COMPLETER_FOR_NAME_TEXT,
+                complete_while_typing=True,
+                key_bindings=bindings_for_name_text,
+                multiline=True,
+            )
             if usr_chose == "name":
                 while True:
-                    new_name = input("Type new name or back to go back: ").strip()
+                    custom_print(
+                        command_logger,
+                        "Please, type new name or {back} to go back: ",
+                        space="top",
+                        level="info",
+                        back="magenta",
+                    )
+                    new_name = input(">> ").strip()
                     if new_name == "back":
                         break
                     elif new_name:
                         note.edit_name(new_name)
                         notebook.add_note(note)
                         notebook.delete(name)
-                        return "Name changed."
+                        custom_print(
+                            command_logger,
+                            "{msg}",
+                            space="top",
+                            level="info",
+                            msg=("green", "Note successfully changed!"),
+                        )
+                        return
                     else:
-                        print("Type the name, should not be empty.")
+                        custom_print(
+                            command_logger,
+                            "New note name cannot be empty.",
+                            space="top",
+                            level="warning",
+                        )
 
             elif usr_chose == "text":
                 while True:
-                    text = input("Type new text or back to go back: ").strip()
+                    custom_print(
+                        command_logger,
+                        "Please, type new text or {back} to go back: ",
+                        space="top",
+                        level="info",
+                        back="magenta",
+                    )
+                    text = input(">> ").strip()
                     if text == "back":
                         break
                     elif text:
                         note.edit_note(text)
-                        return "Text changed."
+                        custom_print(
+                            command_logger,
+                            "{msg}",
+                            space="top",
+                            level="info",
+                            msg=("green", "Note successfully changed!"),
+                        )
+                        return
                     else:
-                        print("Type the name, should not be empty.")
+                        custom_print(
+                            command_logger,
+                            "New note text cannot be empty.",
+                            space="top",
+                            level="warning",
+                        )
 
             elif usr_chose == "exit":
-                return "Editing completed."
+                custom_print(
+                    command_logger,
+                    "{msg}",
+                    space="top",
+                    level="warning",
+                    msg=("bright_yellow", "Editing completed."),
+                )
+                return
 
             else:
-                print("Command not found. If you don't want to edit note type | exit |")
+                custom_print(
+                    command_logger,
+                    "Command not found. If you don't want to edit note type {exit}",
+                    space="top",
+                    level="warning",
+                    exit="magenta",
+                )
     else:
-        return f"Note {name} haven't found!"
+        custom_print(
+            command_logger,
+            "Note with name {name} haven't found!",
+            space="top",
+            level="warning",
+            name=("magenta", name),
+        )
+        return
 
 
 def remove_note(note_name: str, notebook: NotesBook):
@@ -178,24 +315,55 @@ def remove_note(note_name: str, notebook: NotesBook):
     If the note is not found, an appropriate message is returned.
 
     Args:
+        note_name (str): The name of the note to remove.
         notebook (NotesBook): The notebook instance containing notes.
 
     Returns:
         str: message
     """
+    note_name = note_name.strip().lower()
     if note_name:
-        note = notebook.find(note_name)
+        note = next((name for name in notebook.data if name.lower() == note_name), None)
         if note:
-            notebook.delete(note_name)
-            return f"Note {note_name} has been deleted."
+            notebook.delete(note)
+            custom_print(
+                command_logger,
+                "{msg}",
+                space="top",
+                level="info",
+                msg=("green", "The note has been deleted!"),
+            )
+            return
 
-        if note_name == "all":
+        elif note_name == "all":
             notebook.data.clear()
-            return "All notes have been deleted."
+            custom_print(
+                command_logger,
+                "{msg}",
+                space="top",
+                level="info",
+                msg=("green", "All notes have been deleted!"),
+            )
+            return
         else:
-            return "Note not found."
+            custom_print(
+                command_logger,
+                "Note with name {note_name} haven't found!",
+                space="top",
+                level="warning",
+                note_name=("magenta", note_name),
+            )
+            return
     else:
-        return "Please enter: remove-note <name> or remove-note <all>."
+        custom_print(
+            command_logger,
+            "Please enter {delete_note1} or {delete_note2}",
+            space="top",
+            level="warning",
+            delete_note1=("magenta", "delete-note <note_name>"),
+            delete_note2=("magenta", "delete-note all"),
+        )
+        return
 
 
 @handle_errors

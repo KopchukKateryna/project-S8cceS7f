@@ -1,8 +1,8 @@
 """functions for save bot name with pickle"""
 
-import logging
 import pickle
 from pathlib import Path
+from helpers import custom_print, debug_logger
 from .startup_shutdown import pre_welcome
 
 
@@ -22,9 +22,22 @@ def save_bot_name(bot_name, filename: str = "bot_name.pkl", log_msg=True) -> Non
         with Path(filename).open("wb") as f:
             pickle.dump(bot_name, f)
         if log_msg:
-            logging.info("Bot name successfully saved to %s", filename)
+            custom_print(
+                debug_logger,
+                "Bot name successfully saved to {filename}",
+                space="none",
+                level="info",
+                filename=("blue", filename),
+            )
     except Exception as e:
-        logging.error("Error occurred while saving data to %s: %s", filename, e)
+        custom_print(
+            debug_logger,
+            "Error occurred while saving data to {filename} - {e}",
+            space="none",
+            level="error",
+            filename=("blue", filename),
+            e=("red", e),
+        )
 
 
 def load_bot_name(filename: str = "bot_name.pkl") -> str:
@@ -42,21 +55,43 @@ def load_bot_name(filename: str = "bot_name.pkl") -> str:
     """
     file_path = Path(filename)
     if not file_path.exists():
-        logging.warning(
-            "File %s not found. Let's create the name to your bot.", filename
+        custom_print(
+            debug_logger,
+            "File {filename} not found. Let's create the name to your bot.",
+            space="none",
+            level="warning",
+            filename=("blue", filename),
         )
         return pre_welcome()
 
     try:
         with file_path.open("rb") as f:
             bot_name = pickle.load(f)
-        logging.info("Bot name successfully loaded from %s", filename)
+        custom_print(
+            debug_logger,
+            "Bot name successfully loaded from {filename}",
+            space="none",
+            level="info",
+            filename=("blue", filename),
+        )
         return bot_name
     except (pickle.UnpicklingError, EOFError) as e:
-        logging.error("Error occurred while loading data from %s: %s", filename, e)
+        custom_print(
+            debug_logger,
+            "Error occurred while loading data from {filename} - {e}",
+            space="none",
+            level="error",
+            filename=("blue", filename),
+            e=("red", e),
+        )
         return pre_welcome()
     except Exception as e:
-        logging.critical(
-            "Unknown error occurred while loading data from %s: %s", filename, e
+        custom_print(
+            debug_logger,
+            "Unknown error occurred while loading data from {filename} - {e}",
+            space="none",
+            level="critical",
+            filename=("blue", filename),
+            e=("red", e),
         )
         return pre_welcome()

@@ -108,7 +108,7 @@ class NotesBook(UserDict):
             tags = self.__split_tags(tags)
             for tag in tags:
                 note.add_tag(tag)
-            return "Tags added succesfully"
+            return "Tags added successfully"
         else:
             return f"Note with this name: {note_name} not found"
 
@@ -166,7 +166,7 @@ class NotesBook(UserDict):
             tags = self.__split_tags(tags)
             for tag in tags:
                 note.remove_tag(tag)
-            return "Tags removed succesfully"
+            return "Tags removed successfully"
         else:
             return f"Note with this name: {note_name} not found"
 
@@ -229,10 +229,16 @@ class NotesBook(UserDict):
             list: A list of notes in the specified order.
         """
         if order == "asc":
-            return sorted(self.data.values(), key=lambda x: list(x.tags)[0])
+            return sorted(
+                self.data.values(),
+                key=lambda x: list(x.tags)[0] if len(x.tags) > 0 else "",
+            )
+            # return sorted(self.data.values(), key=lambda x: list(x.tags)[0])
         elif order == "desc":
             return sorted(
-                self.data.values(), key=lambda x: list(x.tags)[0], reverse=True
+                self.data.values(),
+                key=lambda x: list(x.tags)[0] if len(x.tags) > 0 else "",
+                reverse=True,
             )
         else:
             raise ValueError("Invalid order parameter. Must be 'asc' or 'desc'.")
