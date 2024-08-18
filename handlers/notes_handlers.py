@@ -92,12 +92,12 @@ def find_note(notebook: NotesBook):
         str: The notes that match the search, or a message if no matches are found."""
 
     while True:
-        note_name = input("Enter the note name or keyword: ").strip().lower()
+        note_name = input("Enter the note name or keyword: ").strip()
         if note_name:
             matching_notes = [
                 note
                 for note in notebook.data.values()
-                if note_name in str(note.name).lower()
+                if note_name.lower() in str(note.name).lower()
             ]
             if matching_notes:
                 rows = [
@@ -178,26 +178,28 @@ def remove_note(note_name: str, notebook: NotesBook):
     If the note is not found, an appropriate message is returned.
 
     Args:
+        note_name (str): The name of the note to remove.
         notebook (NotesBook): The notebook instance containing notes.
 
     Returns:
         str: message
     """
-    if note_name:
-        note = notebook.find(note_name)
-        if note:
-            notebook.delete(note_name)
-            return f"Note {note_name} has been deleted."
+    note_name = note_name.strip().lower()
 
-        if note_name == "all":
+    if note_name:
+        note = next((name for name in notebook.data if name.lower() == note_name), None)
+        
+        if note:
+            notebook.delete(note)
+            return f"Note '{note}' has been deleted."
+
+        elif note_name == "all":
             notebook.data.clear()
             return "All notes have been deleted."
         else:
             return "Note not found."
     else:
-        return "Please enter: remove-note <name> or remove-note <all>."
-
-
+        return "Please enter: delete-note <name> or delete-note <all>."
 @handle_errors
 def add_tag(note, tag, notebook: NotesBook):
     """

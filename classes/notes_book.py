@@ -45,7 +45,7 @@ class NotesBook(UserDict):
             raise KeyError(f"Note with name '{note.name.value}' already exists.")
         self.data[note.name.value] = note
 
-    def find(self, name) -> Note:
+    def find(self, name: str) -> Note:
         """
         Finds a note by its name.
 
