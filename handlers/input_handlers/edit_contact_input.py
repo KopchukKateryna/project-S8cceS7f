@@ -17,7 +17,9 @@ from .inputs_helpers import (
 )
 from prompt_toolkit import prompt
 from constants import COMPLETER_FOR_EDIT
+from constants import COMPLETER_FOR_ADD_EDIT_DELETE
 from helpers import bindings_for_contact
+from helpers import bindings_for_add_edit_delete
 
 
 @input_error
@@ -55,7 +57,11 @@ def edit_contact_input(args, book):
             if field_to_edit == "phones":
                 while True:
                     print("You can add, edit, delete phone, or exit")
-                    action = input("What do you want to do?  ")
+                    action =  prompt("What do you want to do?  ",
+                    completer=COMPLETER_FOR_ADD_EDIT_DELETE,
+                    complete_while_typing=True,
+                    key_bindings=bindings_for_add_edit_delete,
+                     multiline=True,)
                     if action in ["add", "edit", "delete"]:
                         if action == "add":
                             add_phone_action(record)

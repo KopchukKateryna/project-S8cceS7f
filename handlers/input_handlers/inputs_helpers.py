@@ -21,6 +21,11 @@ from .fields_handlers import (
     edit_birthday,
     delete_birthday,
 )
+from prompt_toolkit import prompt
+from constants import COMPLETER_FOR_EDIT_DELETE
+from helpers import bindings_for_edit_delete
+
+
 
 
 def edit_phone_in_contacts(old_phone, record):
@@ -207,7 +212,11 @@ def edit_or_delete_phone_choise(number, record):
         record (oblect): record of current contact
     """
     while True:
-        edit_or_delete_input = input("Do you want to edit or delete it? ")
+        edit_or_delete_input = prompt("Do you want to edit or delete it? ",
+                    completer=COMPLETER_FOR_EDIT_DELETE,
+                    complete_while_typing=True,
+                    key_bindings=bindings_for_edit_delete,
+                     multiline=True,)
         if edit_or_delete_input in ["edit", "delete"]:
             if edit_or_delete_input == "edit":
                 edit_phone_in_contacts(number, record)
@@ -243,7 +252,11 @@ def edit_or_delete_email_choise(record):
         record (oblect): record of current contact
     """
     while True:
-        edit_or_delete_input = input("Do you want to edit or delete it? ")
+        edit_or_delete_input = prompt("Do you want to edit or delete it? ",
+                    completer=COMPLETER_FOR_EDIT_DELETE,
+                    complete_while_typing=True,
+                    key_bindings=bindings_for_edit_delete,
+                     multiline=True,)
         if edit_or_delete_input in ["edit", "delete"]:
             if edit_or_delete_input == "edit":
                 edit_email_in_contacts(record)
@@ -277,7 +290,11 @@ def edit_or_delete_address_choise(record):
         record (oblect): record of current contact
     """
     while True:
-        edit_or_delete_input = input("Do you want to edit or delete it? ")
+        edit_or_delete_input = prompt("Do you want to edit or delete it? ",
+                    completer=COMPLETER_FOR_EDIT_DELETE,
+                    complete_while_typing=True,
+                    key_bindings=bindings_for_edit_delete,
+                     multiline=True,)
         if edit_or_delete_input in ["edit", "delete"]:
             if edit_or_delete_input == "edit":
                 edit_address_in_contacts(record)
@@ -311,7 +328,11 @@ def edit_or_delete_birthday_choise(record):
         record (oblect): record of current contact
     """
     while True:
-        edit_or_delete_input = input("Do you want to edit or delete it? ")
+        edit_or_delete_input = prompt("Do you want to edit or delete it? ",
+                    completer=COMPLETER_FOR_EDIT_DELETE,
+                    complete_while_typing=True,
+                    key_bindings=bindings_for_edit_delete,
+                     multiline=True,)
         if edit_or_delete_input in ["edit", "delete"]:
             if edit_or_delete_input == "edit":
                 edit_birthday_in_contacts(record)

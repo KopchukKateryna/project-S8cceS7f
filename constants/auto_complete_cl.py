@@ -2,12 +2,19 @@ from constants.assistant_info import (
     NOTEBOOK_COMMANDS,
     ADDRESSBOOK_COMMANDS,
     COMMAND_EDIT_CONTACT,
+    COMMAND_ADD_EDIT_DELETE,
+    COMMAND_EDIT_DELETE,
+    COMMAND_NAME_TEXT,
 )
 from classes import CustomWordCompleter
 
 notebook_commands = [c["command"] for c in NOTEBOOK_COMMANDS]
 addressbook_commands = [c["command"] for c in ADDRESSBOOK_COMMANDS]
 edit_contact_commands = [c["command"] for c in COMMAND_EDIT_CONTACT]
+edit_add_delete_commands = [c["command"] for c in COMMAND_ADD_EDIT_DELETE]
+edit_delete_commands = [c["command"] for c in COMMAND_EDIT_DELETE]
+name_text_commands = [c["command"] for c in COMMAND_NAME_TEXT]
+
 
 COMBINED_BOT_COMMANDS = list(set(notebook_commands + addressbook_commands))
 
@@ -203,9 +210,62 @@ COMMAND_FOR_EDIT_CONTACT = {
     "exiit": "exit",
 }
 
+COMMAND_FOR_ADD_EDIT_DELETE = {
+    # "add"
+    "a": "add",
+    "add": "add",
+    # "edit"
+    "e": "edit",
+    "ed": "edit",
+    "edt": "edit",
+    # "delete"
+    "d": "delete",
+    "del": "delete",
+    "delete": "delete",
+    # "exit"
+    "ex": "exit",
+    "exi": "exit",
+    "exitt": "exit",
+    "exti": "exit",
+    "eixt": "exit",
+    "exiit": "exit",
+}
+
+
+COMMAND_FOR_EDIT_DELETE = {
+    # "edit"
+    "e": "edit",
+    "ed": "edit",
+    "edt": "edit",
+    # "delete"
+    "d": "delete",
+    "del": "delete",
+    "delete": "delete",
+}
+COMMAND_FOR_NAME_TEXT = {
+    # "name"
+    "n": "name",
+    "nm": "name",
+    "nam": "name",
+    "name": "name",
+    # "text"
+    "t": "text",
+    "tx": "text",
+    "text": "text",
+}
+
 COMPLETER = CustomWordCompleter(
     COMBINED_BOT_COMMANDS, COMMAND_CORRECTIONS, ignore_case=True
 )
 COMPLETER_FOR_EDIT = CustomWordCompleter(
     edit_contact_commands, COMMAND_FOR_EDIT_CONTACT, ignore_case=True
+)
+COMPLETER_FOR_ADD_EDIT_DELETE = CustomWordCompleter(
+    edit_add_delete_commands, COMMAND_FOR_ADD_EDIT_DELETE, ignore_case=True
+)
+COMPLETER_FOR_EDIT_DELETE = CustomWordCompleter(
+    edit_delete_commands, COMMAND_FOR_EDIT_DELETE, ignore_case=True
+)
+COMPLETER_FOR_NAME_TEXT = CustomWordCompleter(
+    name_text_commands, COMMAND_FOR_NAME_TEXT, ignore_case=True
 )
