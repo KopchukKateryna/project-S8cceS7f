@@ -207,3 +207,42 @@ NOTEBOOK_INFO_TABLE_HEADERS = ["COMMAND", "USAGE", "EXAMPLE", "DESCRIPTION"]
 NOTEBOOK_INFO_TABLE_DATA = [
     [c["command"], c["usage"], c["exmp"], c["desc"]] for c in NOTEBOOK_COMMANDS
 ]
+
+COMMAND_EDIT_CONTACT = [
+    {
+        "command": "name",
+        "usage": "name",
+        "exmp": "name",
+        "desc": ("Uses for edit name"),
+    },
+    {
+        "command": "phones",
+        "usage": "phones",
+        "exmp": "phones",
+        "desc": "Uses for edit phones",
+    },
+    {
+        "command": "email",
+        "usage": "email",
+        "exmp": "email",
+        "desc": "Uses for edit email",
+    },
+    {
+        "command": "address",
+        "usage": "address",
+        "exmp": "address",
+        "desc": "Uses for edit address",
+    },
+    {
+        "command": "birthday",
+        "usage": "birthday",
+        "exmp": "birthday",
+        "desc": "Uses for edit birthday",
+    },
+    {
+        "command": "exit",
+        "usage": "exit",
+        "exmp": "exit",
+        "desc": "Exits the address book application.",
+    },
+]

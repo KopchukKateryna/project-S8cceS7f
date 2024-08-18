@@ -19,7 +19,6 @@ from helpers.assistant_info import table_show
 from helpers.logging_config import setup_logging
 from helpers.pickle_utils import load_data, save_data
 from helpers.notes_pickle_utils import load_notes, save_notes
-from helpers.autocomplete_config import bindings
 from helpers.startup_shutdown import (
     welcome,
     good_bye,
@@ -27,6 +26,7 @@ from helpers.startup_shutdown import (
     pre_welcome,
 )
 from helpers.bot_name_pickle_utils import load_bot_name, save_bot_name
+from helpers.autocomplete_config import bindings_general, bindings_for_contact
 
 __all__ = [
     "setup_logging",
@@ -35,7 +35,8 @@ __all__ = [
     "table_show",
     "save_notes",
     "load_notes",
-    "bindings",
+    "bindings_general",
+    "bindings_for_contact",
     "welcome",
     "good_bye",
     "display_ascii_welcome_art",
