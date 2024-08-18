@@ -139,14 +139,14 @@ def find_note(notebook: NotesBook):
             level="info",
             exit=("bright_magenta"),
         )
-        note_name = input(">> ").strip().lower()
+        note_name = input(">> ").strip()
         if note_name == "exit":
             break
         elif note_name:
             matching_notes = [
                 note
                 for note in notebook.data.values()
-                if note_name in str(note.name).lower()
+                if note_name.lower() in str(note.name).lower()
             ]
             if matching_notes:
                 rows = [
@@ -315,15 +315,17 @@ def remove_note(note_name: str, notebook: NotesBook):
     If the note is not found, an appropriate message is returned.
 
     Args:
+        note_name (str): The name of the note to remove.
         notebook (NotesBook): The notebook instance containing notes.
 
     Returns:
         str: message
     """
+    note_name = note_name.strip().lower()
     if note_name:
-        note = notebook.find(note_name)
+        note = next((name for name in notebook.data if name.lower() == note_name), None)
         if note:
-            notebook.delete(note_name)
+            notebook.delete(note)
             custom_print(
                 command_logger,
                 "{msg}",
@@ -333,7 +335,7 @@ def remove_note(note_name: str, notebook: NotesBook):
             )
             return
 
-        if note_name == "all":
+        elif note_name == "all":
             notebook.data.clear()
             custom_print(
                 command_logger,

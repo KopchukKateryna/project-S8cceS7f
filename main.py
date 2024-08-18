@@ -198,7 +198,7 @@ def main():
                     "{msg}",
                     space="top",
                     level="info",
-                    name=("bright_cyan", "Bot name saved."),
+                    msg=("bright_cyan", "Bot name saved."),
                 )
                 good_bye()
                 break
