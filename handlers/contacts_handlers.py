@@ -2,10 +2,12 @@
 adding, editing, outputting, deleting."""
 
 from helpers.assistant_info import table_show
-
-from classes import AddressBook, Record
+from helpers import custom_print, command_logger
+from classes import AddressBook, Record, ContactTableFormatter
 
 from .decorators import empty_contact_list, input_error
+
+table_headers = ["Name", "Contact info"]
 
 
 @input_error
@@ -61,10 +63,31 @@ def show_phone(args, book: AddressBook):
         or that the contact was not found
     """
     name, *_ = args
-    record = book.find(name)
-    if record is None:
-        raise KeyError(f"Contact {name} not found.")
-    return record
+    if name:
+        record = book.find(name)
+        if record is None:
+            custom_print(
+                command_logger,
+                "Contact with name {name} haven't found",
+                space="top",
+                level="warning",
+                name=("bright_cyan", name),
+            )
+            raise KeyError()
+        custom_print(
+            command_logger,
+            "{record}",
+            space="top",
+            level="info",
+            record=("green", record),
+        )
+    else:
+        custom_print(
+            command_logger,
+            "The name must contain at least one symbol",
+            space="top",
+            level="warning",
+        )
 
 
 @empty_contact_list
@@ -78,7 +101,7 @@ def show_all(book: AddressBook):
         str: message with a list of contacts
     """
     headers = ["Address Book"]
-    return table_show(headers, book.data.items())
+    print(table_show(headers, book.data.items()))
 
 
 @empty_contact_list
@@ -94,17 +117,36 @@ def delete_contact(args, book: AddressBook):
         str: message about deleting one or all contacts
     """
     name, *_ = args
-
     record = book.find(name)
     if record:
         book.delete(name)
-        return f"The {name} has been deleted"
+        custom_print(
+            command_logger,
+            "{msg}",
+            space="top",
+            level="info",
+            msg=("green", "Contact has been deleted"),
+        )
+        return
 
-    if name == "all":  # видалити всі контакти
+    if name == "all":
         book.data.clear()
-        return "All contacts have been deleted"
-
-    return f"The {name} is not found"
+        custom_print(
+            command_logger,
+            "{msg}",
+            space="top",
+            level="info",
+            msg=("green", "All contacts have been deleted"),
+        )
+        return
+    custom_print(
+        command_logger,
+        "The {name} is not found",
+        space="top",
+        level="warning",
+        name=("bright_magenta", name),
+    )
+    return
 
 
 @empty_contact_list
@@ -120,17 +162,59 @@ def search_contact(args, book: AddressBook):
     """
     search_string, *_ = args
     search_string = search_string.strip()
-    message = f"No contact with data '{search_string}' was found"
-    record_by_name = book.find(search_string)
-    if record_by_name:
-        return record_by_name
-    record_by_phone = book.find_by_phone(search_string)
-    if record_by_phone:
-        return record_by_phone
-    record_by_email = book.find_email(search_string)
-    if record_by_email:
-        return record_by_email
-    return message
+
+    # find by name
+    records_by_name_generator = book.find_by_name(search_string)
+    formatted_contacts = ContactTableFormatter.format_contacts(
+        records_by_name_generator
+    )
+    if len(formatted_contacts) > 0:
+        print(table_show(table_headers, formatted_contacts))
+        return
+
+    # find by phone
+    records_by_phone_generator = book.find_by_phone(search_string)
+    formatted_contacts = ContactTableFormatter.format_contacts(
+        records_by_phone_generator
+    )
+    if len(formatted_contacts) > 0:
+        print(table_show(table_headers, formatted_contacts))
+        return
+
+    # find by email
+    records_by_email_generator = book.find_by_email(search_string)
+    formatted_contacts = ContactTableFormatter.format_contacts(
+        records_by_email_generator
+    )
+    if len(formatted_contacts) > 0:
+        print(table_show(table_headers, formatted_contacts))
+        return
+
+    # find by address
+    records_by_address_generator = book.find_by_address(search_string)
+    formatted_contacts = ContactTableFormatter.format_contacts(
+        records_by_address_generator
+    )
+    if len(formatted_contacts) > 0:
+        print(table_show(table_headers, formatted_contacts))
+        return
+
+    # find by birthday
+    records_by_birthday_generator = book.find_by_birthday(search_string)
+    formatted_contacts = ContactTableFormatter.format_contacts(
+        records_by_birthday_generator
+    )
+    if len(formatted_contacts) > 0:
+        print(table_show(table_headers, formatted_contacts))
+        return
+
+    custom_print(
+        command_logger,
+        "No contact with data '{search}' was found",
+        space="top",
+        level="warning",
+        search=("bright_cyan", search_string),
+    )
 
 
 @input_error

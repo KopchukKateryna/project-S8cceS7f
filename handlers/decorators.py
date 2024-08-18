@@ -1,5 +1,17 @@
 """Decorators that handle input errors are collected here."""
 
+from helpers import custom_print, command_logger
+
+
+def print_msg(msg: str):
+    """Prints a message to the console."""
+    custom_print(
+        command_logger,
+        msg,
+        space="top",
+        level="warning",
+    )
+
 
 def input_error(func):
     """Handles a missing arguments error
@@ -32,46 +44,57 @@ where name is contact's name."
         show_edit_contact_input_message = (
             "Arguments are required. Enter edit-contact <name>"
         )
-        search_contact_message = (
-            "Arguments are required. Enter search-contact <name> | <email> | <phone>"
-        )
+        search_contact_message = "Arguments are required. \
+Enter search-contact <name> | <email> | <phone> | <address> | <birthday>"
         common_message = "Arguments are required."
 
         try:
             return func(*args, **kwargs)
         except IndexError as i:
             if func.__name__ == "show_phone":
+                print_msg(show_phone_message)
                 return show_phone_message
             if func.__name__ == "delete_contact":
+                print_msg(delete_contact_message)
                 return delete_contact_message
             if func.__name__ == "show_birthday":
+                print_msg(show_birthday_message)
                 return show_birthday_message
             if func.__name__ == "show_upcoming_birthdays":
+                print_msg(str(i).strip("'"))
                 return str(i).strip("'")
             return common_message
         except ValueError:
             if func.__name__ == "add_contact":
+                print_msg(add_contact_message)
                 return add_contact_message
             if func.__name__ == "change_contact":
+                print_msg(change_contact_message)
                 return change_contact_message
             if func.__name__ == "show_phone":
+                print_msg(show_phone_message)
                 return show_phone_message
             if func.__name__ == "delete_contact":
+                print_msg(delete_contact_message)
                 return delete_contact_message
             if func.__name__ == "add_birthday":
+                print_msg(add_birthday_message)
                 return add_birthday_message
             if func.__name__ == "show_birthday":
+                print_msg(show_birthday_message)
                 return show_birthday_message
             if func.__name__ == "add_phone_to_contact":
+                print_msg(show_add_phone_message)
                 return show_add_phone_message
             if func.__name__ == "edit_contact_input":
-                print(show_edit_contact_input_message)
+                print_msg(show_edit_contact_input_message)
             if func.__name__ == "search_contact":
+                print_msg(search_contact_message)
                 return search_contact_message
             return common_message
         except KeyError as e:
             if func.__name__ == "edit_contact_input":
-                print(str(e).strip('"'))
+                print_msg(str(e).strip('"'))
 
             return str(e).strip("'")
 
@@ -88,12 +111,24 @@ def empty_contact_list(func):
     def inner(*args, **kwargs):
         if len(args) <= 1:
             if len(args[0]) == 0:
-                return "The contacts list is empty. \
-Type 'add-contact' to add your first contact."
+                custom_print(
+                    command_logger,
+                    "The contacts list is empty. \
+Type 'add-contact' to add your first contact.",
+                    space="top",
+                    level="warning",
+                )
+                return
         elif len(args) > 1:
             if len(args[1]) == 0:
-                return "The contacts list is empty. \
-Type 'add-contact' to add your first contact."
+                custom_print(
+                    command_logger,
+                    "The contacts list is empty. \
+Type 'add-contact' to add your first contact.",
+                    space="top",
+                    level="warning",
+                )
+                return
         return func(*args, **kwargs)
 
     return inner

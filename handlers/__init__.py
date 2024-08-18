@@ -25,15 +25,30 @@ from handlers.notes_handlers import (
     edit_note,
     remove_note,
     find_note,
+    add_tag,
+    add_tags,
+    remove_tag,
+    remove_tags,
+    edit_tag,
+    all_tags,
+    note_tags,
+    sort_by_tag,
 )
 
 from handlers.parse_input import parse_input
-from handlers.input_handlers.add_contact_input import (
-    add_contact_input,
-)
+from handlers.input_handlers.add_contact_input import add_contact_input
 
-from handlers.input_handlers.edit_contact_input import (
-    edit_contact_input,
+from handlers.input_handlers.edit_contact_input import edit_contact_input
+
+
+from handlers.input_handlers.tag_input import (
+    add_tag_input,
+    add_tags_input,
+    remove_tag_input,
+    remove_tags_input,
+    edit_tag_input,
+    search_note_tags,
+    sort_by_tag_input,
 )
 
 from handlers.validations import (
@@ -42,7 +57,10 @@ from handlers.validations import (
     input_email_validation,
     input_address_validation,
     input_birthday_validation,
+    input_tag_validation,
 )
+
+from handlers.bot_name_handlers import edit_bot_name, create_bot_name
 
 __all__ = [
     "parse_input",
@@ -70,4 +88,22 @@ __all__ = [
     "remove_note",
     "find_note",
     "edit_contact_input",
+    "add_tag",
+    "add_tags",
+    "remove_tag",
+    "remove_tags",
+    "edit_tag",
+    "all_tags",
+    "note_tags",
+    "input_tag_validation",
+    "add_tag_input",
+    "add_tags_input",
+    "remove_tag_input",
+    "remove_tags_input",
+    "edit_tag_input",
+    "search_note_tags",
+    "sort_by_tag",
+    "sort_by_tag_input",
+    "edit_bot_name",
+    "create_bot_name",
 ]

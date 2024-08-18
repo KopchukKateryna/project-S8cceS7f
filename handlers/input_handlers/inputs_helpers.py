@@ -1,3 +1,6 @@
+from prompt_toolkit import prompt
+from constants import COMPLETER_FOR_EDIT_DELETE
+from helpers import bindings_for_edit_delete, custom_print, command_logger
 from ..validations import (
     input_name_validation,
     input_number_validation,
@@ -31,11 +34,30 @@ def edit_phone_in_contacts(old_phone, record):
         record (oblect): record of current contact
     """
     while True:
-        new_phone = input("Enter new phone: ").lower().strip()
+        custom_print(
+            command_logger,
+            "{msg}",
+            space="top",
+            level="info",
+            msg=("cyan", "Please, enter new phone number: "),
+        )
+        new_phone = input(">> ").lower().strip()
         if input_number_validation(new_phone):
-            print(edit_phone(old_phone, new_phone, record))
+            msg = edit_phone(old_phone, new_phone, record)
+            custom_print(
+                command_logger,
+                "{msg}",
+                space="top",
+                level="info",
+                msg=("green", msg),
+            )
             break
-        print("The phone number must contain 10 only numbers")
+        custom_print(
+            command_logger,
+            "The phone number must contain 10 only numbers",
+            space="top",
+            level="warning",
+        )
 
 
 def edit_email_in_contacts(record):
@@ -45,11 +67,30 @@ def edit_email_in_contacts(record):
         record (oblect): record of current contact
     """
     while True:
-        new_email = input("Enter new email: ").lower().strip()
+        custom_print(
+            command_logger,
+            "{msg}",
+            space="top",
+            level="info",
+            msg=("cyan", "Please, enter new email: "),
+        )
+        new_email = input(">> ").lower().strip()
         if input_email_validation(new_email):
-            print(edit_email(new_email, record))
+            msg = edit_email(new_email, record)
+            custom_print(
+                command_logger,
+                "{msg}",
+                space="top",
+                level="info",
+                msg=("green", msg),
+            )
             break
-        print("The phone number must contain 10 only numbers")
+        custom_print(
+            command_logger,
+            "Email format should be email@email.com",
+            space="top",
+            level="warning",
+        )
 
 
 def edit_address_in_contacts(record):
@@ -59,11 +100,30 @@ def edit_address_in_contacts(record):
         record (oblect): record of current contact
     """
     while True:
-        new_address = input("Enter new address: ").lower()
+        custom_print(
+            command_logger,
+            "{msg}",
+            space="top",
+            level="info",
+            msg=("cyan", "Please, enter new address: "),
+        )
+        new_address = input(">> ").lower()
         if input_address_validation(new_address):
-            print(edit_address(new_address, record))
+            msg = edit_address(new_address, record)
+            custom_print(
+                command_logger,
+                "{msg}",
+                space="top",
+                level="info",
+                msg=("green", msg),
+            )
             break
-        print("Address must contain at least one symbol")
+        custom_print(
+            command_logger,
+            "Address must contain at least one symbol",
+            space="top",
+            level="warning",
+        )
 
 
 def edit_birthday_in_contacts(record):
@@ -73,11 +133,30 @@ def edit_birthday_in_contacts(record):
         record (oblect): record of current contact
     """
     while True:
+        custom_print(
+            command_logger,
+            "{msg}",
+            space="top",
+            level="info",
+            msg=("cyan", "Please, enter new birthday: "),
+        )
         new_birthday = input("Enter new birthday: ").lower()
         if input_birthday_validation(new_birthday):
-            print(edit_birthday(new_birthday, record))
+            msg = edit_birthday(new_birthday, record)
+            custom_print(
+                command_logger,
+                "{msg}",
+                space="top",
+                level="info",
+                msg=("green", msg),
+            )
             break
-        print("Invalid date format. Use DD.MM.YYYY")
+        custom_print(
+            command_logger,
+            "Invalid date format. Use DD.MM.YYYY.",
+            space="top",
+            level="warning",
+        )
 
 
 def edit_name_in_contacts(old_name, record, book):
@@ -89,11 +168,30 @@ def edit_name_in_contacts(old_name, record, book):
         book (class): class AddressBook that contains all contacts
     """
     while True:
-        new_name = input("Enter new name: ").lower()
+        custom_print(
+            command_logger,
+            "{msg}",
+            space="top",
+            level="info",
+            msg=("cyan", "Please, enter a new contact's name: "),
+        )
+        new_name = input(">> ").lower()
         if input_name_validation(new_name):
-            print(edit_name(old_name, new_name, record, book))
+            msg = edit_name(old_name, new_name, record, book)
+            custom_print(
+                command_logger,
+                "{msg}",
+                space="top",
+                level="info",
+                msg=("green", msg),
+            )
             break
-        print("The name must contain at least one symbol")
+        custom_print(
+            command_logger,
+            "The name must contain at least one symbol.",
+            space="top",
+            level="warning",
+        )
 
 
 def add_phone_action(record):
@@ -104,16 +202,41 @@ def add_phone_action(record):
         record (oblect): record of current contact
     """
     while True:
-        number = input("Enter phone number to add: ").lower().strip()
+        custom_print(
+            command_logger,
+            "{msg}",
+            space="top",
+            level="info",
+            msg=("cyan", "Please, enter phone number to add: "),
+        )
+        number = input(">> ").lower().strip()
         if input_number_validation(number):
             number_in_contacts = record.find_phone(number)
             if number_in_contacts:
-                print(f"Number {number} already exist.")
+                custom_print(
+                    command_logger,
+                    "Number {number} already exist.",
+                    space="top",
+                    level="warning",
+                    number=("bright_cyan", number),
+                )
                 edit_or_delete_phone_choise(number, record)
                 break
-            print(add_phone(number, record))
+            msg = add_phone(number, record)
+            custom_print(
+                command_logger,
+                "{msg}",
+                space="top",
+                level="info",
+                msg=("green", msg),
+            )
             break
-        print("The phone number must contain 10 only numbers")
+        custom_print(
+            command_logger,
+            "The phone number must contain 10 only numbers",
+            space="top",
+            level="warning",
+        )
 
 
 def edit_phone_action(record):
@@ -124,16 +247,34 @@ def edit_phone_action(record):
         record (oblect): record of current contact
     """
     while True:
-        old_phone = input("Enter phone number to edit: ").lower().strip()
+        custom_print(
+            command_logger,
+            "{msg}",
+            space="top",
+            level="info",
+            msg=("cyan", "Please, enter phone number to edit: "),
+        )
+        old_phone = input(">> ").lower().strip()
         if input_number_validation(old_phone):
             number_in_contacts = record.find_phone(old_phone)
             if not number_in_contacts:
-                print(f"Number {old_phone} has not found.")
+                custom_print(
+                    command_logger,
+                    "Number {phone} has not found.",
+                    space="top",
+                    level="warning",
+                    phone=("bright_cyan", old_phone),
+                )
                 add_or_not_phone_choise(old_phone, record)
                 break
             edit_or_delete_phone_choise(old_phone, record)
             break
-        print("The phone number must contain 10 only numbers")
+        custom_print(
+            command_logger,
+            "The phone number must contain 10 only numbers.",
+            space="top",
+            level="warning",
+        )
 
 
 def delete_phone_action(record):
@@ -144,15 +285,33 @@ def delete_phone_action(record):
         record (oblect): record of current contact
     """
     while True:
-        number = input("Enter phone number to delete: ").lower().strip()
+        custom_print(
+            command_logger,
+            "{msg}",
+            space="top",
+            level="info",
+            msg=("cyan", "Please, enter phone number to delete: "),
+        )
+        number = input(">> ").lower().strip()
         if input_number_validation(number):
             number_in_contacts = record.find_phone(number)
             if not number_in_contacts:
-                print(f"Number {number} has not found.")
+                custom_print(
+                    command_logger,
+                    "Number {number} has not found.",
+                    space="top",
+                    level="warning",
+                    number=("bright_cyan", number),
+                )
                 break
-            print(delete_phone(number, record))
+            delete_phone(number, record)
             break
-        print("The phone number must contain 10 only numbers")
+        custom_print(
+            command_logger,
+            "The phone number must contain 10 only numbers.",
+            space="top",
+            level="warning",
+        )
 
 
 def add_email_action(record):
@@ -162,11 +321,30 @@ def add_email_action(record):
         record (oblect): record of current contact
     """
     while True:
-        email = input("Enter email to add: ").lower().strip()
+        custom_print(
+            command_logger,
+            "{msg}",
+            space="top",
+            level="info",
+            msg=("cyan", "Please, enter email to add: "),
+        )
+        email = input(">> ").lower().strip()
         if input_email_validation(email):
-            print(add_email(email, record))
+            msg = add_email(email, record)
+            custom_print(
+                command_logger,
+                "{msg}",
+                space="top",
+                level="info",
+                msg=("green", msg),
+            )
             break
-        print("Email format: email@email.com")
+        custom_print(
+            command_logger,
+            "Email format should be email@email.com",
+            space="top",
+            level="warning",
+        )
 
 
 def add_address_action(record):
@@ -176,11 +354,30 @@ def add_address_action(record):
         record (oblect): record of current contact
     """
     while True:
-        address = input("Enter address to add: ").lower()
+        custom_print(
+            command_logger,
+            "{msg}",
+            space="top",
+            level="info",
+            msg=("cyan", "Please, enter address to add: "),
+        )
+        address = input(">> ").lower()
         if input_address_validation(address):
-            print(add_address(address, record))
+            msg = add_address(address, record)
+            custom_print(
+                command_logger,
+                "{msg}",
+                space="top",
+                level="info",
+                msg=("green", msg),
+            )
             break
-        print("Address must contain at least one symbol")
+        custom_print(
+            command_logger,
+            "Address must contain at least one symbol.",
+            space="top",
+            level="warning",
+        )
 
 
 def add_birthday_action(record):
@@ -190,11 +387,30 @@ def add_birthday_action(record):
         record (oblect): record of current contact
     """
     while True:
-        birthday = input("Enter birthday to add: ").lower().strip()
+        custom_print(
+            command_logger,
+            "{msg}",
+            space="top",
+            level="info",
+            msg=("cyan", "Please, enter birthday to add: "),
+        )
+        birthday = input(">> ").lower().strip()
         if input_birthday_validation(birthday):
-            print(add_birthday(birthday, record))
+            msg = add_birthday(birthday, record)
+            custom_print(
+                command_logger,
+                "{msg}",
+                space="top",
+                level="info",
+                msg=("green", msg),
+            )
             break
-        print("Invalid date format. Use DD.MM.YYYY")
+        custom_print(
+            command_logger,
+            "Invalid date format. Use DD.MM.YYYY.",
+            space="top",
+            level="warning",
+        )
 
 
 def edit_or_delete_phone_choise(number, record):
@@ -207,13 +423,27 @@ def edit_or_delete_phone_choise(number, record):
         record (oblect): record of current contact
     """
     while True:
-        edit_or_delete_input = input("Do you want to edit or delete it? ")
+        custom_print(
+            command_logger,
+            "Do you want to {edit} or {delete} it? ",
+            space="top",
+            level="info",
+            edit=("bright_magenta"),
+            delete=("bright_magenta"),
+        )
+        edit_or_delete_input = prompt(
+            ">> ",
+            completer=COMPLETER_FOR_EDIT_DELETE,
+            complete_while_typing=True,
+            key_bindings=bindings_for_edit_delete,
+            multiline=True,
+        )
         if edit_or_delete_input in ["edit", "delete"]:
             if edit_or_delete_input == "edit":
                 edit_phone_in_contacts(number, record)
                 break
             if edit_or_delete_input == "delete":
-                print(delete_phone(number, record))
+                delete_phone(number, record)
                 break
 
 
@@ -226,10 +456,25 @@ def add_or_not_phone_choise(number, record):
         record (oblect): record of current contact
     """
     while True:
-        y_or_n = input("Do you want to add it? y/n ").lower().strip()
+        custom_print(
+            command_logger,
+            "Do you want to add it {y}/{n} ?: ",
+            space="top",
+            level="info",
+            y=("bright_magenta"),
+            n=("bright_magenta"),
+        )
+        y_or_n = input(">> ").lower().strip()
         if y_or_n == "y" or y_or_n == "n":
             if y_or_n == "y":
-                print(add_phone(number, record))
+                msg = add_phone(number, record)
+                custom_print(
+                    command_logger,
+                    "{msg}",
+                    space="top",
+                    level="info",
+                    msg=("green", msg),
+                )
                 break
             break
 
@@ -243,12 +488,33 @@ def edit_or_delete_email_choise(record):
         record (oblect): record of current contact
     """
     while True:
-        edit_or_delete_input = input("Do you want to edit or delete it? ")
+        custom_print(
+            command_logger,
+            "Do you want to {edit} or {delete} it? ",
+            space="top",
+            level="info",
+            edit=("bright_magenta"),
+            delete=("bright_magenta"),
+        )
+        edit_or_delete_input = prompt(
+            ">> ",
+            completer=COMPLETER_FOR_EDIT_DELETE,
+            complete_while_typing=True,
+            key_bindings=bindings_for_edit_delete,
+            multiline=True,
+        )
         if edit_or_delete_input in ["edit", "delete"]:
             if edit_or_delete_input == "edit":
                 edit_email_in_contacts(record)
                 break
-            print(delete_email(record))
+            msg = delete_email(record)
+            custom_print(
+                command_logger,
+                "{msg}",
+                space="top",
+                level="info",
+                msg=("green", msg),
+            )
             break
 
 
@@ -260,7 +526,15 @@ def add_or_not_email_choise(record):
         record (oblect): record of current contact
     """
     while True:
-        y_or_n = input("Do you want to add it? y/n ").lower().strip()
+        custom_print(
+            command_logger,
+            "Do you want to add it? {y}/{n}: ",
+            space="top",
+            level="info",
+            y=("bright_magenta"),
+            n=("bright_magenta"),
+        )
+        y_or_n = input(">> ").lower().strip()
         if y_or_n == "y" or y_or_n == "n":
             if y_or_n == "y":
                 add_email_action(record)
@@ -277,12 +551,33 @@ def edit_or_delete_address_choise(record):
         record (oblect): record of current contact
     """
     while True:
-        edit_or_delete_input = input("Do you want to edit or delete it? ")
+        custom_print(
+            command_logger,
+            "Do you want to edit or delete it? {edit}/{delete}: ",
+            space="top",
+            level="info",
+            edit=("bright_magenta"),
+            delete=("bright_magenta"),
+        )
+        edit_or_delete_input = prompt(
+            ">> ",
+            completer=COMPLETER_FOR_EDIT_DELETE,
+            complete_while_typing=True,
+            key_bindings=bindings_for_edit_delete,
+            multiline=True,
+        )
         if edit_or_delete_input in ["edit", "delete"]:
             if edit_or_delete_input == "edit":
                 edit_address_in_contacts(record)
                 break
-            print(delete_address(record))
+            msg = delete_address(record)
+            custom_print(
+                command_logger,
+                "{msg}",
+                space="top",
+                level="info",
+                msg=("green", msg),
+            )
             break
 
 
@@ -294,7 +589,15 @@ def add_or_not_address_choise(record):
         record (oblect): record of current contact
     """
     while True:
-        y_or_n = input("Do you want to add it? y/n ").lower().strip()
+        custom_print(
+            command_logger,
+            "Do you want to add it? {y}/{n}: ",
+            space="top",
+            level="info",
+            y=("bright_magenta"),
+            n=("bright_magenta"),
+        )
+        y_or_n = input(">> ").lower().strip()
         if y_or_n == "y" or y_or_n == "n":
             if y_or_n == "y":
                 add_address_action(record)
@@ -311,12 +614,33 @@ def edit_or_delete_birthday_choise(record):
         record (oblect): record of current contact
     """
     while True:
-        edit_or_delete_input = input("Do you want to edit or delete it? ")
+        custom_print(
+            command_logger,
+            "Do you want to edit or delete it? {edit}/{delete}: ",
+            space="top",
+            level="info",
+            edit=("bright_magenta"),
+            delete=("bright_magenta"),
+        )
+        edit_or_delete_input = prompt(
+            ">> ",
+            completer=COMPLETER_FOR_EDIT_DELETE,
+            complete_while_typing=True,
+            key_bindings=bindings_for_edit_delete,
+            multiline=True,
+        )
         if edit_or_delete_input in ["edit", "delete"]:
             if edit_or_delete_input == "edit":
                 edit_birthday_in_contacts(record)
                 break
-            print(delete_birthday(record))
+            msg = delete_birthday(record)
+            custom_print(
+                command_logger,
+                "{msg}",
+                space="top",
+                level="info",
+                msg=("green", msg),
+            )
             break
 
 
@@ -328,7 +652,15 @@ def add_or_not_birthday_choise(record):
         record (oblect): record of current contact
     """
     while True:
-        y_or_n = input("Do you want to add it? y/n ").lower().strip()
+        custom_print(
+            command_logger,
+            "Do you want to add it? {y}/{n}: ",
+            space="top",
+            level="info",
+            y=("bright_magenta"),
+            n=("bright_magenta"),
+        )
+        y_or_n = input(">> ").lower().strip()
         if y_or_n == "y" or y_or_n == "n":
             if y_or_n == "y":
                 add_birthday_action(record)

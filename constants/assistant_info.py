@@ -75,6 +75,12 @@ ADDRESSBOOK_COMMANDS = [
         "exmp": "exit",
         "desc": "Exits the address book application.",
     },
+    {
+        "command": "edit-bot-name",
+        "usage": "edit-bot-name",
+        "exmp": "edit-bot-name",
+        "desc": "Edits bot name.",
+    },
 ]
 
 ADDRESSBOOK_INFO_TABLE_HEADERS = ["COMMAND", "USAGE", "EXAMPLE", "DESCRIPTION"]
@@ -130,6 +136,60 @@ NOTEBOOK_COMMANDS = [
         "desc": "Displays all notes in the notebook.",
     },
     {
+        "command": "add-tag",
+        "usage": "add-tag <note-name> <tag>",
+        "exmp": "add-tag todo @task",
+        "desc": (
+            "Adds a single tag to a note"
+            "Use this command to associate a new tag with a note."
+        ),
+    },
+    {
+        "command": "add-tags",
+        "usage": "add-tags <note-name> <tag>",
+        "exmp": "add-tags todo @task @task @task ",
+        "desc": (
+            "Adds multiple tags to a note."
+            "Use this command to associate multiple new tags with a note."
+        ),
+    },
+    {
+        "command": "remove-tag",
+        "usage": "remove-tag <note_name> <tag>",
+        "exmp": "remove-tag todo @task",
+        "desc": (
+            "Removes a single tag from a note."
+            "Use this command to disassociate a tag from a note."
+        ),
+    },
+    {
+        "command": "edit-tag",
+        "usage": "edit-tag <note-name> <old_tag> <new_tag>",
+        "exmp": "edit-tag todo @task @list",
+        "desc": (
+            "Edits a tag on a note."
+            "Use this command to rename a tag associated with a note."
+        ),
+    },
+    {
+        "command": "note-tags",
+        "usage": "note-tags <note-name> ",
+        "exmp": "note-tags todo",
+        "desc": (
+            "Displays all tags associated with a note."
+            "Use this command to view the tags associated with a note."
+        ),
+    },
+    {
+        "command": "all-tags",
+        "usage": "all-tags",
+        "exmp": "all-tags",
+        "desc": (
+            "Displays all tags in the notebook."
+            "Use this command to view all available tags."
+        ),
+    },
+    {
         "command": "close",
         "usage": "close",
         "exmp": "close",
@@ -146,4 +206,100 @@ NOTEBOOK_COMMANDS = [
 NOTEBOOK_INFO_TABLE_HEADERS = ["COMMAND", "USAGE", "EXAMPLE", "DESCRIPTION"]
 NOTEBOOK_INFO_TABLE_DATA = [
     [c["command"], c["usage"], c["exmp"], c["desc"]] for c in NOTEBOOK_COMMANDS
+]
+
+COMMAND_EDIT_CONTACT = [
+    {
+        "command": "name",
+        "usage": "name",
+        "exmp": "name",
+        "desc": ("Uses for edit name"),
+    },
+    {
+        "command": "phones",
+        "usage": "phones",
+        "exmp": "phones",
+        "desc": "Uses for edit phones",
+    },
+    {
+        "command": "email",
+        "usage": "email",
+        "exmp": "email",
+        "desc": "Uses for edit email",
+    },
+    {
+        "command": "address",
+        "usage": "address",
+        "exmp": "address",
+        "desc": "Uses for edit address",
+    },
+    {
+        "command": "birthday",
+        "usage": "birthday",
+        "exmp": "birthday",
+        "desc": "Uses for edit birthday",
+    },
+    {
+        "command": "exit",
+        "usage": "exit",
+        "exmp": "exit",
+        "desc": "Exits the address book application.",
+    },
+]
+
+COMMAND_ADD_EDIT_DELETE = [
+    {
+        "command": "add",
+        "usage": "add",
+        "exmp": "add",
+        "desc": "Uses for add",
+    },
+    {
+        "command": "edit",
+        "usage": "edit",
+        "exmp": "edit",
+        "desc": "Uses for edit",
+    },
+    {
+        "command": "delete",
+        "usage": "delete",
+        "exmp": "delete",
+        "desc": "Uses for delete",
+    },
+    {
+        "command": "exit",
+        "usage": "exit",
+        "exmp": "exit",
+        "desc": "Exits the address book application.",
+    },
+]
+
+COMMAND_EDIT_DELETE = [
+    {
+        "command": "edit",
+        "usage": "edit",
+        "exmp": "edit",
+        "desc": "Uses for edit",
+    },
+    {
+        "command": "delete",
+        "usage": "delete",
+        "exmp": "delete",
+        "desc": "Uses for delete",
+    },
+]
+
+COMMAND_NAME_TEXT = [
+    {
+        "command": "name",
+        "usage": "name",
+        "exmp": "name",
+        "desc": "Uses for name",
+    },
+    {
+        "command": "text",
+        "usage": "text",
+        "exmp": "text",
+        "desc": "Uses for text",
+    },
 ]

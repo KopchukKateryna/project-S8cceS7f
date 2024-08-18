@@ -1,32 +1,30 @@
-"""functions for work with pickle"""
+"""functions for save bot name with pickle"""
 
 import pickle
 from pathlib import Path
 from helpers import custom_print, debug_logger
-from classes import AddressBook
+from .startup_shutdown import pre_welcome
 
 
-def save_data(
-    book: AddressBook, filename: str = "addressbook.pkl", log_msg=True
-) -> None:
+def save_bot_name(bot_name, filename: str = "bot_name.pkl", log_msg=True) -> None:
     """
-    Save data to a pickle file.
+    Save bot name to a pickle file.
 
     Args:
-        book (AddressBook): The object to be saved (e.g., an instance of AddressBook).
+        bot_name (str): The bot name to be saved.
         filename (str): The name of the file to save the data to.
-        Default is "addressbook.pkl".
+        Default is "bot_name.pkl".
 
     Raises:
         Exception: If an error occurs during the saving process, it will be logged.
     """
     try:
         with Path(filename).open("wb") as f:
-            pickle.dump(book, f)
+            pickle.dump(bot_name, f)
         if log_msg:
             custom_print(
                 debug_logger,
-                "Data successfully saved to {filename}",
+                "Bot name successfully saved to {filename}",
                 space="none",
                 level="info",
                 filename=("blue", filename),
@@ -34,65 +32,66 @@ def save_data(
     except Exception as e:
         custom_print(
             debug_logger,
-            "Error occurred while saving data from {filename} - {e}",
-            level="error",
+            "Error occurred while saving data to {filename} - {e}",
             space="none",
+            level="error",
             filename=("blue", filename),
             e=("red", e),
         )
 
 
-def load_data(filename: str = "addressbook.pkl") -> AddressBook:
+def load_bot_name(filename: str = "bot_name.pkl") -> str:
     """
-    Load data from a pickle file.
+    Load bot name from a pickle file.
 
     Args:
         filename (str): The name of the file to load the data from.
-        Default is "addressbook.pkl".
+        Default is "bot_name.pkl".
 
     Returns:
-        Any: The loaded data, or a new instance of AddressBook
+        str: The loaded data in string format
+        (or string must be a result of the returned func())
         if the file is not found or an error occurs.
     """
     file_path = Path(filename)
     if not file_path.exists():
         custom_print(
             debug_logger,
-            "File {filename} not found. Returning a new AddressBook instance.",
-            level="warning",
+            "File {filename} not found. Let's create the name to your bot.",
             space="none",
+            level="warning",
             filename=("blue", filename),
         )
-        return AddressBook()
+        return pre_welcome()
 
     try:
         with file_path.open("rb") as f:
-            data = pickle.load(f)
-            custom_print(
-                debug_logger,
-                "Data successfully loaded from {filename}",
-                space="none",
-                level="info",
-                filename=("blue", filename),
-            )
-        return data
+            bot_name = pickle.load(f)
+        custom_print(
+            debug_logger,
+            "Bot name successfully loaded from {filename}",
+            space="none",
+            level="info",
+            filename=("blue", filename),
+        )
+        return bot_name
     except (pickle.UnpicklingError, EOFError) as e:
         custom_print(
             debug_logger,
             "Error occurred while loading data from {filename} - {e}",
-            level="error",
             space="none",
+            level="error",
             filename=("blue", filename),
             e=("red", e),
         )
-        return AddressBook()
+        return pre_welcome()
     except Exception as e:
         custom_print(
             debug_logger,
             "Unknown error occurred while loading data from {filename} - {e}",
-            level="critical",
             space="none",
+            level="critical",
             filename=("blue", filename),
             e=("red", e),
         )
-        return AddressBook()
+        return pre_welcome()
