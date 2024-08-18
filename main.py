@@ -30,7 +30,7 @@ from helpers import (
     save_data,
     load_notes,
     save_notes,
-    bindings,
+    bindings_general,
     table_show,
     welcome,
     good_bye,
@@ -65,7 +65,7 @@ def main():
                 "Enter a command: > ",
                 completer=COMPLETER,
                 complete_while_typing=True,
-                key_bindings=bindings,
+                key_bindings=bindings_general,
                 multiline=True,
             )
             command, *args = parse_input(user_input)

@@ -45,6 +45,18 @@ COMMAND_CORRECTIONS = {
     "add-cnotact": "add-contact",
     "add-cotnact": "add-contact",
     "add-contatc": "add-contact",
+    # edit-contact
+    "ec": "edit-contact",
+    "edit contact": "edit-contact",
+    "ed-contact": "edit-contact",
+    "edit-contct": "edit-contact",
+    "edit-cnotact": "edit-contact",
+    "edit-cotnact": "edit-contact",
+    "edit-contatc": "edit-contact",
+    "edit-cotact": "edit-contact",
+    "edit-conact": "edit-contact",
+    "edit-contac": "edit-contact",
+    "edit-cntact": "edit-contact",
     # "delete-contact"
     "dc": "delete-contact",
     "delete contact": "delete-contact",
