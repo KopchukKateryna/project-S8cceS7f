@@ -43,7 +43,7 @@ source venv/bin/activate
 Install the required dependencies using pip:
 
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 Once the virtual environment is activated, you can run the project and any necessary commands.
@@ -106,12 +106,12 @@ If you install any new dependencies, you must update the requirements.txt file s
 
 - Install the new package:
 ```bash
-pip install <package-name>
+pip3 install <package-name>
 ```
 
 - Update requirements.txt:
 ```bash
-pip freeze > requirements.txt
+pip3 freeze > requirements.txt
 ```
 
 = Commit the updated requirements.txt (step 5 and 6). Make sure that you included the updated requirements.txt in your Pull Request!!!
