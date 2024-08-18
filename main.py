@@ -57,6 +57,9 @@ def main():
 
     welcome(bot_name)
     try:
+        book = load_data()
+        notes_book = load_notes()
+        welcome()
         while True:
             user_input = prompt(
                 "Enter a command: > ",

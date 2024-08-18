@@ -19,6 +19,7 @@ from prompt_toolkit import prompt
 from constants import COMPLETER_FOR_EDIT
 from helpers import bindings_for_contact
 
+
 @input_error
 def edit_contact_input(args, book):
     """An addition input module to add, change, delete fields
@@ -38,13 +39,13 @@ def edit_contact_input(args, book):
         raise KeyError(f"No such name '{name}' was found")
     while True:
         field_to_edit = prompt(
-                "What field do you want to edit: "
-                "name | phones | email | address | birthday | exit: ",
-                completer=COMPLETER_FOR_EDIT,
-                complete_while_typing=True,
-                key_bindings=bindings_for_contact,
-                multiline=True,
-            )
+            "What field do you want to edit: "
+            "name | phones | email | address | birthday | exit: ",
+            completer=COMPLETER_FOR_EDIT,
+            complete_while_typing=True,
+            key_bindings=bindings_for_contact,
+            multiline=True,
+        )
         if field_to_edit in ["name", "phones", "email", "address", "birthday"]:
 
             if field_to_edit == "name":

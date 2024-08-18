@@ -208,13 +208,12 @@ NOTEBOOK_INFO_TABLE_DATA = [
     [c["command"], c["usage"], c["exmp"], c["desc"]] for c in NOTEBOOK_COMMANDS
 ]
 
-COMMAND_EDIT_CONTACT = [{
+COMMAND_EDIT_CONTACT = [
+    {
         "command": "name",
         "usage": "name",
         "exmp": "name",
-        "desc": (
-            "Uses for edit name"
-        ),
+        "desc": ("Uses for edit name"),
     },
     {
         "command": "phones",
