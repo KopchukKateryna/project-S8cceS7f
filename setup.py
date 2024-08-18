@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='no_name_bot',
-    version='1.0',
+    version='1.1',
     description="Python noname bot",
     url='https://github.com/KopchukKateryna/project-S8cceS7f',
     author='Kateryna Kopchuk, Ivan Zarichnyy, Natalya Karpova, Zakhar Veremchuk, Oleg Sokolenko',
