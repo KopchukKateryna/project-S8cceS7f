@@ -136,18 +136,6 @@ NOTEBOOK_COMMANDS = [
         "desc": "Displays all notes in the notebook.",
     },
     {
-        "command": "close",
-        "usage": "close",
-        "exmp": "close",
-        "desc": "Saving Addressbook data and closes the application.",
-    },
-    {
-        "command": "exit",
-        "usage": "exit",
-        "exmp": "exit",
-        "desc": "Exits the address book application.",
-    },
-    {
         "command": "add-tag",
         "usage": "add-tag <note-name> <tag>",
         "exmp": "add-tag todo @task",
@@ -200,6 +188,18 @@ NOTEBOOK_COMMANDS = [
             "Displays all tags in the notebook.",
             "Use this command to view all available tags.",
         ),
+    },
+    {
+        "command": "close",
+        "usage": "close",
+        "exmp": "close",
+        "desc": "Saving Addressbook data and closes the application.",
+    },
+    {
+        "command": "exit",
+        "usage": "exit",
+        "exmp": "exit",
+        "desc": "Exits the address book application.",
     },
 ]
 

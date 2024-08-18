@@ -51,15 +51,11 @@ logger = setup_logging()
 
 def main():
     """The main function of the bot, manages the main cycle of command processing"""
-    book = load_data()
-    notes_book = load_notes()
-    bot_name = load_bot_name()
-
-    welcome(bot_name)
     try:
         book = load_data()
         notes_book = load_notes()
-        welcome()
+        bot_name = load_bot_name()
+        welcome(bot_name)
         while True:
             user_input = prompt(
                 "Enter a command: > ",
@@ -183,7 +179,7 @@ def main():
 
             elif command == "sort-by-tag":
                 sort_by_tag_input(notes_book)
-            
+
             elif command == "edit-bot-name":
                 new_bot_name = edit_bot_name(bot_name)
                 save_bot_name(new_bot_name)
