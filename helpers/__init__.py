@@ -26,7 +26,7 @@ from helpers.startup_shutdown import (
     pre_welcome,
 )
 from helpers.bot_name_pickle_utils import load_bot_name, save_bot_name
-from helpers.autocomplete_config import bindings_general, bindings_for_contact
+from helpers.autocomplete_config import bindings_general, bindings_for_contact,bindings_for_add_edit_delete,bindings_for_edit_delete,bindings_for_name_text
 
 __all__ = [
     "setup_logging",
@@ -37,6 +37,9 @@ __all__ = [
     "load_notes",
     "bindings_general",
     "bindings_for_contact",
+    "bindings_for_add_edit_delete",
+    "bindings_for_edit_delete",
+    "bindings_for_name_text",
     "welcome",
     "good_bye",
     "display_ascii_welcome_art",

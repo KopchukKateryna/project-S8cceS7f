@@ -1,6 +1,9 @@
 from prompt_toolkit.key_binding import KeyBindings
 from constants import COMMAND_CORRECTIONS
 from constants import COMMAND_FOR_EDIT_CONTACT
+from constants import COMMAND_FOR_ADD_EDIT_DELETE
+from constants import COMMAND_FOR_EDIT_DELETE
+from constants import COMMAND_FOR_NAME_TEXT
 
 
 def create_enter_handler(command_corrections):
@@ -38,7 +41,13 @@ def create_enter_handler(command_corrections):
 bindings_general = KeyBindings()
 bindings_for_contact = KeyBindings()
 bindings_for_notes = KeyBindings()
+bindings_for_add_edit_delete = KeyBindings()
+bindings_for_edit_delete = KeyBindings()
+bindings_for_name_text = KeyBindings()
 
 bindings_general.add("enter")(create_enter_handler(COMMAND_CORRECTIONS))
 bindings_for_contact.add("enter")(create_enter_handler(COMMAND_FOR_EDIT_CONTACT))
+bindings_for_add_edit_delete.add("enter")(create_enter_handler(COMMAND_FOR_ADD_EDIT_DELETE))
+bindings_for_edit_delete.add("enter")(create_enter_handler(COMMAND_FOR_EDIT_DELETE))
+bindings_for_name_text.add("enter")(create_enter_handler(COMMAND_FOR_NAME_TEXT))
 # bindings_for_notes.add("enter")(create_enter_handler(________))

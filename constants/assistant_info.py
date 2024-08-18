@@ -246,3 +246,60 @@ COMMAND_EDIT_CONTACT = [
         "desc": "Exits the address book application.",
     },
 ]
+
+COMMAND_ADD_EDIT_DELETE = [
+    {
+        "command": "add",
+        "usage": "add",
+        "exmp": "add",
+        "desc": "Uses for add",
+    },
+    {
+        "command": "edit",
+        "usage": "edit",
+        "exmp": "edit",
+        "desc": "Uses for edit",
+    },
+    {
+        "command": "delete",
+        "usage": "delete",
+        "exmp": "delete",
+        "desc": "Uses for delete",
+    },
+    {
+        "command": "exit",
+        "usage": "exit",
+        "exmp": "exit",
+        "desc": "Exits the address book application.",
+    },
+]
+
+COMMAND_EDIT_DELETE = [
+    {
+        "command": "edit",
+        "usage": "edit",
+        "exmp": "edit",
+        "desc": "Uses for edit",
+    },
+    {
+        "command": "delete",
+        "usage": "delete",
+        "exmp": "delete",
+        "desc": "Uses for delete",
+    },
+]
+
+COMMAND_NAME_TEXT = [
+    {
+        "command": "name",
+        "usage": "name",
+        "exmp": "name",
+        "desc": "Uses for name",
+    },
+    {
+        "command": "text",
+        "usage": "text",
+        "exmp": "text",
+        "desc": "Uses for text",
+    },
+]
