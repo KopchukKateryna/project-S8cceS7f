@@ -24,7 +24,6 @@ from handlers import (
     sort_by_tag_input,
     edit_bot_name,
 )
-from helpers import setup_logging
 from helpers import (
     load_data,
     save_data,
@@ -45,8 +44,6 @@ from constants import (
     NOTEBOOK_INFO_TABLE_HEADERS,
     COMPLETER,
 )
-
-logger = setup_logging()
 
 
 def main():

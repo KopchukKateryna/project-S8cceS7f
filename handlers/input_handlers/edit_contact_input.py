@@ -57,11 +57,13 @@ def edit_contact_input(args, book):
             if field_to_edit == "phones":
                 while True:
                     print("You can add, edit, delete phone, or exit")
-                    action =  prompt("What do you want to do?  ",
-                    completer=COMPLETER_FOR_ADD_EDIT_DELETE,
-                    complete_while_typing=True,
-                    key_bindings=bindings_for_add_edit_delete,
-                     multiline=True,)
+                    action = prompt(
+                        "What do you want to do?  ",
+                        completer=COMPLETER_FOR_ADD_EDIT_DELETE,
+                        complete_while_typing=True,
+                        key_bindings=bindings_for_add_edit_delete,
+                        multiline=True,
+                    )
                     if action in ["add", "edit", "delete"]:
                         if action == "add":
                             add_phone_action(record)

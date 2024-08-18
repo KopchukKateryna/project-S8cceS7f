@@ -1,9 +1,8 @@
 """functions for work with pickle"""
 
-import logging
 import pickle
 from pathlib import Path
-
+from helpers import custom_print, debug_logger
 from classes import NotesBook
 
 
@@ -22,9 +21,20 @@ def save_notes(notebook: NotesBook, filename: str = "notesbook.pkl") -> None:
     try:
         with Path(filename).open("wb") as f:
             pickle.dump(notebook, f)
-        logging.info("Data successfully saved to %s", filename)
+            custom_print(
+                debug_logger,
+                "Data successfully saved to {filename}",
+                level="info",
+                filename=("blue", filename),
+            )
     except Exception as e:
-        logging.error("Error occurred while saving data to %s: %s", filename, e)
+        custom_print(
+            debug_logger,
+            "Error occurred while loading data from {filename} - {e}",
+            level="error",
+            filename=("blue", filename),
+            e=("red", e),
+        )
 
 
 def load_notes(filename: str = "notesbook.pkl") -> NotesBook:
@@ -41,21 +51,39 @@ def load_notes(filename: str = "notesbook.pkl") -> NotesBook:
     """
     file_path = Path(filename)
     if not file_path.exists():
-        logging.warning(
-            "File %s not found. Returning a new NotesBook instance.", filename
+        custom_print(
+            debug_logger,
+            "File {filename} not found. Returning a new NotesBook instance.",
+            level="warning",
+            filename=("blue", filename),
         )
         return NotesBook()
 
     try:
         with file_path.open("rb") as f:
             data = pickle.load(f)
-        logging.info("Data successfully loaded from %s", filename)
+        custom_print(
+            debug_logger,
+            "Data successfully loaded from {filename}",
+            level="info",
+            filename=("blue", filename),
+        )
         return data
     except (pickle.UnpicklingError, EOFError) as e:
-        logging.error("Error occurred while loading data from %s: %s", filename, e)
+        custom_print(
+            debug_logger,
+            "Error occurred while loading data from {filename} - {e}",
+            level="error",
+            filename=("blue", filename),
+            e=("red", e),
+        )
         return NotesBook()
     except Exception as e:
-        logging.critical(
-            "Unknown error occurred while loading data from %s: %s", filename, e
+        custom_print(
+            debug_logger,
+            "Unknown error occurred while loading data from {filename} - {e}",
+            level="critical",
+            filename=("blue", filename),
+            e=("red", e),
         )
         return NotesBook()

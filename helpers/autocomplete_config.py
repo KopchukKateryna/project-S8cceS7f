@@ -47,7 +47,9 @@ bindings_for_name_text = KeyBindings()
 
 bindings_general.add("enter")(create_enter_handler(COMMAND_CORRECTIONS))
 bindings_for_contact.add("enter")(create_enter_handler(COMMAND_FOR_EDIT_CONTACT))
-bindings_for_add_edit_delete.add("enter")(create_enter_handler(COMMAND_FOR_ADD_EDIT_DELETE))
+bindings_for_add_edit_delete.add("enter")(
+    create_enter_handler(COMMAND_FOR_ADD_EDIT_DELETE)
+)
 bindings_for_edit_delete.add("enter")(create_enter_handler(COMMAND_FOR_EDIT_DELETE))
 bindings_for_name_text.add("enter")(create_enter_handler(COMMAND_FOR_NAME_TEXT))
 # bindings_for_notes.add("enter")(create_enter_handler(________))

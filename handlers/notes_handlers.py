@@ -132,11 +132,13 @@ def edit_note(notebook: NotesBook):
     note = notebook.find(name)
     if note:
         while True:
-            usr_chose = prompt("What do you want to change: (name/text): ",
-                    completer=COMPLETER_FOR_NAME_TEXT,
-                    complete_while_typing=True,
-                    key_bindings=bindings_for_name_text,
-                     multiline=True,)
+            usr_chose = prompt(
+                "What do you want to change: (name/text): ",
+                completer=COMPLETER_FOR_NAME_TEXT,
+                complete_while_typing=True,
+                key_bindings=bindings_for_name_text,
+                multiline=True,
+            )
             if usr_chose == "name":
                 while True:
                     new_name = input("Type new name or back to go back: ").strip()
