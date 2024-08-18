@@ -140,8 +140,8 @@ NOTEBOOK_COMMANDS = [
         "usage": "add-tag <note-name> <tag>",
         "exmp": "add-tag todo @task",
         "desc": (
-            "Adds a single tag to a note",
-            "Use this command to associate a new tag with a note.",
+            "Adds a single tag to a note"
+            "Use this command to associate a new tag with a note."
         ),
     },
     {
@@ -149,8 +149,8 @@ NOTEBOOK_COMMANDS = [
         "usage": "add-tags <note-name> <tag>",
         "exmp": "add-tags todo @task @task @task ",
         "desc": (
-            "Adds multiple tags to a note.",
-            "Use this command to associate multiple new tags with a note.",
+            "Adds multiple tags to a note."
+            "Use this command to associate multiple new tags with a note."
         ),
     },
     {
@@ -158,8 +158,8 @@ NOTEBOOK_COMMANDS = [
         "usage": "remove-tag <note_name> <tag>",
         "exmp": "remove-tag todo @task",
         "desc": (
-            "Removes a single tag from a note.",
-            "Use this command to disassociate a tag from a note.",
+            "Removes a single tag from a note."
+            "Use this command to disassociate a tag from a note."
         ),
     },
     {
@@ -167,8 +167,8 @@ NOTEBOOK_COMMANDS = [
         "usage": "edit-tag <note-name> <old_tag> <new_tag>",
         "exmp": "edit-tag todo @task @list",
         "desc": (
-            "Edits a tag on a note.",
-            "Use this command to rename a tag associated with a note.",
+            "Edits a tag on a note."
+            "Use this command to rename a tag associated with a note."
         ),
     },
     {
@@ -176,8 +176,8 @@ NOTEBOOK_COMMANDS = [
         "usage": "note-tags <note-name> ",
         "exmp": "note-tags todo",
         "desc": (
-            "Displays all tags associated with a note.",
-            "Use this command to view the tags associated with a note.",
+            "Displays all tags associated with a note."
+            "Use this command to view the tags associated with a note."
         ),
     },
     {
@@ -185,8 +185,8 @@ NOTEBOOK_COMMANDS = [
         "usage": "all-tags",
         "exmp": "all-tags",
         "desc": (
-            "Displays all tags in the notebook.",
-            "Use this command to view all available tags.",
+            "Displays all tags in the notebook."
+            "Use this command to view all available tags."
         ),
     },
     {

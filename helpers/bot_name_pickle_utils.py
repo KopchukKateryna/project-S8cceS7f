@@ -25,6 +25,7 @@ def save_bot_name(bot_name, filename: str = "bot_name.pkl", log_msg=True) -> Non
             custom_print(
                 debug_logger,
                 "Bot name successfully saved to {filename}",
+                space="none",
                 level="info",
                 filename=("blue", filename),
             )
@@ -32,6 +33,7 @@ def save_bot_name(bot_name, filename: str = "bot_name.pkl", log_msg=True) -> Non
         custom_print(
             debug_logger,
             "Error occurred while saving data to {filename} - {e}",
+            space="none",
             level="error",
             filename=("blue", filename),
             e=("red", e),
@@ -56,6 +58,7 @@ def load_bot_name(filename: str = "bot_name.pkl") -> str:
         custom_print(
             debug_logger,
             "File {filename} not found. Let's create the name to your bot.",
+            space="none",
             level="warning",
             filename=("blue", filename),
         )
@@ -67,6 +70,7 @@ def load_bot_name(filename: str = "bot_name.pkl") -> str:
         custom_print(
             debug_logger,
             "Bot name successfully loaded from {filename}",
+            space="none",
             level="info",
             filename=("blue", filename),
         )
@@ -75,6 +79,7 @@ def load_bot_name(filename: str = "bot_name.pkl") -> str:
         custom_print(
             debug_logger,
             "Error occurred while loading data from {filename} - {e}",
+            space="none",
             level="error",
             filename=("blue", filename),
             e=("red", e),
@@ -84,6 +89,7 @@ def load_bot_name(filename: str = "bot_name.pkl") -> str:
         custom_print(
             debug_logger,
             "Unknown error occurred while loading data from {filename} - {e}",
+            space="none",
             level="critical",
             filename=("blue", filename),
             e=("red", e),

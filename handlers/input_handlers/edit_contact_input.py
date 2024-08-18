@@ -2,6 +2,15 @@
 such as name, phone number, email, address, birthday
     """
 
+from prompt_toolkit import prompt
+from constants import COMPLETER_FOR_EDIT
+from constants import COMPLETER_FOR_ADD_EDIT_DELETE
+from helpers import (
+    bindings_for_contact,
+    bindings_for_add_edit_delete,
+    custom_print,
+    command_logger,
+)
 from ..decorators import input_error
 from .inputs_helpers import (
     edit_name_in_contacts,
@@ -15,11 +24,6 @@ from .inputs_helpers import (
     edit_or_delete_birthday_choise,
     add_or_not_birthday_choise,
 )
-from prompt_toolkit import prompt
-from constants import COMPLETER_FOR_EDIT
-from constants import COMPLETER_FOR_ADD_EDIT_DELETE
-from helpers import bindings_for_contact
-from helpers import bindings_for_add_edit_delete
 
 
 @input_error
@@ -38,11 +42,32 @@ def edit_contact_input(args, book):
     name, *_ = args
     record = book.find(name)
     if record is None:
-        raise KeyError(f"No such name '{name}' was found")
+        custom_print(
+            command_logger,
+            "No such name '{name}' was found",
+            space="top",
+            level="warning",
+            name=("bright_cyan", name),
+        )
+        return
     while True:
+        custom_print(
+            command_logger,
+            (
+                "What field do you want to edit: "
+                "{name} | {phones} | {email} | {address} | {birthday} | {exit}: "
+            ),
+            space="top",
+            level="info",
+            name=("bright_magenta"),
+            phones=("bright_magenta"),
+            email=("bright_magenta"),
+            address=("bright_magenta"),
+            birthday=("bright_magenta"),
+            exit=("magenta"),
+        )
         field_to_edit = prompt(
-            "What field do you want to edit: "
-            "name | phones | email | address | birthday | exit: ",
+            ">> ",
             completer=COMPLETER_FOR_EDIT,
             complete_while_typing=True,
             key_bindings=bindings_for_contact,
@@ -56,9 +81,21 @@ def edit_contact_input(args, book):
 
             if field_to_edit == "phones":
                 while True:
-                    print("You can add, edit, delete phone, or exit")
+                    custom_print(
+                        command_logger,
+                        (
+                            "You can {add}, {edit}, {delete} phone, or {exit}. "
+                            "What do you want to do?"
+                        ),
+                        space="top",
+                        level="info",
+                        add=("bright_magenta"),
+                        edit=("bright_magenta"),
+                        delete=("bright_magenta"),
+                        exit=("magenta"),
+                    )
                     action = prompt(
-                        "What do you want to do?  ",
+                        ">> ",
                         completer=COMPLETER_FOR_ADD_EDIT_DELETE,
                         complete_while_typing=True,
                         key_bindings=bindings_for_add_edit_delete,
@@ -84,7 +121,13 @@ def edit_contact_input(args, book):
                     if record.email:
                         edit_or_delete_email_choise(record)
                         break
-                    print(f"Contact {name} has no email yet.")
+                    custom_print(
+                        command_logger,
+                        "Contact {name} has no email yet.",
+                        space="top",
+                        level="warning",
+                        name=("bright_cyan", name),
+                    )
                     add_or_not_email_choise(record)
                     break
                 break
@@ -94,7 +137,13 @@ def edit_contact_input(args, book):
                     if record.address:
                         edit_or_delete_address_choise(record)
                         break
-                    print(f"Contact {name} has no address yet.")
+                    custom_print(
+                        command_logger,
+                        "Contact {name} has no address yet.",
+                        space="top",
+                        level="warning",
+                        name=("bright_cyan", name),
+                    )
                     add_or_not_address_choise(record)
                     break
                 break
@@ -104,7 +153,13 @@ def edit_contact_input(args, book):
                     if record.birthday:
                         edit_or_delete_birthday_choise(record)
                         break
-                    print(f"Contact {name} has no birthday yet.")
+                    custom_print(
+                        command_logger,
+                        "Contact {name} has no birthday yet.",
+                        space="top",
+                        level="warning",
+                        name=("bright_cyan", name),
+                    )
                     add_or_not_birthday_choise(record)
                     break
                 break
@@ -112,4 +167,17 @@ def edit_contact_input(args, book):
             break
 
         else:
-            print("Command is wrong, if you don't want to edit something type: exit ")
+            custom_print(
+                command_logger,
+                "Command is wrong, if you don't want to edit something type: {exit}",
+                space="top",
+                level="warning",
+                exit=("magenta"),
+            )
+        custom_print(
+            command_logger,
+            "{msg}",
+            space="top",
+            level="info",
+            msg=("green", "Contact updated!"),
+        )

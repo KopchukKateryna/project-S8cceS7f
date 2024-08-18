@@ -1,6 +1,8 @@
 """Here are the handlers to work with contact fields
     """
 
+from helpers import custom_print, command_logger
+
 
 def edit_name(old_name, new_name, record, book):
     """Edit the name field"""
@@ -20,9 +22,22 @@ def add_phone(number, record):
 def delete_phone(number, record):
     """Delete phone"""
     if len(record.phones) == 1:
-        return "This is the only phone number. You cannot delete it"
+        custom_print(
+            command_logger,
+            "This is the only phone number. You cannot delete it",
+            space="top",
+            level="warning",
+        )
+        return
     record.remove_phone(number)
-    return "Phone deleted."
+    custom_print(
+        command_logger,
+        "{msg}",
+        space="top",
+        level="info",
+        msg=("green", "Phone deleted."),
+    )
+    return
 
 
 def edit_phone(old_phone, new_phone, record):

@@ -25,6 +25,7 @@ def save_notes(notebook: NotesBook, filename: str = "notesbook.pkl") -> None:
                 debug_logger,
                 "Data successfully saved to {filename}",
                 level="info",
+                space="none",
                 filename=("blue", filename),
             )
     except Exception as e:
@@ -32,6 +33,7 @@ def save_notes(notebook: NotesBook, filename: str = "notesbook.pkl") -> None:
             debug_logger,
             "Error occurred while saving data from {filename} - {e}",
             level="error",
+            space="none",
             filename=("blue", filename),
             e=("red", e),
         )
@@ -54,6 +56,7 @@ def load_notes(filename: str = "notesbook.pkl") -> NotesBook:
         custom_print(
             debug_logger,
             "File {filename} not found. Returning a new NotesBook instance.",
+            space="none",
             level="warning",
             filename=("blue", filename),
         )
@@ -65,6 +68,7 @@ def load_notes(filename: str = "notesbook.pkl") -> NotesBook:
         custom_print(
             debug_logger,
             "Data successfully loaded from {filename}",
+            space="none",
             level="info",
             filename=("blue", filename),
         )
@@ -73,6 +77,7 @@ def load_notes(filename: str = "notesbook.pkl") -> NotesBook:
         custom_print(
             debug_logger,
             "Error occurred while loading data from {filename} - {e}",
+            space="none",
             level="error",
             filename=("blue", filename),
             e=("red", e),
@@ -82,6 +87,7 @@ def load_notes(filename: str = "notesbook.pkl") -> NotesBook:
         custom_print(
             debug_logger,
             "Unknown error occurred while loading data from {filename} - {e}",
+            space="none",
             level="critical",
             filename=("blue", filename),
             e=("red", e),

@@ -36,6 +36,8 @@ from helpers import (
     display_ascii_welcome_art,
     load_bot_name,
     save_bot_name,
+    custom_print,
+    command_logger,
 )
 from constants import (
     ADDRESSBOOK_INFO_TABLE_DATA,
@@ -54,8 +56,18 @@ def main():
         bot_name = load_bot_name()
         welcome(bot_name)
         while True:
+            custom_print(
+                command_logger,
+                "{msg}",
+                space="top",
+                level="info",
+                msg=(
+                    "cyan",
+                    "Enter a command:",
+                ),
+            )
             user_input = prompt(
-                "Enter a command: > ",
+                ">> ",
                 completer=COMPLETER,
                 complete_while_typing=True,
                 key_bindings=bindings_general,
@@ -71,7 +83,16 @@ def main():
                 break
 
             if command == "hello":
-                print("How can I help you?")
+                custom_print(
+                    command_logger,
+                    "{msg}",
+                    level="info",
+                    space="top",
+                    msg=(
+                        "magenta",
+                        "How can I help you?",
+                    ),
+                )
 
             elif command == "info":
                 print(
@@ -104,77 +125,88 @@ def main():
                 )
 
             elif command == "add-note":
-                print(add_note(notes_book))
+                # done
+                add_note(notes_book)
 
             elif command == "edit-tag":
+                # done
                 edit_tag_input(notes_book)
 
             elif command == "add-contact":
+                # done
                 add_contact_input(book)
                 save_data(book, "addressbook.pkl", False)
-                print("Contact saved!")
 
             elif command == "edit-contact":
                 edit_contact_input(args, book)
                 save_data(book, "addressbook.pkl", False)
-                print("Contact updated!")
+                # print("Contact updated!")
 
             elif command == "phone":
-                print(show_phone(args, book))
+                # done
+                show_phone(args, book)
 
             elif command == "all-contacts":
+                # done
                 print(show_all(book))
 
             elif command == "all-notes":
+                # done
                 print(show_all_notes(notes_book))
 
             elif command == "search-note":
-                print(find_note(notes_book))
-
-            elif command == "remove-note":
-                note_name = " ".join(args).strip()
-                print(remove_note(note_name, notes_book))
+                # done
+                find_note(notes_book)
 
             elif command == "all-tags":
+                # done
                 print(all_tags(notes_book))
 
             elif command == "note-tags":
+                # done
                 search_note_tags(notes_book)
 
-            elif command == "delete":
-                print(delete_contact(args, book))
-
             elif command == "remove-tag":
+                # done
                 remove_tag_input(notes_book)
 
             elif command == "remove-tags":
+                # done add to commands
                 remove_tags_input(notes_book)
 
             elif command == "add-tag":
+                # done
                 add_tag_input(notes_book)
 
             elif command == "add-tags":
+                # done
                 add_tags_input(notes_book)
+
             elif command == "edit-note":
-                print(edit_note(notes_book))
+                # done
+                edit_note(notes_book)
 
             elif command == "delete-note":
+                # done
                 note_name = " ".join(args).strip()
-                print(remove_note(note_name, notes_book))
+                remove_note(note_name, notes_book)
 
             elif command == "delete-contact":
                 print(delete_contact(args, book))
 
             elif command == "show-birthday":
-                print(show_birthday(args, book))
+                # done
+                show_birthday(args, book)
 
             elif command == "birthdays":
-                print(show_upcoming_birthdays(book))
+                # done
+                show_upcoming_birthdays(book)
 
             elif command == "search-contact":
                 print(search_contact(args, book))
 
             elif command == "sort-by-tag":
+                # done
                 sort_by_tag_input(notes_book)
 
             elif command == "edit-bot-name":
@@ -185,7 +217,12 @@ def main():
                 break
 
             else:
-                print("Invalid command.")
+                custom_print(
+                    command_logger,
+                    "Invalid command",
+                    space="top",
+                    level="warning",
+                )
     except KeyboardInterrupt:
         save_data(book)
         save_notes(notes_book)

@@ -27,6 +27,7 @@ def save_data(
             custom_print(
                 debug_logger,
                 "Data successfully saved to {filename}",
+                space="none",
                 level="info",
                 filename=("blue", filename),
             )
@@ -35,6 +36,7 @@ def save_data(
             debug_logger,
             "Error occurred while saving data from {filename} - {e}",
             level="error",
+            space="none",
             filename=("blue", filename),
             e=("red", e),
         )
@@ -58,6 +60,7 @@ def load_data(filename: str = "addressbook.pkl") -> AddressBook:
             debug_logger,
             "File {filename} not found. Returning a new AddressBook instance.",
             level="warning",
+            space="none",
             filename=("blue", filename),
         )
         return AddressBook()
@@ -68,6 +71,7 @@ def load_data(filename: str = "addressbook.pkl") -> AddressBook:
             custom_print(
                 debug_logger,
                 "Data successfully loaded from {filename}",
+                space="none",
                 level="info",
                 filename=("blue", filename),
             )
@@ -77,6 +81,7 @@ def load_data(filename: str = "addressbook.pkl") -> AddressBook:
             debug_logger,
             "Error occurred while loading data from {filename} - {e}",
             level="error",
+            space="none",
             filename=("blue", filename),
             e=("red", e),
         )
@@ -86,6 +91,7 @@ def load_data(filename: str = "addressbook.pkl") -> AddressBook:
             debug_logger,
             "Unknown error occurred while loading data from {filename} - {e}",
             level="critical",
+            space="none",
             filename=("blue", filename),
             e=("red", e),
         )

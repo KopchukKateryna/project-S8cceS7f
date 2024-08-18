@@ -2,7 +2,7 @@
 adding, editing, outputting, deleting."""
 
 from helpers.assistant_info import table_show
-
+from helpers import custom_print, command_logger
 from classes import AddressBook, Record, ContactTableFormatter
 
 from .decorators import empty_contact_list, input_error
@@ -63,10 +63,31 @@ def show_phone(args, book: AddressBook):
         or that the contact was not found
     """
     name, *_ = args
-    record = book.find(name)
-    if record is None:
-        raise KeyError(f"Contact {name} not found.")
-    return record
+    if name:
+        record = book.find(name)
+        if record is None:
+            custom_print(
+                command_logger,
+                "Contact with name {name} haven't found",
+                space="top",
+                level="warning",
+                name=("bright_cyan", name),
+            )
+            raise KeyError()
+        custom_print(
+            command_logger,
+            "{record}",
+            space="top",
+            level="info",
+            record=("green", record),
+        )
+    else:
+        custom_print(
+            command_logger,
+            "The name must contain at least one symbol",
+            space="top",
+            level="warning",
+        )
 
 
 @empty_contact_list
