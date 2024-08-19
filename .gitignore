@@ -12,3 +12,8 @@ bot_name.pkl
 venv/
 .env/
 .venv/
+
+build/
+dist/
+no_name_bot.egg-info/
+.pypirc
